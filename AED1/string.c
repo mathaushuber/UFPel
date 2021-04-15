@@ -61,20 +61,37 @@ void adicionar(char *string){
 }
 
 void remover(char *string){
-	char name[20];
-	int flag=1;
+	char name[100];
+	int i, j, position;
 	printf("Digite um nome:");
 	scanf("%s",name);
-	for(int i=0; string[i]!='\0';i++){
-		if(string[i] == name [0]){
-			for(int j=0; j<strlen(name); j++){
-				if(string[i+j] != name [j])
-					flag=0;
+	for(i = 0; string[i]!='\0'; i++){
+		if(string[i] == name[0]){
+				position = i;
 			}
-		string[i] = string[i+strlen(name)];	
+	}
+	for(i=position, j = 0; string[i]!='\0';i++, j++){
+			if(name[j] == '\0'){
+				j = 0;
+			}
+			if(string[i] == name[j]){
+			string[i] = '0';
+			}
+		}
+	for(i = 0, j=0; string[i]!='\0'; i++){
+		if(string[i] != '0'){
+			string[j] = string[i];
+			j++;
 		}
 	}
+	string[j] = '\0';
+	
+	
 }
+	/* M A T H A U S H U B E  R
+       M A T H A U S
+	   H U B E R 
+	 * 0 1 2 3 4 5 6 7 8 9 10 11*/
 
 void listar(char *string){
 	for(int i=0; string[i]!='\0';i++){
