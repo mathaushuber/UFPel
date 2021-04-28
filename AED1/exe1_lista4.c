@@ -89,22 +89,21 @@ int removeTopo(Pilha *p){
 }
 
 void limpaPilha (Pilha *p){
-   no *ptr = p->topo;
-   no *proxtpilha;
-    if(ptr == NULL){
+   no *remove;
+    if(p->topo == NULL){
         printf("Pilha vazia");
     }
-     while(ptr != NULL){
-     proxtpilha = ptr->prox;
-     free(ptr);
-     ptr = proxtpilha;
+     while(p->topo != NULL){
+     remove = p->topo;
+     p->topo = remove->prox;
+     free(remove);
   }
 }
 
 void imprimePilha(Pilha *p){
     no *ptr = p->topo;
     if(ptr == NULL){
-        //PILHA VAZIA
+        printf("\nPilha vazia!\n");
         return;
     }else{
         while(ptr != NULL){
