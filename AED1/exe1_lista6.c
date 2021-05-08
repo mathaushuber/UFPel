@@ -46,6 +46,7 @@ int main(){
                 imprimeArvore(raiz);
                 break;
             case 4:
+			    liberaArvore(raiz);	
                 exit(0);
                 break;
             default:
@@ -144,6 +145,7 @@ No *removeElemento(No *raiz, int cod){
 			}
 		}
 		return raiz;
-	}
+	}	
+		printf("\tElemento não encontrado\n");
 		return NULL;
 } 
