@@ -1,74 +1,29 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct item{
+typedef struct item{
 	int cod;
-};
+}Item;
 
-typedef struct item Item;
 
-struct no{
+typedef struct no {
 	Item item;
 	struct no *left;
 	struct no *right;
-};
+}No;
 
-typedef struct no No;
+No *insereElemento(No *raiz, Item x);
+void imprimeArvore(No *raiz);
+void liberaArvore(No *raiz);
+Item criaItem(int cod);
+No *removeElemento(No *raiz, int cod);
+No *menorElemento(No *raiz);
+No *inicializa();
 
-No *inicializa(){
-	return NULL;
-}
-
-No *insere(No *raiz, Item x);
-void imprime(No *raiz);
-void liberaNo(No *raiz);
-Item itemCreate(int cod);
-
-Item itemCreate(int cod){
-	Item item;
-	item.cod = cod;
-	return item;
-}
-
-No *insere(No *raiz, Item x){
-	if(raiz == NULL){
-		No *aux = (No*)malloc(sizeof(No));
-		aux->item = x;
-		aux->left = NULL;
-		aux->right = NULL;
-		return aux;
-	}
-	else{
-		if(x.cod > raiz->item.cod){
-			raiz->right = insere(raiz->right, x);
-		}
-		else if(x.cod < raiz->item.cod){
-			raiz->left = insere(raiz->left, x);
-		}
-	}
-	return raiz;
-}
-
-void imprime(No *raiz){
-	if(raiz != NULL){
-		printf("%d\n", raiz->item.cod);
-		imprime(raiz->left);
-		imprime(raiz->right);
-	}
-}
-
-void liberaNo(No *raiz){
-	if(raiz != NULL){
-		liberaNo(raiz->left);
-		liberaNo(raiz->right);
-		free(raiz);
-	}
-}
 int main(){
 	No *raiz = inicializa();
-	raiz = insere(raiz, itemCreate(10));
 	int x, escolha;
-	 do{
+	 do{	
             printf("---------Menu---------");
             printf("\n\t1. Insere");
             printf("\n\t2. Remove");
@@ -80,12 +35,15 @@ int main(){
             case 1:
 				printf("Dado: ");
 				scanf("%d", &x);
-                insere(raiz, itemCreate(x));
+                raiz = insereElemento(raiz, criaItem(x));
                 break;
             case 2:
+				printf("Dado a ser removido: ");
+				scanf("%d", &x);
+				raiz = removeElemento(raiz, x);
                 break;
             case 3:
-                imprime(raiz);
+                imprimeArvore(raiz);
                 break;
             case 4:
                 exit(0);
@@ -96,6 +54,96 @@ int main(){
             }
     }while(escolha != EOF);
 	
-	liberaNo(raiz);
+	liberaArvore(raiz);
 	return 0;
 }
+
+No *inicializa(){
+	return NULL;
+}
+
+Item criaItem(int cod){
+	Item item;
+	item.cod = cod;
+	return item;
+}
+
+No *insereElemento(No *raiz, Item x){
+	if(raiz == NULL){
+		No *aux = (No*)malloc(sizeof(No));
+		aux->item = x;
+		aux->left = NULL;
+		aux->right = NULL;
+		return aux;
+	}
+	else{
+		if(x.cod > raiz->item.cod){
+			raiz->right = insereElemento(raiz->right, x);
+		}
+		else if(x.cod < raiz->item.cod){
+			raiz->left = insereElemento(raiz->left, x);
+		}
+	}
+	return raiz;
+}
+
+void imprimeArvore(No *raiz){
+	if(raiz != NULL){
+		printf("%d\n", raiz->item.cod);
+		imprimeArvore(raiz->left);
+		imprimeArvore(raiz->right);
+	}
+}
+
+void liberaArvore(No *raiz){
+	if(raiz != NULL){
+		liberaArvore(raiz->left);
+		liberaArvore(raiz->right);
+		free(raiz);
+	}
+}
+
+No *menorElemento(No *raiz){
+	if(raiz != NULL){
+		No *aux = raiz;
+		while(aux->left != NULL){
+			aux = aux->left;
+		}
+		return aux;
+	}
+	return NULL;
+}
+
+
+No *removeElemento(No *raiz, int cod){
+	if(raiz != NULL){
+		if(cod > raiz->item.cod){
+			raiz->right = removeElemento(raiz->right, cod);
+		}
+		else if(cod < raiz->item.cod){
+			raiz->left = removeElemento(raiz->left, cod);
+		}
+		else{
+			if(raiz->left == NULL && raiz->right == NULL){
+				free(raiz);
+				return NULL;
+			}else if(raiz->left == NULL && raiz->right != NULL){
+				No *aux = raiz->right;
+				free(raiz);
+				return aux;
+			}
+			else if(raiz->left != NULL && raiz->right == NULL){
+				No *aux = raiz->left;
+				free(raiz);
+				return aux;
+			}else{
+				No *aux = menorElemento(raiz->right);
+				Item itemAux = aux->item;
+				raiz = removeElemento(raiz, itemAux.cod);
+				raiz->item = itemAux;
+			}
+		}
+		return raiz;
+	}
+		return NULL;
+} 
