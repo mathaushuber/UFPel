@@ -3,7 +3,7 @@
 #include <time.h>
 
 void insertionSort(int *vet, int tam);
-void seletionSort(int *vet, int tam);
+void selectionSort(int *vet, int tam);
 int *randomVector(int *vet, int tam);
 
 int main(){
@@ -24,7 +24,7 @@ int main(){
 			break;
 			case 2:
 			vetor = randomVector(vetor, tam);
-			seletionSort(vetor, tam);
+			selectionSort(vetor, tam);
 			break;
 			case 3:
 			free(vetor);
@@ -43,6 +43,7 @@ int *randomVector(int *vet, int tam){
     }
     return vet;
 }
+
 void insertionSort(int *vet, int tam){
 	int i, j, aux;
 	//imprimindo antes da ordenação
@@ -66,7 +67,7 @@ void insertionSort(int *vet, int tam){
 	}
 }
 	
-void seletionSort(int *vet, int tam){
+void selectionSort(int *vet, int tam){
 	int aux, menor, i, j;
 	//imprimindo antes da ordenação
 	printf("----Vetor antes da ordenação----\n");
