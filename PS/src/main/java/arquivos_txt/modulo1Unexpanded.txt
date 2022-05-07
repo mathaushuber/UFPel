@@ -1,0 +1,10 @@
+NAME modulo_main
+um DW 0001
+nove DW 0009
+result DW
+
+move AX, um
+move DX, AX
+move AX, nove
+add AX, DX
+move result, AX

@@ -1,0 +1,11 @@
+NAME modulo_segundo
+dois DW 0002
+dez DW 0010
+resulto DW
+
+move AX, dois
+move DX, AX
+move AX, dez
+add AX, DX
+move resulto, AX
+hlt
