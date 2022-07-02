@@ -1,0 +1,2220 @@
+==3726== Cachegrind, a cache and branch-prediction profiler
+==3726== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==3726== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3726== Command: bin/cg.W
+==3726== 
+--3726-- warning: L3 cache found, using its data for the LL simulation.
+==3726== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                     9.80
+ Mop/s total     =                    42.93
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 11
+ Micro seconds : 10776750
+==3726== 
+==3726== I   refs:      1,633,089,220
+==3726== I1  misses:            1,526
+==3726== LLi misses:            1,513
+==3726== I1  miss rate:          0.00%
+==3726== LLi miss rate:          0.00%
+==3726== 
+==3726== D   refs:        689,949,432  (668,768,865 rd   + 21,180,567 wr)
+==3726== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==3726== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==3726== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==3726== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==3726== 
+==3726== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==3726== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==3726== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==3736== Cachegrind, a cache and branch-prediction profiler
+==3736== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==3736== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3736== Command: bin/cg.W
+==3736== 
+--3736-- warning: L3 cache found, using its data for the LL simulation.
+==3736== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                     9.79
+ Mop/s total     =                    42.98
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 11
+ Micro seconds : 10790164
+==3736== 
+==3736== I   refs:      1,633,089,232
+==3736== I1  misses:            1,526
+==3736== LLi misses:            1,513
+==3736== I1  miss rate:          0.00%
+==3736== LLi miss rate:          0.00%
+==3736== 
+==3736== D   refs:        689,949,440  (668,768,869 rd   + 21,180,571 wr)
+==3736== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==3736== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==3736== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==3736== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==3736== 
+==3736== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==3736== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==3736== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==3746== Cachegrind, a cache and branch-prediction profiler
+==3746== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==3746== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3746== Command: bin/cg.W
+==3746== 
+--3746-- warning: L3 cache found, using its data for the LL simulation.
+==3746== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                     9.74
+ Mop/s total     =                    43.20
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 11
+ Micro seconds : 10733151
+==3746== 
+==3746== I   refs:      1,633,089,206
+==3746== I1  misses:            1,526
+==3746== LLi misses:            1,513
+==3746== I1  miss rate:          0.00%
+==3746== LLi miss rate:          0.00%
+==3746== 
+==3746== D   refs:        689,949,430  (668,768,862 rd   + 21,180,568 wr)
+==3746== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==3746== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==3746== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==3746== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==3746== 
+==3746== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==3746== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==3746== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==3756== Cachegrind, a cache and branch-prediction profiler
+==3756== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==3756== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3756== Command: bin/cg.W
+==3756== 
+--3756-- warning: L3 cache found, using its data for the LL simulation.
+==3756== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                    11.38
+ Mop/s total     =                    36.97
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 13
+ Micro seconds : 12593214
+==3756== 
+==3756== I   refs:      1,633,089,766
+==3756== I1  misses:            1,526
+==3756== LLi misses:            1,513
+==3756== I1  miss rate:          0.00%
+==3756== LLi miss rate:          0.00%
+==3756== 
+==3756== D   refs:        689,949,677  (668,769,011 rd   + 21,180,666 wr)
+==3756== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==3756== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==3756== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==3756== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==3756== 
+==3756== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==3756== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==3756== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==3766== Cachegrind, a cache and branch-prediction profiler
+==3766== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==3766== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3766== Command: bin/cg.W
+==3766== 
+--3766-- warning: L3 cache found, using its data for the LL simulation.
+==3766== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                     9.55
+ Mop/s total     =                    44.03
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 10
+ Micro seconds : 10455877
+==3766== 
+==3766== I   refs:      1,633,089,190
+==3766== I1  misses:            1,526
+==3766== LLi misses:            1,513
+==3766== I1  miss rate:          0.00%
+==3766== LLi miss rate:          0.00%
+==3766== 
+==3766== D   refs:        689,949,424  (668,768,857 rd   + 21,180,567 wr)
+==3766== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==3766== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==3766== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==3766== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==3766== 
+==3766== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==3766== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==3766== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==3776== Cachegrind, a cache and branch-prediction profiler
+==3776== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==3776== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3776== Command: bin/cg.W
+==3776== 
+--3776-- warning: L3 cache found, using its data for the LL simulation.
+==3776== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                     8.94
+ Mop/s total     =                    47.04
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 9
+ Micro seconds : 9884235
+==3776== 
+==3776== I   refs:      1,633,089,179
+==3776== I1  misses:            1,526
+==3776== LLi misses:            1,513
+==3776== I1  miss rate:          0.00%
+==3776== LLi miss rate:          0.00%
+==3776== 
+==3776== D   refs:        689,949,424  (668,768,859 rd   + 21,180,565 wr)
+==3776== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==3776== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==3776== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==3776== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==3776== 
+==3776== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==3776== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==3776== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==3786== Cachegrind, a cache and branch-prediction profiler
+==3786== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==3786== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3786== Command: bin/cg.W
+==3786== 
+--3786-- warning: L3 cache found, using its data for the LL simulation.
+==3786== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                     9.35
+ Mop/s total     =                    45.00
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 10
+ Micro seconds : 10350514
+==3786== 
+==3786== I   refs:      1,633,089,195
+==3786== I1  misses:            1,526
+==3786== LLi misses:            1,513
+==3786== I1  miss rate:          0.00%
+==3786== LLi miss rate:          0.00%
+==3786== 
+==3786== D   refs:        689,949,424  (668,768,859 rd   + 21,180,565 wr)
+==3786== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==3786== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==3786== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==3786== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==3786== 
+==3786== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==3786== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==3786== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==3796== Cachegrind, a cache and branch-prediction profiler
+==3796== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==3796== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3796== Command: bin/cg.W
+==3796== 
+--3796-- warning: L3 cache found, using its data for the LL simulation.
+==3796== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                     9.89
+ Mop/s total     =                    42.54
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 11
+ Micro seconds : 10812172
+==3796== 
+==3796== I   refs:      1,633,089,243
+==3796== I1  misses:            1,526
+==3796== LLi misses:            1,513
+==3796== I1  miss rate:          0.00%
+==3796== LLi miss rate:          0.00%
+==3796== 
+==3796== D   refs:        689,949,442  (668,768,872 rd   + 21,180,570 wr)
+==3796== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==3796== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==3796== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==3796== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==3796== 
+==3796== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==3796== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==3796== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==3806== Cachegrind, a cache and branch-prediction profiler
+==3806== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==3806== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3806== Command: bin/cg.W
+==3806== 
+--3806-- warning: L3 cache found, using its data for the LL simulation.
+==3806== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                     9.60
+ Mop/s total     =                    43.81
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 10
+ Micro seconds : 10597535
+==3806== 
+==3806== I   refs:      1,633,089,208
+==3806== I1  misses:            1,526
+==3806== LLi misses:            1,513
+==3806== I1  miss rate:          0.00%
+==3806== LLi miss rate:          0.00%
+==3806== 
+==3806== D   refs:        689,949,430  (668,768,862 rd   + 21,180,568 wr)
+==3806== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==3806== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==3806== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==3806== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==3806== 
+==3806== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==3806== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==3806== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==3816== Cachegrind, a cache and branch-prediction profiler
+==3816== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==3816== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3816== Command: bin/cg.W
+==3816== 
+--3816-- warning: L3 cache found, using its data for the LL simulation.
+==3816== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                    10.10
+ Mop/s total     =                    41.63
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 11
+ Micro seconds : 11100970
+==3816== 
+==3816== I   refs:      1,633,089,731
+==3816== I1  misses:            1,526
+==3816== LLi misses:            1,513
+==3816== I1  miss rate:          0.00%
+==3816== LLi miss rate:          0.00%
+==3816== 
+==3816== D   refs:        689,949,661  (668,769,002 rd   + 21,180,659 wr)
+==3816== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==3816== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==3816== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==3816== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==3816== 
+==3816== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==3816== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==3816== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==3826== Cachegrind, a cache and branch-prediction profiler
+==3826== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==3826== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3826== Command: bin/cg.W
+==3826== 
+--3826-- warning: L3 cache found, using its data for the LL simulation.
+==3826== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                    10.64
+ Mop/s total     =                    39.53
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 12
+ Micro seconds : 11652242
+==3826== 
+==3826== I   refs:      1,633,089,772
+==3826== I1  misses:            1,526
+==3826== LLi misses:            1,513
+==3826== I1  miss rate:          0.00%
+==3826== LLi miss rate:          0.00%
+==3826== 
+==3826== D   refs:        689,949,678  (668,769,013 rd   + 21,180,665 wr)
+==3826== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==3826== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==3826== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==3826== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==3826== 
+==3826== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==3826== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==3826== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==3836== Cachegrind, a cache and branch-prediction profiler
+==3836== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==3836== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3836== Command: bin/cg.W
+==3836== 
+--3836-- warning: L3 cache found, using its data for the LL simulation.
+==3836== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                     8.87
+ Mop/s total     =                    47.44
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 9
+ Micro seconds : 9779292
+==3836== 
+==3836== I   refs:      1,633,089,189
+==3836== I1  misses:            1,526
+==3836== LLi misses:            1,513
+==3836== I1  miss rate:          0.00%
+==3836== LLi miss rate:          0.00%
+==3836== 
+==3836== D   refs:        689,949,426  (668,768,860 rd   + 21,180,566 wr)
+==3836== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==3836== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==3836== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==3836== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==3836== 
+==3836== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==3836== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==3836== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==3846== Cachegrind, a cache and branch-prediction profiler
+==3846== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==3846== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3846== Command: bin/cg.W
+==3846== 
+--3846-- warning: L3 cache found, using its data for the LL simulation.
+==3846== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                     8.90
+ Mop/s total     =                    47.27
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 10
+ Micro seconds : 9795665
+==3846== 
+==3846== I   refs:      1,633,089,233
+==3846== I1  misses:            1,526
+==3846== LLi misses:            1,513
+==3846== I1  miss rate:          0.00%
+==3846== LLi miss rate:          0.00%
+==3846== 
+==3846== D   refs:        689,949,442  (668,768,870 rd   + 21,180,572 wr)
+==3846== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==3846== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==3846== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==3846== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==3846== 
+==3846== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==3846== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==3846== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==3856== Cachegrind, a cache and branch-prediction profiler
+==3856== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==3856== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3856== Command: bin/cg.W
+==3856== 
+--3856-- warning: L3 cache found, using its data for the LL simulation.
+==3856== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                     9.71
+ Mop/s total     =                    43.31
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 11
+ Micro seconds : 10690058
+==3856== 
+==3856== I   refs:      1,633,089,208
+==3856== I1  misses:            1,526
+==3856== LLi misses:            1,513
+==3856== I1  miss rate:          0.00%
+==3856== LLi miss rate:          0.00%
+==3856== 
+==3856== D   refs:        689,949,430  (668,768,862 rd   + 21,180,568 wr)
+==3856== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==3856== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==3856== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==3856== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==3856== 
+==3856== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==3856== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==3856== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==3866== Cachegrind, a cache and branch-prediction profiler
+==3866== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==3866== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3866== Command: bin/cg.W
+==3866== 
+--3866-- warning: L3 cache found, using its data for the LL simulation.
+==3866== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                     9.82
+ Mop/s total     =                    42.82
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 11
+ Micro seconds : 10804696
+==3866== 
+==3866== I   refs:      1,633,089,215
+==3866== I1  misses:            1,526
+==3866== LLi misses:            1,513
+==3866== I1  miss rate:          0.00%
+==3866== LLi miss rate:          0.00%
+==3866== 
+==3866== D   refs:        689,949,431  (668,768,864 rd   + 21,180,567 wr)
+==3866== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==3866== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==3866== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==3866== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==3866== 
+==3866== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==3866== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==3866== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==3876== Cachegrind, a cache and branch-prediction profiler
+==3876== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==3876== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3876== Command: bin/cg.W
+==3876== 
+--3876-- warning: L3 cache found, using its data for the LL simulation.
+==3876== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                     8.87
+ Mop/s total     =                    47.41
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 10
+ Micro seconds : 9770114
+==3876== 
+==3876== I   refs:      1,633,089,196
+==3876== I1  misses:            1,526
+==3876== LLi misses:            1,513
+==3876== I1  miss rate:          0.00%
+==3876== LLi miss rate:          0.00%
+==3876== 
+==3876== D   refs:        689,949,428  (668,768,861 rd   + 21,180,567 wr)
+==3876== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==3876== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==3876== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==3876== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==3876== 
+==3876== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==3876== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==3876== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==3886== Cachegrind, a cache and branch-prediction profiler
+==3886== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==3886== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3886== Command: bin/cg.W
+==3886== 
+--3886-- warning: L3 cache found, using its data for the LL simulation.
+==3886== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                     8.85
+ Mop/s total     =                    47.56
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 10
+ Micro seconds : 9756998
+==3886== 
+==3886== I   refs:      1,633,089,246
+==3886== I1  misses:            1,526
+==3886== LLi misses:            1,513
+==3886== I1  miss rate:          0.00%
+==3886== LLi miss rate:          0.00%
+==3886== 
+==3886== D   refs:        689,949,447  (668,768,876 rd   + 21,180,571 wr)
+==3886== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==3886== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==3886== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==3886== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==3886== 
+==3886== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==3886== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==3886== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==3896== Cachegrind, a cache and branch-prediction profiler
+==3896== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==3896== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3896== Command: bin/cg.W
+==3896== 
+--3896-- warning: L3 cache found, using its data for the LL simulation.
+==3896== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                     9.57
+ Mop/s total     =                    43.93
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 11
+ Micro seconds : 10676680
+==3896== 
+==3896== I   refs:      1,633,089,196
+==3896== I1  misses:            1,526
+==3896== LLi misses:            1,513
+==3896== I1  miss rate:          0.00%
+==3896== LLi miss rate:          0.00%
+==3896== 
+==3896== D   refs:        689,949,426  (668,768,859 rd   + 21,180,567 wr)
+==3896== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==3896== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==3896== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==3896== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==3896== 
+==3896== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==3896== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==3896== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==3906== Cachegrind, a cache and branch-prediction profiler
+==3906== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==3906== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3906== Command: bin/cg.W
+==3906== 
+--3906-- warning: L3 cache found, using its data for the LL simulation.
+==3906== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                     9.90
+ Mop/s total     =                    42.48
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 11
+ Micro seconds : 10901630
+==3906== 
+==3906== I   refs:      1,633,089,203
+==3906== I1  misses:            1,526
+==3906== LLi misses:            1,513
+==3906== I1  miss rate:          0.00%
+==3906== LLi miss rate:          0.00%
+==3906== 
+==3906== D   refs:        689,949,430  (668,768,860 rd   + 21,180,570 wr)
+==3906== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==3906== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==3906== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==3906== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==3906== 
+==3906== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==3906== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==3906== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==3916== Cachegrind, a cache and branch-prediction profiler
+==3916== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==3916== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3916== Command: bin/cg.W
+==3916== 
+--3916-- warning: L3 cache found, using its data for the LL simulation.
+==3916== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                    11.61
+ Mop/s total     =                    36.22
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 13
+ Micro seconds : 12855311
+==3916== 
+==3916== I   refs:      1,633,089,745
+==3916== I1  misses:            1,526
+==3916== LLi misses:            1,513
+==3916== I1  miss rate:          0.00%
+==3916== LLi miss rate:          0.00%
+==3916== 
+==3916== D   refs:        689,949,667  (668,769,004 rd   + 21,180,663 wr)
+==3916== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==3916== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==3916== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==3916== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==3916== 
+==3916== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==3916== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==3916== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==3926== Cachegrind, a cache and branch-prediction profiler
+==3926== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==3926== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3926== Command: bin/cg.W
+==3926== 
+--3926-- warning: L3 cache found, using its data for the LL simulation.
+==3926== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                     9.86
+ Mop/s total     =                    42.66
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 11
+ Micro seconds : 10913839
+==3926== 
+==3926== I   refs:      1,633,089,225
+==3926== I1  misses:            1,526
+==3926== LLi misses:            1,513
+==3926== I1  miss rate:          0.00%
+==3926== LLi miss rate:          0.00%
+==3926== 
+==3926== D   refs:        689,949,438  (668,768,867 rd   + 21,180,571 wr)
+==3926== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==3926== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==3926== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==3926== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==3926== 
+==3926== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==3926== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==3926== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==3936== Cachegrind, a cache and branch-prediction profiler
+==3936== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==3936== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3936== Command: bin/cg.W
+==3936== 
+--3936-- warning: L3 cache found, using its data for the LL simulation.
+==3936== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                     9.72
+ Mop/s total     =                    43.26
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 11
+ Micro seconds : 10731932
+==3936== 
+==3936== I   refs:      1,633,089,219
+==3936== I1  misses:            1,526
+==3936== LLi misses:            1,513
+==3936== I1  miss rate:          0.00%
+==3936== LLi miss rate:          0.00%
+==3936== 
+==3936== D   refs:        689,949,436  (668,768,865 rd   + 21,180,571 wr)
+==3936== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==3936== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==3936== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==3936== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==3936== 
+==3936== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==3936== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==3936== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==3946== Cachegrind, a cache and branch-prediction profiler
+==3946== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==3946== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3946== Command: bin/cg.W
+==3946== 
+--3946-- warning: L3 cache found, using its data for the LL simulation.
+==3946== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                    10.04
+ Mop/s total     =                    41.88
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 12
+ Micro seconds : 11040674
+==3946== 
+==3946== I   refs:      1,633,089,741
+==3946== I1  misses:            1,526
+==3946== LLi misses:            1,513
+==3946== I1  miss rate:          0.00%
+==3946== LLi miss rate:          0.00%
+==3946== 
+==3946== D   refs:        689,949,666  (668,769,005 rd   + 21,180,661 wr)
+==3946== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==3946== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==3946== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==3946== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==3946== 
+==3946== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==3946== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==3946== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==3956== Cachegrind, a cache and branch-prediction profiler
+==3956== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==3956== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3956== Command: bin/cg.W
+==3956== 
+--3956-- warning: L3 cache found, using its data for the LL simulation.
+==3956== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                     9.90
+ Mop/s total     =                    42.48
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 11
+ Micro seconds : 10926650
+==3956== 
+==3956== I   refs:      1,633,089,193
+==3956== I1  misses:            1,526
+==3956== LLi misses:            1,513
+==3956== I1  miss rate:          0.00%
+==3956== LLi miss rate:          0.00%
+==3956== 
+==3956== D   refs:        689,949,425  (668,768,857 rd   + 21,180,568 wr)
+==3956== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==3956== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==3956== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==3956== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==3956== 
+==3956== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==3956== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==3956== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==3966== Cachegrind, a cache and branch-prediction profiler
+==3966== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==3966== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3966== Command: bin/cg.W
+==3966== 
+--3966-- warning: L3 cache found, using its data for the LL simulation.
+==3966== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                     9.80
+ Mop/s total     =                    42.91
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 11
+ Micro seconds : 10794254
+==3966== 
+==3966== I   refs:      1,633,089,208
+==3966== I1  misses:            1,526
+==3966== LLi misses:            1,513
+==3966== I1  miss rate:          0.00%
+==3966== LLi miss rate:          0.00%
+==3966== 
+==3966== D   refs:        689,949,430  (668,768,862 rd   + 21,180,568 wr)
+==3966== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==3966== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==3966== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==3966== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==3966== 
+==3966== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==3966== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==3966== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==3976== Cachegrind, a cache and branch-prediction profiler
+==3976== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==3976== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3976== Command: bin/cg.W
+==3976== 
+--3976-- warning: L3 cache found, using its data for the LL simulation.
+==3976== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                     9.73
+ Mop/s total     =                    43.24
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 10
+ Micro seconds : 10719766
+==3976== 
+==3976== I   refs:      1,633,089,221
+==3976== I1  misses:            1,526
+==3976== LLi misses:            1,513
+==3976== I1  miss rate:          0.00%
+==3976== LLi miss rate:          0.00%
+==3976== 
+==3976== D   refs:        689,949,436  (668,768,865 rd   + 21,180,571 wr)
+==3976== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==3976== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==3976== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==3976== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==3976== 
+==3976== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==3976== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==3976== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==3986== Cachegrind, a cache and branch-prediction profiler
+==3986== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==3986== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3986== Command: bin/cg.W
+==3986== 
+--3986-- warning: L3 cache found, using its data for the LL simulation.
+==3986== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                     9.95
+ Mop/s total     =                    42.29
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 11
+ Micro seconds : 10934279
+==3986== 
+==3986== I   refs:      1,633,089,232
+==3986== I1  misses:            1,526
+==3986== LLi misses:            1,513
+==3986== I1  miss rate:          0.00%
+==3986== LLi miss rate:          0.00%
+==3986== 
+==3986== D   refs:        689,949,440  (668,768,869 rd   + 21,180,571 wr)
+==3986== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==3986== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==3986== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==3986== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==3986== 
+==3986== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==3986== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==3986== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==3996== Cachegrind, a cache and branch-prediction profiler
+==3996== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==3996== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3996== Command: bin/cg.W
+==3996== 
+--3996-- warning: L3 cache found, using its data for the LL simulation.
+==3996== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                     8.90
+ Mop/s total     =                    47.26
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 10
+ Micro seconds : 9795783
+==3996== 
+==3996== I   refs:      1,633,089,215
+==3996== I1  misses:            1,526
+==3996== LLi misses:            1,513
+==3996== I1  miss rate:          0.00%
+==3996== LLi miss rate:          0.00%
+==3996== 
+==3996== D   refs:        689,949,436  (668,768,865 rd   + 21,180,571 wr)
+==3996== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==3996== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==3996== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==3996== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==3996== 
+==3996== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==3996== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==3996== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==4006== Cachegrind, a cache and branch-prediction profiler
+==4006== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==4006== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==4006== Command: bin/cg.W
+==4006== 
+--4006-- warning: L3 cache found, using its data for the LL simulation.
+==4006== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                    10.47
+ Mop/s total     =                    40.19
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 12
+ Micro seconds : 11516378
+==4006== 
+==4006== I   refs:      1,633,089,777
+==4006== I1  misses:            1,526
+==4006== LLi misses:            1,513
+==4006== I1  miss rate:          0.00%
+==4006== LLi miss rate:          0.00%
+==4006== 
+==4006== D   refs:        689,949,678  (668,769,015 rd   + 21,180,663 wr)
+==4006== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==4006== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==4006== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==4006== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==4006== 
+==4006== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==4006== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==4006== LL miss rate:            1.8% (        1.8%     +        2.3%  )
+==4016== Cachegrind, a cache and branch-prediction profiler
+==4016== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==4016== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==4016== Command: bin/cg.W
+==4016== 
+--4016-- warning: L3 cache found, using its data for the LL simulation.
+==4016== error calling PR_SET_PTRACER, vgdb might block
+
+
+ NAS Parallel Benchmarks 3.0 structured OpenMP C version - CG Benchmark
+ Size:       7000
+ Iterations:    15
+   iteration           ||r||                 zeta
+        1       1.75577866390786e-13 1.1999700372738e+01
+        2       2.28102998490821e-15 1.0345727566406e+01
+        3       2.29929812980076e-15 1.0361788013796e+01
+        4       2.25904223969286e-15 1.0362541628497e+01
+        5       2.19140434130482e-15 1.0362590585447e+01
+        6       2.26076623307409e-15 1.0362594646709e+01
+        7       2.15949942350393e-15 1.0362595039834e+01
+        8       2.16821905164632e-15 1.0362595081727e+01
+        9       2.19136957083965e-15 1.0362595086482e+01
+       10       2.13623428602257e-15 1.0362595087045e+01
+       11       2.15793560723343e-15 1.0362595087114e+01
+       12       2.07329747104467e-15 1.0362595087123e+01
+       13       2.08607003590876e-15 1.0362595087124e+01
+       14       2.05659826489763e-15 1.0362595087124e+01
+       15       2.04564683596005e-15 1.0362595087124e+01
+ Benchmark completed
+ VERIFICATION SUCCESSFUL
+ Zeta is      1.036259508712e+01
+ Error is     8.881784197001e-15
+
+
+ CG Benchmark Completed
+ Class           =                        W
+ Size            =                     7000
+ Iterations      =                       15
+ Threads         =                        1
+ Time in seconds =                    10.26
+ Mop/s total     =                    40.99
+ Operation type  =           floating point
+ Verification    =               SUCCESSFUL
+ Version         =           3.0 structured
+ Compile date    =              10 Nov 2021
+
+ Compile options:
+    CC           = gcc
+    CLINK        = gcc
+    C_LIB        = -lm
+    C_INC        = -I../common
+    CFLAGS       = -O3
+    CLINKFLAGS   = (none)
+    RAND         = randdp
+
+ Execution time
+ Seconds : 11
+ Micro seconds : 11337360
+==4016== 
+==4016== I   refs:      1,633,089,759
+==4016== I1  misses:            1,526
+==4016== LLi misses:            1,513
+==4016== I1  miss rate:          0.00%
+==4016== LLi miss rate:          0.00%
+==4016== 
+==4016== D   refs:        689,949,672  (668,769,010 rd   + 21,180,662 wr)
+==4016== D1  misses:      114,773,724  (113,789,367 rd   +    984,357 wr)
+==4016== LLd misses:       41,440,509  ( 40,947,421 rd   +    493,088 wr)
+==4016== D1  miss rate:          16.6% (       17.0%     +        4.6%  )
+==4016== LLd miss rate:           6.0% (        6.1%     +        2.3%  )
+==4016== 
+==4016== LL refs:         114,775,250  (113,790,893 rd   +    984,357 wr)
+==4016== LL misses:        41,442,022  ( 40,948,934 rd   +    493,088 wr)
+==4016== LL miss rate:            1.8% (        1.8%     +        2.3%  )
