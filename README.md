@@ -13,6 +13,12 @@ Minimal Spanning Tree resulting from the execution of Kruskal Algorithms and Tri
   <img align="center" alt="C" src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white">
 </div>
 
+### Algorithms and Data Structure III
+Approximate algorithm to solve the traveling salesman problem (TSP)
+<div style="display: inline_block">
+  <img align="center" alt="Python" src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
+</div>
+
 ### Computational Numerical Calculation
 numerical methods of bisection, false position, newton, secant, Gaussian elimination, Least Squares Method, Trapezoidal Method, Simpson's 1/3 Method, Simpson's 3/8 Method and Centered Difference Approximation
 <div style="display: inline_block">
