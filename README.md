@@ -37,6 +37,13 @@ of control. Performance Measures. Pipeline organization. RISC and CISC machines
 
 Language: Assembly
 
+### Computer Architecture and Organization II
+Implementation of a memory hierarchy targeting modern processors, specifically the intel iX processors. An example of a virtual memory and I/O. Experiments with data and instruction caching using Vortex 1.
+
+<div style="display: inline_block">
+  <img align="center" alt="Python" src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
+</div>
+
 ### Digital Techniques
 Introduction to Digital Systems. MOS Technology: the MOS Transistor, Logic Gates. Boolean Algebra and Logic Circuits: functions, canonical representations, minimization, mapping, dynamic behavior; Arithmetic and Interconnection Combinational Circuits. Sequential Circuits: latches and flip-flops, registers and counters. Memory Blocks. Analysis of Synchronous Sequential Machines: Mealy and Moore models. Programmable Devices. Basics of VHDL.
 
