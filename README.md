@@ -86,3 +86,12 @@ Line intersection algorithm (javascript). Image segmentation using a convex hull
   Matlab
 </div>
 
+### Formal Languages (LF)
+Implementation of a Moore state machine. Informal and formal definition of a finite automaton with output, three mathematical examples and exemplification using a hardware description in VHDL.
+
+Language: VHDL
+
+### Database Design (PBD)
+Implementation of the database used to create Adopetme, an application for adopting animals.
+  <img align="center" alt="Javascript" src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white">
+</div>
