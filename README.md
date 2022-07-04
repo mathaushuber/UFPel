@@ -93,5 +93,6 @@ Language: VHDL
 
 ### Database Design (PBD)
 Implementation of the database used to create Adopetme, an application for adopting animals.
+<div style="display: inline_block">
   <img align="center" alt="Javascript" src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white">
 </div>
