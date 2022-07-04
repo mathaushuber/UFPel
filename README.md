@@ -1,6 +1,12 @@
 # UFPel
 Projects related to my graduation in Computing from the Federal University of Pelotas
 
+### Programming Language Concepts
+Compare the performance of programs using different compiler optimization options (-O2 and -O3), against compilation without using the optimization option. Running the programs, collecting the data, presenting the results in the form of tables and/or graphs. Research project on programming language concepts, addressing the theme: "Analysis of programming languages for solving the Gram-Schmidt process".
+<div style="display: inline_block">
+  <img align="center" alt="Python" src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
+</div>
+
 ### Algorithms and Data Structure I
 Insertion Sort, Selection Sort, Merge Sort, Quick Sort, List, Stack, Priority Queues (heaps), Auto-balanced trees (AVL, Red-and-Black), Binary Lookup Trees
 <div style="display: inline_block">
