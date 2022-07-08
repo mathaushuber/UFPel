@@ -1,0 +1,99 @@
+{C:/Users/huber/OneDrive/햞ea de Trabalho/ulafinalfinal/bancoReg.vhd} {1 {vcom -work work -2002 -explicit {C:/Users/huber/OneDrive/햞ea de Trabalho/ulafinalfinal/bancoReg.vhd}
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity bancoReg
+-- Compiling architecture bhv_br of bancoReg
+
+} {} {}} {C:/Users/huber/OneDrive/햞ea de Trabalho/ulafinalfinal/Shifter.vhd} {1 {vcom -work work -2002 -explicit {C:/Users/huber/OneDrive/햞ea de Trabalho/ulafinalfinal/Shifter.vhd}
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Compiling entity Shifter
+-- Compiling architecture Behavioral of Shifter
+
+} {} {}} {C:/Users/huber/OneDrive/햞ea de Trabalho/ulafinalfinal/bancoReg_two.vhd} {1 {vcom -work work -2002 -explicit {C:/Users/huber/OneDrive/햞ea de Trabalho/ulafinalfinal/bancoReg_two.vhd}
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity bancoReg_two
+-- Compiling architecture bhv_br_two of bancoReg_two
+
+} {} {}} {C:/Users/huber/OneDrive/햞ea de Trabalho/ulafinalfinal/sum32.vhd} {1 {vcom -work work -2002 -explicit {C:/Users/huber/OneDrive/햞ea de Trabalho/ulafinalfinal/sum32.vhd}
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity sum32
+-- Compiling architecture bhv_SUM32 of sum32
+
+} {} {}} {C:/Users/huber/OneDrive/햞ea de Trabalho/ulafinalfinal/ULA.vhd} {2 {vcom -work work -2002 -explicit {C:/Users/huber/OneDrive/햞ea de Trabalho/ulafinalfinal/ULA.vhd}
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity ULA
+-- Compiling architecture bhv_ULA of ULA
+** Warning: C:/Users/huber/OneDrive/햞ea de Trabalho/ulafinalfinal/ULA.vhd(44): (vcom-1083) Implicit array operator "=" always returns FALSE (left length 32 is not equal to right length 8).
+
+
+} {} {}} {C:/Users/huber/OneDrive/햞ea de Trabalho/ulafinalfinal/registrador32.vhd} {1 {vcom -work work -2002 -explicit {C:/Users/huber/OneDrive/햞ea de Trabalho/ulafinalfinal/registrador32.vhd}
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity registrador32
+-- Compiling architecture bhv_reg32 of registrador32
+
+} {} {}} {C:/Users/huber/OneDrive/햞ea de Trabalho/ulafinalfinal/ULA_two.vhd} {2 {vcom -work work -2002 -explicit {C:/Users/huber/OneDrive/햞ea de Trabalho/ulafinalfinal/ULA_two.vhd}
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity ULA_two
+-- Compiling architecture bhv_ULA of ULA_two
+** Warning: C:/Users/huber/OneDrive/햞ea de Trabalho/ulafinalfinal/ULA_two.vhd(45): (vcom-1083) Implicit array operator "=" always returns FALSE (left length 32 is not equal to right length 8).
+
+
+} {} {}} {C:/Users/huber/OneDrive/햞ea de Trabalho/ulafinalfinal/UlaControl.vhd} {1 {vcom -work work -2002 -explicit {C:/Users/huber/OneDrive/햞ea de Trabalho/ulafinalfinal/UlaControl.vhd}
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity UlaControl
+-- Compiling architecture bhv_regUla of UlaControl
+
+} {} {}} {C:/Users/huber/OneDrive/햞ea de Trabalho/ulafinalfinal/registrador32_two.vhd} {1 {vcom -work work -2002 -explicit {C:/Users/huber/OneDrive/햞ea de Trabalho/ulafinalfinal/registrador32_two.vhd}
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity registrador32_two
+-- Compiling architecture bhv_reg32_two of registrador32_two
+
+} {} {}} {C:/Users/huber/OneDrive/햞ea de Trabalho/ulafinalfinal/somadorCompleto.vhd} {1 {vcom -work work -2002 -explicit {C:/Users/huber/OneDrive/햞ea de Trabalho/ulafinalfinal/somadorCompleto.vhd}
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity somadorCompleto
+-- Compiling architecture bhv_somadorCompleto of somadorCompleto
+
+} {} {}} {C:/Users/huber/OneDrive/햞ea de Trabalho/ulafinalfinal/UlaControl_TB.vhd} {1 {vcom -work work -2002 -explicit {C:/Users/huber/OneDrive/햞ea de Trabalho/ulafinalfinal/UlaControl_TB.vhd}
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package NUMERIC_STD
+-- Compiling entity UlaControl_TB
+-- Compiling architecture behavior of UlaControl_TB
+
+} {} {}}
