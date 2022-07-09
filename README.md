@@ -101,3 +101,6 @@ Implementation of the database used to create Adopetme, an application for adopt
 <div style="display: inline_block">
   <img align="center" alt="Javascript" src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white">
 </div>
+
+## Folder Flowchart
+<img align='center' src="/.github/fluxograma.png" width="700">
