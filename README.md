@@ -1,6 +1,9 @@
 # UFPel
 Projects related to my graduation in Computing from the Federal University of Pelotas
 
+## Repository flowchart
+<img align='center' src="/.github/fluxograma(1).png" width="700">
+
 ### Programming Language Concepts (CLP)
 Compare the performance of programs using different compiler optimization options (-O2 and -O3), against compilation without using the optimization option. Running the programs, collecting the data, presenting the results in the form of tables and/or graphs. Research project on programming language concepts, addressing the theme: "Analysis of programming languages for solving the Gram-Schmidt process".
 <div style="display: inline_block">
@@ -48,6 +51,11 @@ Implementation of a hypothetical Z808 machine
 <div style="display: inline_block">
   <img align="center" alt="Java" src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white">
 </div>
+
+### Advanced Digital Systems (SDA)
+ALU and Registrar Bank. ALU Testbench. Multipliers Project. Hadamard. Neander Project.
+
+Language: VHDL
 
 ### Computer Architecture and Organization I (AOC)
 The Hardware/Software Interface. Machine language and mnemonic language. Set of instructions and addressing modes. Processor organization: operating block and block
