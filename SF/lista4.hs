@@ -1,6 +1,9 @@
 data Arvore = Folha Int | Nodo Int Arvore Arvore
     deriving(Eq,Show)
 
+arv1 :: Arvore
+arv1 = Nodo 10 (Nodo 14 (Nodo 1 (Folha 4) (Folha 2)) (Folha 6)) (Folha 9)
+
 -- Função que recebe um inteiro e uma árvore, e multiplica todos os valores contidos na árvore pelo inteiro
 multArvore:: Int -> Arvore -> Arvore
 multArvore x (Folha n) = Folha(n * x)
