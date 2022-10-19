@@ -49,12 +49,17 @@ procuraVar ((s,i):xs) v
   | s == v     = i
   | otherwise  = procuraVar xs v
 
+-- procuraVar exSigma "x"
+--- 10
+
 mudaVar :: Memoria -> String -> Int -> Memoria
 mudaVar [] v n = error ("Variavel " ++ v ++ " nao definida na memoria")
 mudaVar ((s,i):xs) v n
   | s == v     = ((s,n):xs)
   | otherwise  = (s,i): mudaVar xs v n
 
+-- mudaVar exSigma "temp" 20
+--- [("x",10),("temp",20),("y",0)]
 
 -- DEFININDO AS MEMÓRIAS
 exSigma :: Memoria
@@ -251,8 +256,8 @@ fatorial = (Seq (Atrib (Var "temp") (Num 1))
                        (Seq (Atrib (Var "temp") (Mult (Var "temp") (Var "x")))
                             (Atrib (Var "x") (Sub (Var "x") (Num 1))))))
 
--- Com exSigma3 -> X! colocado em Y -> (Skip,[("x",1),("y",6),("z",0)])
--- Com exSigma4 -> X! colocado em Y -> (Skip,[("x",1),("y",120),("z",0)])
+-- Com exSigma3  [("x",3), ("temp",5), ("y",0)] -> X! colocado em Y -> (Skip,[("x",1),("y",6),("z",0)])
+-- Com exSigma4  [("x",5), ("temp",0), ("y",0)] -> X! colocado em Y -> (Skip,[("x",1),("y",120),("z",0)])
 
 
 --fazer com Memoria [("x",0), ("temp",10)] exSigma8
@@ -264,7 +269,6 @@ testeRepeat = (Repeat ( Atrib (Var "x") (Soma (Var "x") (Num 1)) ) (Igual (Var "
 testeDo :: C
 testeDo = (DoWhile (Atrib (Var "x") (Mult (Var "x") (Num 2) ) )  (Leq (Var "x") (Num 64) ) )
 -- cbigStep (testeDo, exSigma6) -> (Skip,[("x",128)])
-
 
 -- X de 1 até 10 incrementando y em 2 unidades e z recebe a soma de z + y
 testeFor:: C
@@ -280,7 +284,7 @@ programaUm :: C
 programaUm = (If (Leq (Var "x") (Var "y")) 
                 (Atrib (Var "temp") (Mult (Num 2) (Num 2))) 
                   (Atrib (Var "temp") (Num 5)))
---Primeiro comparamos se a variável x <= z, depois atribuimos à variável temp = 2*2, por fim atribuimos à variável temp = 5
+--Primeiro comparamos se a variável x <= y, depois atribuimos à variável temp = 2*2, por fim atribuimos à variável temp = 5
 --		if(x <= y){
 --			temp = 2*2;
 --			temp = 5;
@@ -290,7 +294,7 @@ programaUm = (If (Leq (Var "x") (Var "y"))
 programaDois :: C
 programaDois = (DoWhile (Atrib (Var "x") (Soma (Var "x") (Num 1))) 
                 (Leq (Var "x") (Num 8)))
--- Enquanto a variável x for menor 8, atribui a x a soma de x com 1.
+-- Enquanto a variável x for menor ou igual a 8, atribui a x a soma de x com 1.
 -- 		while (x <= 8){
 -- 		x = x + 1	 
 --		}
