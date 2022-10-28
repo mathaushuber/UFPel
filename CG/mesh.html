@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="pt" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - WebGL - Twisted Triangle</title>
-  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
-<title>Twisted Triangle. Assigment 1</title>
+  <title>Editor de Malha WebGL</title>
+  <script src="https://kit.fontawesome.com/6c36d92623.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="CSS/style.css">
+  <!--
 <script id="vertex-shader" type="x-shader/x-vertex">
 attribute vec4 vPosition;
 uniform float angle;
@@ -22,52 +23,76 @@ precision mediump float;
 void
 main()
 {
-    gl_FragColor = vec4( 0.48627451, 0.98823529, 0.0, 1.0 );
+    gl_FragColor = vec4( 0.1, 0.1, 0.7, 1.0 );
 }
 </script>
+-->
 
-<script type="text/javascript" src="https://www.cs.unm.edu/~angel/COURSERA/CODE/Common/webgl-utils.js"></script>
-<script type="text/javascript" src="https://www.cs.unm.edu/~angel/COURSERA/CODE/Common/initShaders.js"></script>
-<script type="text/javascript" src="https://www.cs.unm.edu/~angel/COURSERA/CODE/Common/MV.js"></script>
-<script type="text/javascript" src="JS/mesh.js"></script>
-<style type="text/css">
-  
-  body {
-    font-family: sans-serif;
-    font-size: 14px;
-  }
-
-  #gl-canvas {
-    border: 1px solid black;
-    margin-bottom: 10px;
-  }
-
-  fieldset {
-    width: 170px;
-    height: 55px;
-    float: left;
-  }
-
-  legend {
-    font-weight: bold;
-  }
-
-</style>
 
 </head>
 <body>
 <!-- partial:index.partial.html -->
-<canvas id="gl-canvas" width="600" height="600">
-Oops ... your browser doesn't support the HTML5 canvas element
-</canvas>
+<ul class="nav">
+  <li>
+    <a href="mesh.html">
+      <i class="fas fa-download fa-3x">
+        <div class = "circle"></div></i>
+      </i>
+      <div class = "title">Salvar</div>
+    </a>
+  </li>
+  
+  <li>
+    <a href="mesh.html">
+      <i class="fas fa-dice-d6 fa-3x">
+        <div class = "circle"></div>
+      </i>
+      <div class = "title">Malha</div>
+    </a>
+  </li>
+  
+  <li>
+    <a href="scene.html">
+      <i class="fas fa-globe fa-3x">
+        <div class = "circle"></div></i>
+      <div class = "title">Cena</div>
+    </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/HuberM1998/UFPel/tree/master/CG" target = "_blank">
+        <i class="fab fa-github fa-3x">
+          <div class = "circle"></div></i>
+        <div class = "title">Github</div>
+      </a>
+  </li>
+  <div class="background"></div>
+
+</ul>
+<!-- Partial -->
+<canvas id="canvas"></canvas>
+
+<!-- Scripts -->
+<script src="https://webgl2fundamentals.org/webgl/resources/twgl-full.min.js"></script>
+<script src="https://webgl2fundamentals.org/webgl/resources/m4.js"></script>
+<script src="https://webgl2fundamentals.org/webgl/resources/flattened-primitives.js"></script>
+<script src="Bibliotecas/dat.gui.min.js"></script>
+<script src="JS/webgl-mesh.js"></script>
+<script type="text/javascript" src="https://www.cs.unm.edu/~angel/COURSERA/CODE/Common/webgl-utils.js"></script>
+<script type="text/javascript" src="https://www.cs.unm.edu/~angel/COURSERA/CODE/Common/initShaders.js"></script>
+<script type="text/javascript" src="https://www.cs.unm.edu/~angel/COURSERA/CODE/Common/MV.js"></script>
+<script src="JS/mesh-script.js"></script>
+<script src="JS/gui-mesh.js"></script>
+<script src="JS/cameras.js"></script>
+<script src="JS/utils.js"></script>
 <section>
 <fieldset>
   <legend>Twist angle</legend>
-  <input id="slider-angle" name="angle" type="range" min="0" max="360" step="1" value="120" />
+  <input id="slider-angle" name="angle" type="range" min="0" max="360" step="1" value="3" />
 </fieldset>
 <fieldset>
   <legend>Tessellation Grade</legend>
-  <input id="slider-tessellation" name="tessellation" type="range" min="1" max="6" step="1" value="5" />
+  <input id="slider-tessellation" name="tessellation" type="range" min="1" max="10" step="1" value="5" />
 </fieldset>
 <fieldset>
   <legend>Render Type</legend>
@@ -76,8 +101,6 @@ Oops ... your browser doesn't support the HTML5 canvas element
 </fieldset>
   
 </section>
-<!-- partial -->
-  <script  src="./script.js"></script>
 
 </body>
 </html>

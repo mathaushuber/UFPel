@@ -158,7 +158,7 @@ const createGuiLight = () => {
     .name("Olhar de").listen().onChange(() => {
       lights[config.index].translation.x = 0;
       lights[config.index].translation.y = 0;
-      createGuiCamera();
+      createGuiLight();
     });
 
 

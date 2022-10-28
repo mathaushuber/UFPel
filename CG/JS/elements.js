@@ -2,7 +2,7 @@ var objectsToDraw = [];
 var objects = [];
 var createdElements = 1;
 
-const { gl, meshProgramInfo } = initializeWorld();
+const { gl, sceneProgram } = initializeWorld();
 
 const cubeBufferInfo = flattenedPrimitives.createCubeBufferInfo(gl, 20);
 const sphereBufferInfo = flattenedPrimitives.createSphereBufferInfo(
@@ -31,25 +31,25 @@ const cylinderBufferInfo = flattenedPrimitives.createCylinderBufferInfo(
 
 const cubeVAO = twgl.createVAOFromBufferInfo(
   gl,
-  meshProgramInfo,
+  sceneProgram,
   cubeBufferInfo
 );
 
 const sphereVAO = twgl.createVAOFromBufferInfo(
   gl,
-  meshProgramInfo,
+  sceneProgram,
   sphereBufferInfo
 );
 
 const coneVAO = twgl.createVAOFromBufferInfo(
   gl,
-  meshProgramInfo,
+  sceneProgram,
   coneBufferInfo
 );
 
 const cylinderVAO = twgl.createVAOFromBufferInfo(
   gl,
-  meshProgramInfo,
+  sceneProgram,
   cylinderBufferInfo
 );
 
@@ -105,7 +105,7 @@ const addElement = async (elementType) => {
     switch (model) {
       case 1:
         var object = {
-          programInfo: meshProgramInfo,
+          programInfo: sceneProgram,
           bufferInfo: cubeBufferInfo,
           vertexArray: cubeVAO,
           uniforms: element.uniforms,
@@ -115,7 +115,7 @@ const addElement = async (elementType) => {
 
       case 2:
         var object = {
-          programInfo: meshProgramInfo,
+          programInfo: sceneProgram,
           bufferInfo: sphereBufferInfo,
           vertexArray: sphereVAO,
           uniforms: element.uniforms,
@@ -125,7 +125,7 @@ const addElement = async (elementType) => {
 
       case 3:
         var object = {
-          programInfo: meshProgramInfo,
+          programInfo: sceneProgram,
           bufferInfo: coneBufferInfo,
           vertexArray: coneVAO,
           uniforms: element.uniforms,
@@ -135,7 +135,7 @@ const addElement = async (elementType) => {
 
       case 4:
         var object = {
-          programInfo: meshProgramInfo,
+          programInfo: sceneProgram,
           bufferInfo: cylinderBufferInfo,
           vertexArray: cylinderVAO,
           uniforms: element.uniforms,
@@ -146,7 +146,7 @@ const addElement = async (elementType) => {
   } else {
     if (elementType === "Esfera") {
       var object = {
-        programInfo: meshProgramInfo,
+        programInfo: sceneProgram,
         bufferInfo: sphereBufferInfo,
         vertexArray: sphereVAO,
         uniforms: element.uniforms,
@@ -154,7 +154,7 @@ const addElement = async (elementType) => {
       objectsToDraw.push(object);
     } else if (elementType === "Cubo") {
       var object = {
-        programInfo: meshProgramInfo,
+        programInfo: sceneProgram,
         bufferInfo: cubeBufferInfo,
         vertexArray: cubeVAO,
         uniforms: element.uniforms,
@@ -162,7 +162,7 @@ const addElement = async (elementType) => {
       objectsToDraw.push(object);
     } else if (elementType === "Cilindro") {
       var object = {
-        programInfo: meshProgramInfo,
+        programInfo: sceneProgram,
         bufferInfo: cylinderBufferInfo,
         vertexArray: cylinderVAO,
         uniforms: element.uniforms,
@@ -170,7 +170,7 @@ const addElement = async (elementType) => {
       objectsToDraw.push(object);
     } else {
       var object = {
-        programInfo: meshProgramInfo,
+        programInfo: sceneProgram,
         bufferInfo: coneBufferInfo,
         vertexArray: coneVAO,
         uniforms: element.uniforms,
