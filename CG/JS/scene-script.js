@@ -1,3 +1,23 @@
+function createObj(){
+    const objScene = {
+    elements: objects,
+    cameras: cameras,
+    animation: animation,
+    animationCamera: animationCamera,
+    };
+    downloadObjectAsJson(objScene);
+}
+
+function downloadObjectAsJson(exportObj){
+    var exportName = "scene";
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
+    var downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href",     dataStr);
+    downloadAnchorNode.setAttribute("download", exportName + ".json");
+    document.body.appendChild(downloadAnchorNode); // required for firefox
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+}
 
 function main() {
 
@@ -55,7 +75,7 @@ function main() {
     // and copy in the normal values
     var normalBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, normalBuffer);
-    setNormals(gl);
+   // setNormals(gl);
 
     // Turn on the attribute
     gl.enableVertexAttribArray(normalAttributeLocation);

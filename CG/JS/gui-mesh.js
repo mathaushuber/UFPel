@@ -11,15 +11,16 @@ var config = {
   	},
   	SelectCameras: [],
     SelectRender: ['TRIANGLES', 'LINES'],
-    tipoRender: 'LINES',
+    selected: false,
+    tipoRender: 'TRIANGLES',
   	index: 0,
     value: 5,
   	zoom: 120,
-  	subdivisao: 5,
+  	subdivisao: 0,
     angulo: 120,
     angle: 0,
   	fieldOfView: 60,
-    tessellationGrad: 0,
+    tessellationGrad: 5,
   	elements: [],
   	elementTarget: "none",
 };
@@ -36,10 +37,11 @@ const createGuiElement = () => {
   elementGui = new dat.GUI();
 
   elementGui
-    .add(config, "subdivisao", 1, 10, 1)
+    .add(config, "subdivisao", 0, 9, 1)
     .name("Subdivisão")
     .listen().onChange(() => {
     config.tesselationGrad = config.subdivisao;
+    console.log(config.tesselationGrad);
     rerender();
     });
 
@@ -56,8 +58,12 @@ const createGuiElement = () => {
     .name("Renderização")
     .listen()
     .onChange(() => {
-      config.tipoRender = config.SelectRender;
-      rerender();
+       config.tipoRender = config.SelectRender;
+       config.selected = true;
+       if(config.selected == false){
+        config.tipoRender = 'LINES';
+       }
+       rerender();
     }); 
 
 };

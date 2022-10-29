@@ -5,36 +5,14 @@
   <title>Editor de Malha WebGL</title>
   <script src="https://kit.fontawesome.com/6c36d92623.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="CSS/style.css">
-  <!--
-<script id="vertex-shader" type="x-shader/x-vertex">
-attribute vec4 vPosition;
-uniform float angle;
-
-void
-main()
-{
-    gl_Position = vPosition;    
-}
-</script>
-
-<script id="fragment-shader" type="x-shader/x-fragment">
-precision mediump float;
-
-void
-main()
-{
-    gl_FragColor = vec4( 0.1, 0.1, 0.7, 1.0 );
-}
-</script>
--->
-
-
+  <link rel="icon" href="Imagens/favicon.png">
+  <link rel="stylesheet" href="CSS/dat.gui.css">
+  
 </head>
 <body>
-<!-- partial:index.partial.html -->
 <ul class="nav">
   <li>
-    <a href="mesh.html">
+    <a href="" id="downloadAnchorElem" onclick="createObj()">
       <i class="fas fa-download fa-3x">
         <div class = "circle"></div></i>
       </i>
@@ -78,29 +56,11 @@ main()
 <script src="https://webgl2fundamentals.org/webgl/resources/flattened-primitives.js"></script>
 <script src="Bibliotecas/dat.gui.min.js"></script>
 <script src="JS/webgl-mesh.js"></script>
-<script type="text/javascript" src="https://www.cs.unm.edu/~angel/COURSERA/CODE/Common/webgl-utils.js"></script>
-<script type="text/javascript" src="https://www.cs.unm.edu/~angel/COURSERA/CODE/Common/initShaders.js"></script>
 <script type="text/javascript" src="https://www.cs.unm.edu/~angel/COURSERA/CODE/Common/MV.js"></script>
 <script src="JS/mesh-script.js"></script>
 <script src="JS/gui-mesh.js"></script>
 <script src="JS/cameras.js"></script>
 <script src="JS/utils.js"></script>
-<section>
-<fieldset>
-  <legend>Twist angle</legend>
-  <input id="slider-angle" name="angle" type="range" min="0" max="360" step="1" value="3" />
-</fieldset>
-<fieldset>
-  <legend>Tessellation Grade</legend>
-  <input id="slider-tessellation" name="tessellation" type="range" min="1" max="10" step="1" value="5" />
-</fieldset>
-<fieldset>
-  <legend>Render Type</legend>
-    <input type="radio" name="render-type" value="LINES" />Lines<br />
-    <input type="radio" name="render-type" value="TRIANGLES" checked="checked"/>Triangles<br />
-</fieldset>
-  
-</section>
 
 </body>
 </html>

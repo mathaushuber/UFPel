@@ -18,19 +18,14 @@ window.onload = function init()
     gl.useProgram(meshProgram.program)
 
     initVars();
-    initUI();
     loadGUI();
    
     //tessellation
-    tessellation(vertices[0], vertices[1], vertices[2], tessellationGrade);
+    tessellation(vertices[0], vertices[1], vertices[2], config.subdivisao);
 
     //  Configure WebGL
     gl.viewport( 0, 0, gl.canvas.width, gl.canvas.height );
     gl.clearColor( 0.0, 0.0, 0.0, 1.0 );
-
-    //  Load shaders and initialize attribute buffers
-    //var program = initShaders( gl, "vertex-shader", "fragment-shader" );
-    //gl.useProgram( program );
 
     // Load the data into the GPU
     var bufferId = gl.createBuffer();
@@ -96,55 +91,22 @@ function initVars(){
     ]; 
 
     // Twist Angle
-    var angleValue = document.getElementById("slider-angle").value;
-    angle = angleValue * Math.PI / 180;
-
-    //Render Type
-    radios = document.getElementsByName('render-type');
-    for (var i = 0, length = radios.length; i < length; i++) {
-        if (radios[i].checked) {
-            renderType = radios[i].value;
-            break;
-        }
+    config.angle = config.angulo * Math.PI / 180;
+    if(config.selected == false){
+        config.tipoRender = 'TRIANGLES';
     }
-
-    //Tessellation Grade
-    tessellationGrade = document.getElementById("slider-tessellation").value;
-
-
-}
-
-function initUI(){
-
-    // Twist UI
-    document.getElementById("slider-angle").addEventListener("input", function(e){
-            angle = this.value * Math.PI / 180;
-            rerender();
-    }, false);
-
-    // Render Type UI
-    for (var i = 0, length = radios.length; i < length; i++) {
-       radios[i].onclick = function() {
-            renderType = this.value;
-            rerender();
-        };
+    else{
+        config.tipoRender = config.SelectRender;
     }
-
-    // Tessellation Grade UI
-    document.getElementById("slider-tessellation").addEventListener("input", function(e){
-            tessellationGrade = this.value;
-            rerender();
-    }, false);
-
-
+    config.tesselationGrad = config.subdivisao;
 }
 
 function twist(vector){
     var x = vector[0],
         y = vector[1],
         d = Math.sqrt(x * x + y * y),
-        sinAngle = Math.sin(d * angle),
-        cosAngle = Math.cos(d * angle);
+        sinAngle = Math.sin(d * config.angle),
+        cosAngle = Math.cos(d * config.angle);
         /*
             x' = x cos(d0) - y sin(d0)
             y' = x sin(d0) + y cos(d0)
@@ -158,7 +120,7 @@ function triangle (a, b, c){
 
     a = twist(a), b = twist(b), c = twist(c);
 
-    if(renderType=="TRIANGLES"){
+    if(config.tipoRender=="TRIANGLES"){
         points.push(a, b, c);
     } else {
         points.push(a, b);
@@ -177,9 +139,9 @@ function tessellation(a, b, c, count){
 
     } else {
         //bisect the sides
-        var ab = mix( a, b, 0.5 );
-        var ac = mix( a, c, 0.5 );
-        var bc = mix( b, c, 0.5 );
+        var ab = bisec( a, b, 0.5 );
+        var ac = bisec( a, c, 0.5 );
+        var bc = bisec( b, c, 0.5 );
 
         --count;
 
@@ -195,17 +157,56 @@ function tessellation(a, b, c, count){
 
 function rerender(){
     points = [];
-    tessellation(vertices[0], vertices[1], vertices[2], tessellationGrade);
+    tessellation(vertices[0], vertices[1], vertices[2], config.subdivisao);
     gl.bufferData( gl.ARRAY_BUFFER, flatten(points), gl.STATIC_DRAW );
     render();
 }
 
 function render() {
     gl.clear( gl.COLOR_BUFFER_BIT );
-    if(renderType=="TRIANGLES"){
+    if(config.tipoRender=="TRIANGLES"){
         gl.drawArrays( gl.TRIANGLES, 0, points.length );
     }
     else {
         gl.drawArrays( gl.LINES, 0, points.length );   
     }
+}
+
+function bisec(u,v,s)
+{
+    if ( typeof s !== "number" ) {
+        throw "bisec: o último parâmetro" + s + "deve ser um número";
+    }
+
+    if ( u.length != v.length ) {
+        throw "vetores não tem a mesma dimensão";
+    }
+
+    var result = [];
+    for ( var i = 0; i < u.length; ++i ) {
+        result.push( (1.0 - s) * u[i] + s * v[i] );
+    }
+
+    return result;
+}
+
+function createObj(){
+    const triangulos = {
+    angulo: config.angle,
+    tipoRender: config.tipoRender,
+    vertices: vertices,
+    subdivisao: config.subdivisao,
+    };
+    downloadObjectAsJson(triangulos);
+}
+
+function downloadObjectAsJson(exportObj){
+    var exportName = "mesh";
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
+    var downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href",     dataStr);
+    downloadAnchorNode.setAttribute("download", exportName + ".json");
+    document.body.appendChild(downloadAnchorNode); // required for firefox
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
 }
