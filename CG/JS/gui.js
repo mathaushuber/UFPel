@@ -73,9 +73,6 @@ const loadGUI = () => {
   addElement();
 
   addGuiElement();
-  //elements[1, 3, 'none']
-  //index [0, 1, 2]
-  //elementTarget 1 || 3 || 'none'
   config.elements = objects?.map((elem) => elem.position);
   createGuiCamera();
 };
@@ -106,7 +103,6 @@ const createGuiCamera = () => {
     .listen().onChange(() => (config.fieldOfView = 180 - config.zoom));
 
   cameraGui.add(config, "AddCamera").name("Adicionar Cam");
-  lightGui.add(config, "AddLight").name("Adicionar Luz");
   cameraGui
     .add(config, "index", config.SelectCameras)
     .name("Câmera")
@@ -200,9 +196,6 @@ const addGuiElement = () => {
   if (objectIndex >= 1) {
     element.add(objects[objectIndex], "Remover");
   }
-  element.add(objects[objectIndex], "isOrbiting").name("Ponto");
-  
-  element.add(objects[objectIndex], "Axys", ['x', 'y', 'z']).name("Eixo");
 
   const elementRotation = element.addFolder("Rotação");
   elementRotation.add(objects[objectIndex].rotation, "x", -50, 500, 0.5);

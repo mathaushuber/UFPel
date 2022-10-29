@@ -1,6 +1,6 @@
 const {gl, meshProgram} = initializeWorld();
 var canvas;
-var points = []; //empty array, we put the points here as we do the subdivision
+var points = []; //array vazio, colocamos os pontos aqui enquanto fazemos a subdivisão
 var tessellationGrade;
 var angle;
 var renderType;
@@ -10,36 +10,30 @@ var radios;
 window.onload = function init()
 {
     twgl.resizeCanvasToDisplaySize(gl.canvas);
-    /*gl.clearColor(0, 0, 0, 0);
-    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-    gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
-    gl.enable(gl.DEPTH_TEST);
-    gl.enable(gl.CULL_FACE);  */
     gl.useProgram(meshProgram.program)
 
     initVars();
     loadGUI();
    
-    //tessellation
     tessellation(vertices[0], vertices[1], vertices[2], config.subdivisao);
-
+    translate(vertices[0], vertices[1], vertices[2]);
     //  Configure WebGL
     gl.viewport( 0, 0, gl.canvas.width, gl.canvas.height );
     gl.clearColor( 0.0, 0.0, 0.0, 1.0 );
 
-    // Load the data into the GPU
+    // Carregando os dados na GPU
     var bufferId = gl.createBuffer();
     gl.bindBuffer( gl.ARRAY_BUFFER, bufferId );
     gl.bufferData( gl.ARRAY_BUFFER, flatten(points), gl.STATIC_DRAW );
 
 
-    // Associate out shader variables with our data buffer
+    // Associando as variáveis de saída dos shaders com nosso buffer de dados
     var vPosition = gl.getAttribLocation( meshProgram.program, "a_position" );
     var colorLocation = gl.getUniformLocation(meshProgram.program, "u_colorMult");
     gl.vertexAttribPointer( vPosition, 2, gl.FLOAT, false, 0, 0 );
     gl.enableVertexAttribArray( vPosition );
 
-     // Compute the camera's matrix using look at.
+     // Calculando a matriz da câmera usando look at.
     var cameraPosition = [0, 0, 200];
     var target = [0, 0, 0];
     var up = [0, 1, 0];
@@ -76,7 +70,7 @@ window.onload = function init()
     );
     
 
-    // Make a view matrix from the camera matrix.
+    // Matriz de visualização da matriz da câmera.
     var viewMatrix = m4.inverse(cameraMatrix);
 
     render();
@@ -90,7 +84,7 @@ function initVars(){
         vec4(0.97, 0.24, -0.58, -0.69) // right-down corner
     ]; 
 
-    // Twist Angle
+    
     config.angle = config.angulo * Math.PI / 180;
     if(config.selected == false){
         config.tipoRender = 'TRIANGLES';
@@ -101,7 +95,7 @@ function initVars(){
     config.tesselationGrad = config.subdivisao;
 }
 
-function twist(vector){
+function curve(vector){
     var x = vector[0],
         y = vector[1],
         d = Math.sqrt(x * x + y * y),
@@ -116,9 +110,32 @@ function twist(vector){
         return [x * cosAngle - y * sinAngle, x * sinAngle + y * cosAngle];
 }
 
+function createVertices(){
+    newVertice = vec4(Math.random(), Math.random(), Math.random(), Math.random());
+    vertices.push(newVertice);
+    if((vertices.length % 3) == 0){
+        config.subdivisao++;
+        rerender();
+    }
+    console.log(vertices);
+}
+
 function triangle (a, b, c){
 
-    a = twist(a), b = twist(b), c = twist(c);
+    a = curve(a), b = curve(b), c = curve(c);
+
+    if(config.tipoRender=="TRIANGLES"){
+        points.push(a, b, c);
+    } else {
+        points.push(a, b);
+        points.push(b, c);
+        points.push(a, c);
+    }
+}
+
+function trTranslate (a, b, c){
+
+    a = translate(a), b = translate(b), c = translate(c);
 
     if(config.tipoRender=="TRIANGLES"){
         points.push(a, b, c);
@@ -187,6 +204,22 @@ function bisec(u,v,s)
         result.push( (1.0 - s) * u[i] + s * v[i] );
     }
 
+    return result;
+}
+
+function translate(vector)
+{
+    if ( Array.isArray(vector) && vector.length == 4 ) {
+        z = vector[2];
+        y = vector[1];
+        x = vector[0];
+    }
+
+    var result = mat4();
+    result[0][3] = x;
+    result[1][3] = y;
+    result[2][3] = z;
+    console.log(result);
     return result;
 }
 

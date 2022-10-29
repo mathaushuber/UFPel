@@ -31,7 +31,7 @@ canvas {
 .nav {
   padding: 0px;
   width: 640px;
-  margin: 0px auto auto 10px;
+  margin: 0px auto auto auto;
 }
 
 ul {

@@ -1,24 +1,30 @@
 var cameraGui = new dat.GUI();
 var elementGui = new dat.GUI();
 var config = {
-	AddCamera: () => {
-    config.SelectCameras.push(cameras.length);
-    addCamera();
-    createGuiCamera();
-  	},
+  	AddCamera: () => {
+      config.SelectCameras.push(cameras.length);
+      addCamera();
+      createGuiCamera();
+    	},
+    AddVertice: () => {
+      config.SelectVertices.push(vertices.length);
+    },
   	AddElem: () => {
   	createGuiElement();
   	},
   	SelectCameras: [],
+    SelectVertices: [],
     SelectRender: ['TRIANGLES', 'LINES'],
     selected: false,
     tipoRender: 'TRIANGLES',
+    triangleTranslation: 0,
   	index: 0,
     value: 5,
   	zoom: 120,
   	subdivisao: 0,
     angulo: 120,
     angle: 0,
+    count: 2,
   	fieldOfView: 60,
     tessellationGrad: 5,
   	elements: [],
@@ -41,16 +47,31 @@ const createGuiElement = () => {
     .name("Subdivisão")
     .listen().onChange(() => {
     config.tesselationGrad = config.subdivisao;
-    console.log(config.tesselationGrad);
     rerender();
     });
 
   elementGui
+  .add(config, "AddVertice")
+  .name("Add Vértice")
+  .listen().onChange(() => {
+    config.count++;
+    console.log('count', config.count);
+    createVertices();
+    rerender();
+  });
+
+  elementGui
     .add(config, "angulo", 0, 380, 1)
-    .name("Ângulo")
+    .name("Rotação")
     .listen().onChange(() => {
       config.angle = config.angulo * Math.PI / 180;
       rerender(config.angle);
+    });
+    elementGui
+    .add(config, "triangleTranslation", 0, 380, 1)
+    .name("Translação")
+    .listen().onChange(() => {
+      config.triangleTranslation;
     });
 
   elementGui
@@ -79,7 +100,7 @@ const createGuiCamera = () => {
     .name("Zoom")
     .listen().onChange(() => (config.fieldOfView = 180 - config.zoom));
 
-  cameraGui.add(config, "AddCamera").name("Adicionar Cam");
+  cameraGui.add(config, "AddCamera").name("Add Câmera");
 //  lightGui.add(config, "AddLight").name("Adicionar Luz");
   cameraGui
     .add(config, "index", config.SelectCameras)

@@ -62,30 +62,27 @@ function main() {
     var positionBuffer = gl.createBuffer();
     var vao = gl.createVertexArray();
 
-    // and make it the one we're currently working with
     gl.bindVertexArray(vao);
 
-    // Bind it to ARRAY_BUFFER (think of it as ARRAY_BUFFER = positionBuffer)
+    // Vinculando a variável de posições a um buffer
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
 
-     // Turn on the attribute
+    // Ativando o atributo das posições
     gl.enableVertexAttribArray(positionAttributeLocation);
 
-    // create the normalr buffer, make it the current ARRAY_BUFFER
-    // and copy in the normal values
+    // Cria o buffer das normais, torna-o o ARRAY_BUFFER atual e copie os valores normais
     var normalBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, normalBuffer);
-   // setNormals(gl);
-
-    // Turn on the attribute
+   
+    // Ativando o atributo das normais
     gl.enableVertexAttribArray(normalAttributeLocation);
 
-    // Tell the attribute how to get data out of colorBuffer (ARRAY_BUFFER)
-    var size = 3;          // 3 components per iteration
-    var type = gl.FLOAT;   // the data is 32bit floats
-    var normalize = true; // don't normalize the data
-    var stride = 0;        // 0 = move forward size * sizeof(type) each iteration to get the next color
-    var offset = 0;        // start at the beginning of the buffer
+    // Criando as variáveis para obter os dados do buffer de cores
+    var size = 3;          
+    var type = gl.FLOAT;   
+    var normalize = true; // normalizando os dados
+    var stride = 0;       
+    var offset = 0;        
     gl.vertexAttribPointer(
         normalAttributeLocation, size, type, normalize, stride, offset);
 
@@ -97,7 +94,7 @@ function main() {
     var zFar = 2000;
     var projectionMatrix = m4.perspective(fieldOfViewRadians, aspect, zNear, zFar);
 
-    // Compute the camera's matrix using look at.
+    // Calculando a matriz da câmera usando look at
     var cameraPosition = [0, 0, 200];
     var target = [0, 0, 0];
     var up = [0, 1, 0];
@@ -134,7 +131,7 @@ function main() {
     );
     
 
-    // Make a view matrix from the camera matrix.
+    // Matriz de visualização da matriz da câmera.
     var viewMatrix = m4.inverse(cameraMatrix);
 
     var viewProjectionMatrix = m4.multiply(projectionMatrix, viewMatrix);
@@ -146,7 +143,7 @@ function main() {
 
 
 
-    // Set the matrices
+    // Setando as matrizes
     gl.uniformMatrix4fv(
         worldViewProjectionLocation, false,
         worldViewProjectionMatrix);
@@ -154,7 +151,7 @@ function main() {
         worldInverseTransposeLocation, false,
         worldInverseTransposeMatrix);
 
-    // set the light direction.
+    // Setando a direção da luz
     gl.uniform3fv(reverseLightDirectionLocation, m4.normalize([0.5, 0.7, 1]));
     
     var matrix = m4.xRotation(Math.PI);
@@ -182,7 +179,7 @@ function main() {
       );
     });
 
-    objectsToDraw.forEach(function (object) {
+    drawElements.forEach(function (object) {
       const programInfo = object.programInfo;
       gl.useProgram(programInfo.program);
       // Setup all the needed attributes.
@@ -199,10 +196,10 @@ function main() {
             requestAnimationFrame(render);
             animationType[0].steps--;
             animation(objects);
-          }, 1000 / config.fps);
+          }, 200 / config.fps);
         }
         else {
-          animationType.shift(); //removendo pra ir pra próxima
+          animationType.shift();
           requestAnimationFrame(render);
         }
       }
@@ -212,7 +209,7 @@ function main() {
             requestAnimationFrame(render);
             animationCameraType[0].stepsCamera--;
             animationCamera(cameras);
-          }, 1000 / config.fps);
+          }, 200 / config.fps);
         }
         else {
           animationCameraType.shift();

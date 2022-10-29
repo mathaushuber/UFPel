@@ -1,5 +1,5 @@
     var lightPosition = [0, 0, 200];
-    var alvo = [0, 0, 0];
+    var intensity = [0, 0, 0];
     var tap = [0, 1, 0];
     var lights = [0,1,2];
     var createdLights = 1;
@@ -7,7 +7,7 @@
       index: 0,
     };
 
-    var lightLookAt = m4.lookAt(lightPosition, alvo, tap);
+    var lightLookAt = m4.lookAt(lightPosition, intensity, tap);
     const liRotationX = m4.xRotation(
       degToRad(lights[guiLights.index].rotation.x),
     );
@@ -50,7 +50,7 @@ const addlight = () => {
 };
 
 activateLight = (index) => {
-  lights = lights.map((light, i) => { //operação sobre vetores, pegar uma câmera e testar se o índice da posição for igual ao index, aí o camera recebe true, senão false
+  lights = lights.map((light, i) => { 
     i === index ? (light.active = true) : (light.active = false);
     return camera;
   });

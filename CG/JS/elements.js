@@ -1,4 +1,4 @@
-var objectsToDraw = [];
+var drawElements = [];
 var objects = [];
 var createdElements = 1;
 
@@ -82,13 +82,13 @@ const addElement = async (elementType) => {
     isOrbiting: false,
     Axys: "x",
     Remover: () => {
-      const elementTarget = objects.indexOf(element); //ver se no vetor de objetos tem um elemento igual, e retorna o index
+      const elementTarget = objects.indexOf(element); 
       if (parseInt(config.elementTarget) === element.position) {
         config.elementTarget = "none";
       }
 
       objects = objects.filter((object, index) => index !== elementTarget);
-      objectsToDraw = objectsToDraw.filter(
+      drawElements = drawElements.filter(
         (object, index) => index !== elementTarget
       );
 
@@ -100,8 +100,7 @@ const addElement = async (elementType) => {
 
   objects.push(element);
   if (!elementType) {
-    //se não tiver conteúdo
-    const model = Math.floor(Math.random() * 4) + 1; //random de 1 a 4
+    const model = Math.floor(Math.random() * 4) + 1; 
     switch (model) {
       case 1:
         var object = {
@@ -110,7 +109,7 @@ const addElement = async (elementType) => {
           vertexArray: cubeVAO,
           uniforms: element.uniforms,
         };
-        objectsToDraw.push(object);
+        drawElements.push(object);
         break;
 
       case 2:
@@ -120,7 +119,7 @@ const addElement = async (elementType) => {
           vertexArray: sphereVAO,
           uniforms: element.uniforms,
         };
-        objectsToDraw.push(object);
+        drawElements.push(object);
         break;
 
       case 3:
@@ -130,7 +129,7 @@ const addElement = async (elementType) => {
           vertexArray: coneVAO,
           uniforms: element.uniforms,
         };
-        objectsToDraw.push(object);
+        drawElements.push(object);
         break;
 
       case 4:
@@ -140,7 +139,7 @@ const addElement = async (elementType) => {
           vertexArray: cylinderVAO,
           uniforms: element.uniforms,
         };
-        objectsToDraw.push(object);
+        drawElements.push(object);
         break;
     }
   } else {
@@ -151,7 +150,7 @@ const addElement = async (elementType) => {
         vertexArray: sphereVAO,
         uniforms: element.uniforms,
       };
-      objectsToDraw.push(object);
+      drawElements.push(object);
     } else if (elementType === "Cubo") {
       var object = {
         programInfo: sceneProgram,
@@ -159,7 +158,7 @@ const addElement = async (elementType) => {
         vertexArray: cubeVAO,
         uniforms: element.uniforms,
       };
-      objectsToDraw.push(object);
+      drawElements.push(object);
     } else if (elementType === "Cilindro") {
       var object = {
         programInfo: sceneProgram,
@@ -167,7 +166,7 @@ const addElement = async (elementType) => {
         vertexArray: cylinderVAO,
         uniforms: element.uniforms,
       };
-      objectsToDraw.push(object);
+      drawElements.push(object);
     } else {
       var object = {
         programInfo: sceneProgram,
@@ -175,7 +174,7 @@ const addElement = async (elementType) => {
         vertexArray: coneVAO,
         uniforms: element.uniforms,
       };
-      objectsToDraw.push(object);
+      drawElements.push(object);
     }
   }
   createdElements++;
