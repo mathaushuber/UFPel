@@ -159,3 +159,26 @@ const thirdCameraAnimation = () => {
         animationCameraType.push({ stepsCamera: 10, movementType: 'fielOfView', value: -10 });
     }
 }
+
+/*
+const firstLightAnimation = () => {
+    for (let i = 0; i < 20; i++){
+            sleepFor(1000);
+            config.lDirectionX += 0.5;
+    }
+}
+
+const secondLightAnimation = () => {
+    for (let i = 0; i < 20; i++){
+            sleepFor(1000);
+            config.lDirectionY += 0.5;
+    }
+}
+
+const thirdLightAnimation = () => {
+    for (let i = 0; i < 20; i++){
+            sleepFor(1000);
+            config.lDirectionZ += 0.5;
+    }
+}
+*/

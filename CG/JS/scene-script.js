@@ -141,7 +141,15 @@ function main() {
     var worldInverseMatrix = m4.inverse(worldMatrix);
     var worldInverseTransposeMatrix = m4.transpose(worldInverseMatrix);
 
-
+    if(config.bezier == true){
+      var posObj = Bezier(objects,[config.Bp1x,config.Bp1y],[config.Bp2x,config.Bp2y],[config.Bp3x,config.Bp3y],[config.Bp4x,config.Bp4y]);
+      var objTX = posObj[0];
+      var objTY = posObj[1];
+    }
+    else{
+      objTX = config.objTX;
+      objTY = config.objTY;
+    }
 
     // Setando as matrizes
     gl.uniformMatrix4fv(
@@ -152,7 +160,7 @@ function main() {
         worldInverseTransposeMatrix);
 
     // Setando a direção da luz
-    gl.uniform3fv(reverseLightDirectionLocation, m4.normalize([0.5, 0.7, 1]));
+    gl.uniform3fv(reverseLightDirectionLocation, m4.normalize([config.lDirectionX, config.lDirectionY, config.lDirectionZ]));
     
     var matrix = m4.xRotation(Math.PI);
     matrix = m4.translate(matrix, -50, -75, -15);

@@ -53,17 +53,42 @@ var config = {
   animationCamera3: () => {
     thirdCameraAnimation();
   },
+  /*animationLight1: () => {
+    firstLightAnimation();
+  },
+  animationLight2: () => {
+    secondLightAnimation();
+  },
+  animationLight3: () => {
+    thirdLightAnimation();
+  },*/
   fps: 40,
   isAnimationActive: false,
   SelectCameras: [],
   SelectLights: [],
   SelectElements: [],
   elementGui: 1,
+  lDirectionX: 0.5,
+  lDirectionY: 0.7,
+  lDirectionZ: 1,
   elements: [],
   elementTarget: "none",
   index: 0,
+  callback: 0,
   zoom: 120,
   fieldOfView: 60,
+  bezObj: 0,
+  Bp1x: 50,
+  Bp1y: 50,
+  Bp2x: 50,
+  Bp2y: 50,
+  Bp3x: 50,
+  Bp3y: 50,
+  Bp4x: 50,
+  Bp4y: 50,
+  objTX: 20,
+  objTY: 20,
+  bezier: false,
 };
 
 const loadGUI = () => {
@@ -87,8 +112,15 @@ const loadAnimationGUI = () => {
   animations2.add(config, "animationCamera1").name("Animação 1");
   animations2.add(config, "animationCamera2").name("Animação 2");
   animations2.add(config, "animationCamera3").name("Animação 3");
+  /*
+  const animations3 = animationGui.addFolder("Animações Luz");
+  animations3.add(config, "animationLight1").name("Animação 1");
+  animations3.add(config, "animationLight2").name("Animação 2");
+  animations3.add(config, "animationLight3").name("Animação 3");
+  */
   animations.open();
   animations2.open();
+  //animations3.open();
 }
 
 const createGuiCamera = () => {
@@ -102,7 +134,7 @@ const createGuiCamera = () => {
     .name("Zoom")
     .listen().onChange(() => (config.fieldOfView = 180 - config.zoom));
 
-  cameraGui.add(config, "AddCamera").name("Adicionar Cam");
+  cameraGui.add(config, "AddCamera").name("Add Câmera");
   cameraGui
     .add(config, "index", config.SelectCameras)
     .name("Câmera")
@@ -120,7 +152,22 @@ const createGuiCamera = () => {
       createGuiCamera();
     });
 
-
+  const lightDirectionGui = cameraGui.addFolder('Luz');
+    lightDirectionGui
+    .add(config, "lDirectionX", -10, 10, 0.1)
+    .name("x").listen().onChange(() => {
+      config.lDirectionX;
+    });
+    lightDirectionGui
+    .add(config, "lDirectionY", -10, 10, 0.1)
+    .name("y").listen().onChange(() => {
+      config.lDirectionY;
+    });
+    lightDirectionGui
+    .add(config, "lDirectionZ", -10, 10, 0.1)
+    .name("z").listen().onChange(() => {
+      config.lDirectionZ;
+    });
   const newCameraGui = cameraGui.addFolder(`Câmera ${config.index}`);
 
   const camTranslation = newCameraGui.addFolder("Translação");
@@ -147,7 +194,7 @@ const createGuiLight = () => {
     .listen()
     .onChange(() => {
       activateLight(parseInt(config.index));
-      createGuiLight(); //chama o guiCamera pra destruir e recriar a Gui
+      createGuiLight(); 
     }); 
   lightGui
     .add(config, "elementTarget", config.elements.concat(["none"]))
@@ -196,6 +243,71 @@ const addGuiElement = () => {
   if (objectIndex >= 1) {
     element.add(objects[objectIndex], "Remover");
   }
+
+  const bezFolder = gui.addFolder("Bezier")
+  bezFolder
+  .add(config, "bezObj", 0,1,0.1)
+  .name("Bezier")
+  .listen()
+  .onChange(() => {
+    config.bezier = true;
+  }); 
+  bezFolder
+  .add(config,"Bp1x",-100,300,1)
+  .name("P1 X")
+  .listen()
+  .onChange(() => {
+    config.bezier = true;
+  });
+  bezFolder
+  .add(config,"Bp1y",-100,300,1)
+  .name("P1 Y")
+  .listen()
+  .onChange(() => {
+    config.bezier = true;
+  }); 
+  bezFolder
+  .add(config,"Bp2x",-100,300,1)
+  .name("P2 X")
+  .listen()
+  .onChange(() => {
+    config.bezier = true;
+  });
+  bezFolder
+  .add(config,"Bp2y",-100,300,1)
+  .name("P2 Y")
+  .listen()
+  .onChange(() => {
+    config.bezier = true;
+  });
+  bezFolder
+  .add(config,"Bp3x",-100,300,0.5)
+  .name("P3 X")
+  .listen()
+  .onChange(() => {
+    config.bezier = true;
+  });
+  bezFolder
+  .add(config,"Bp3y",-100,300,1)
+  .name("P3 Y")
+  .listen()
+  .onChange(() => {
+    config.bezier = true;
+  });
+  bezFolder
+  .add(config,"Bp4x",-100,300,1)
+  .name("P4 X")
+  .listen()
+  .onChange(() => {
+    config.bezier = true;
+  })
+  bezFolder
+  .add(config,"Bp4y",-100,300,1)
+  .name("P4 Y")
+  .listen()
+  .onChange(() => {
+    config.bezier = true;
+  });
 
   const elementRotation = element.addFolder("Rotação");
   elementRotation.add(objects[objectIndex].rotation, "x", -50, 500, 0.5);

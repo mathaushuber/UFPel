@@ -42,3 +42,10 @@ const orbitObjectsZ = (angle, objects) => {
 
   return objects;
 };
+
+function sleepFor(sleepDuration){
+    var now = new Date().getTime();
+    while(new Date().getTime() < now + sleepDuration){ 
+        /* Do nothing */ 
+    }
+}

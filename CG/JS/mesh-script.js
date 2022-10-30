@@ -6,6 +6,8 @@ var angle;
 var renderType;
 var vertices;
 var radios;
+var countPoints = 21;
+var flagSubdivision = false;
 
 window.onload = function init()
 {
@@ -79,9 +81,9 @@ window.onload = function init()
 function initVars(){
 
     vertices = [
-        vec4(-0.44, -0.77, 0.3, 0.88), // left-down corner
-        vec4(-0.69, 0.54, 0.9, -0.14),  // center-up corner
-        vec4(0.97, 0.24, -0.58, -0.69) // right-down corner
+        vec4(-0.44, -0.77, 0.3, 0.88), 
+        vec4(-0.69, 0.54, 0.9, -0.14),  
+        vec4(0.97, 0.24, -0.58, -0.69)
     ]; 
 
     
@@ -93,6 +95,7 @@ function initVars(){
         config.tipoRender = config.SelectRender;
     }
     config.tesselationGrad = config.subdivisao;
+    console.log(points.length);
 }
 
 function curve(vector){
@@ -113,11 +116,72 @@ function curve(vector){
 function createVertices(){
     newVertice = vec4(Math.random(), Math.random(), Math.random(), Math.random());
     vertices.push(newVertice);
-    if((vertices.length % 3) == 0){
+    countPoints++;
+    if(countPoints == 24 || 
+       countPoints == 96 ||
+       countPoints == 384 ||
+       countPoints == 1536 ||
+       countPoints == 6144 ||
+       countPoints == 24576 ||
+       countPoints == 98304 ||
+       countPoints == 393216 ||
+       countPoints == 1572864){
         config.subdivisao++;
-        rerender();
+        flagSubdivision = true;
     }
-    console.log(vertices);
+  console.log('countPoints', countPoints);
+  console.log('flag', flagSubdivision);   
+}
+
+function removeVertices(){
+    countPoints--;
+    if(countPoints < 24 && flagSubdivision == true){
+        vertices.pop();
+        config.subdivisao--;
+        flagSubdivision = false;
+    }
+    else if(countPoints > 24 && countPoints < 96 && flagSubdivision == true){
+        vertices.pop();
+        config.subdivisao--;
+        flagSubdivision = false;
+    }
+    else if(countPoints > 96 && countPoints < 384 && flagSubdivision == true){
+        vertices.pop();
+        config.subdivisao--;
+        flagSubdivision = false;
+    }
+    else if(countPoints > 384 && countPoints < 1536 && flagSubdivision == true){
+        vertices.pop();
+        config.subdivisao--;
+        flagSubdivision = false;
+    }
+    else if(countPoints > 1536 && countPoints < 6144 && flagSubdivision == true){
+        vertices.pop();
+        config.subdivisao--;
+        flagSubdivision = false;
+    }
+    else if(countPoints > 6144 && countPoints < 24576 && flagSubdivision == true){
+        vertices.pop();
+        config.subdivisao--;
+        flagSubdivision = false;
+    }
+    else if(countPoints > 24576 && countPoints < 98304 && flagSubdivision == true){
+        vertices.pop();
+        config.subdivisao--;
+        flagSubdivision = false;
+    }
+    else if(countPoints > 98304 && countPoints < 393216 && flagSubdivision == true){
+        vertices.pop();
+        config.subdivisao--;
+        flagSubdivision = false;
+    }
+    else if(countPoints > 393216 && countPoints < 1572864 && flagSubdivision == true){
+        vertices.pop();
+        config.subdivisao--;
+        flagSubdivision = false;
+    }
+    console.log('countPoints', countPoints);
+    console.log('flag', flagSubdivision);
 }
 
 function triangle (a, b, c){
@@ -147,7 +211,6 @@ function trTranslate (a, b, c){
 }
 
 function tessellation(a, b, c, count){
-
     if(count===0){
         //when we are at the end of the recursion we push 
         //the triangles to the array
@@ -219,7 +282,7 @@ function translate(vector)
     result[0][3] = x;
     result[1][3] = y;
     result[2][3] = z;
-    console.log(result);
+
     return result;
 }
 

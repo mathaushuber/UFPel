@@ -9,6 +9,9 @@ var config = {
     AddVertice: () => {
       config.SelectVertices.push(vertices.length);
     },
+    RmVertice: () => {
+      config.SelectVertices.pop();
+    },
   	AddElem: () => {
   	createGuiElement();
   	},
@@ -55,8 +58,16 @@ const createGuiElement = () => {
   .name("Add Vértice")
   .listen().onChange(() => {
     config.count++;
-    console.log('count', config.count);
     createVertices();
+    rerender();
+  });
+
+  elementGui
+  .add(config, "AddVertice")
+  .name("RM Vértice")
+  .listen().onChange(() => {
+    config.count--;
+    removeVertices();
     rerender();
   });
 
