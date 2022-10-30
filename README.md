@@ -55,13 +55,17 @@ Implementation of a hypothetical Z808 machine
 ### Advanced Digital Systems (SDA)
 ALU and Registrar Bank. ALU Testbench. Multipliers Project. Hadamard. Neander Project.
 
-Language: VHDL
+<div style="display: inline_block">
+  <img align="center" alt="vhdl" src="/.github/vhdl-logo.svg">
+</div>
 
 ### Computer Architecture and Organization I (AOC)
 The Hardware/Software Interface. Machine language and mnemonic language. Set of instructions and addressing modes. Processor organization: operating block and block
 of control. Performance Measures. Pipeline organization. RISC and CISC machines
 
-Language: Assembly
+<div style="display: inline_block">
+  <img align="center" alt="assembly" src="/.github/assembly-logo.svg">
+</div>
 
 ### Computer Architecture and Organization II (AOC2)
 Implementation of a memory hierarchy targeting modern processors, specifically the intel iX processors. An example of a virtual memory and I/O. Experiments with data and instruction caching using Vortex 1.
@@ -77,7 +81,9 @@ Projects:
 ALU,
 Synchronous Counter
 
-Language: VHDL
+<div style="display: inline_block">
+  <img align="center" alt="vhdl" src="/.github/vhdl-logo.svg">
+</div>
 
 ### Digital Image Processing (PDI)
 Concepts of representation and formation of images. Pixel operations. Convolution techniques and point-based operations. Histograms. Edge detectors. Filtering and enhancing digital images in the spatial domain. Filtering and enhancement of digital images in the frequency domain, Fourier transform. Morphological operations. Segmentation methods.
@@ -85,19 +91,23 @@ Concepts of representation and formation of images. Pixel operations. Convolutio
 Projects:
 Leukocyte count
 
-Language: Matlab
+<div style="display: inline_block">
+  <img align="center" alt="matlab" src="/.github/matlab-logo.svg">
+</div>
 
 ### Special Topics in Computing IV: Computational Geometry (TEC4)
 Line intersection algorithm (javascript). Image segmentation using a convex hull in microscope images, for counting, analyzing and classifying white blood cells in human blood (matlab).
 <div style="display: inline_block">
   <img align="center" alt="Javascript" src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
-  Matlab
+  <img align="center" alt="matlab" src="/.github/matlab-logo.svg">
 </div>
 
 ### Formal Languages (LF)
 Implementation of a Moore state machine. Informal and formal definition of a finite automaton with output, three mathematical examples and exemplification using a hardware description in VHDL.
 
-Language: VHDL
+<div style="display: inline_block">
+  <img align="center" alt="vhdl" src="/.github/vhdl-logo.svg">
+</div>
 
 ### Database Design (PBD)
 Implementation of the database used to create Adopetme, an application for adopting animals.
