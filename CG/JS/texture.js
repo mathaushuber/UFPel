@@ -1,5 +1,5 @@
   function texture(){
-  var textureLocation = gl.getUniformLocation(program.program, "u_texture");
+  var textureLocation = gl.getUniformLocation(meshProgram.program, "u_texture");
 
   var texcoordBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, texcoordBuffer);

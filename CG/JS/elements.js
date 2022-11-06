@@ -5,6 +5,13 @@ var createdElements = 1;
 const { gl, sceneProgram } = initializeWorld();
 
 const cubeBufferInfo = flattenedPrimitives.createCubeBufferInfo(gl, 20);
+const planeBufferInfo = flattenedPrimitives.createPlaneBufferInfo(
+  gl, 
+  22, 
+  18, 
+  10
+);
+
 const sphereBufferInfo = flattenedPrimitives.createSphereBufferInfo(
   gl,
   10,
@@ -21,6 +28,13 @@ const coneBufferInfo = flattenedPrimitives.createTruncatedConeBufferInfo(
   true,
   false
 );
+const discBufferInfo = flattenedPrimitives.createDiscBufferInfo(
+  gl,
+  10,
+  10,
+  3,
+);
+
 const cylinderBufferInfo = flattenedPrimitives.createCylinderBufferInfo(
   gl,
   7,
@@ -47,10 +61,22 @@ const coneVAO = twgl.createVAOFromBufferInfo(
   coneBufferInfo
 );
 
+const discVAO = twgl.createVAOFromBufferInfo(
+  gl,
+  sceneProgram,
+  discBufferInfo
+);
+
 const cylinderVAO = twgl.createVAOFromBufferInfo(
   gl,
   sceneProgram,
   cylinderBufferInfo
+);
+
+const planeVAO = twgl.createVAOFromBufferInfo(
+  gl,
+  sceneProgram,
+  planeBufferInfo
 );
 
 const addElement = async (elementType) => {
@@ -58,7 +84,7 @@ const addElement = async (elementType) => {
     name: `Elemento ${createdElements}`,
     position: createdElements,
     uniforms: {
-      u_colorMult: [Math.random(), Math.random(), Math.random(), 1],
+      u_colorMult: [0.3, 0.1, 0.7, 1],
       u_matrix: m4.identity(),
       u_reverseLightDirection: m4.identity(),
       u_worldInverseTranspose: m4.identity(),
@@ -79,8 +105,6 @@ const addElement = async (elementType) => {
       y: 1,
       z: 1,
     },
-    isOrbiting: false,
-    Axys: "x",
     Remover: () => {
       const elementTarget = objects.indexOf(element); 
       if (parseInt(config.elementTarget) === element.position) {
@@ -100,7 +124,7 @@ const addElement = async (elementType) => {
 
   objects.push(element);
   if (!elementType) {
-    const model = Math.floor(Math.random() * 4) + 1; 
+    const model = Math.floor(Math.random() * 6) + 1; 
     switch (model) {
       case 1:
         var object = {
@@ -135,8 +159,28 @@ const addElement = async (elementType) => {
       case 4:
         var object = {
           programInfo: sceneProgram,
+          bufferInfo: discBufferInfo,
+          vertexArray: discVAO,
+          uniforms: element.uniforms,
+        };
+        drawElements.push(object);
+        break;
+
+      case 5:
+        var object = {
+          programInfo: sceneProgram,
           bufferInfo: cylinderBufferInfo,
           vertexArray: cylinderVAO,
+          uniforms: element.uniforms,
+        };
+        drawElements.push(object);
+        break;
+
+      case 6:
+        var object = {
+          programInfo: sceneProgram,
+          bufferInfo: planeBufferInfo,
+          vertexArray: planeVAO,
           uniforms: element.uniforms,
         };
         drawElements.push(object);
@@ -159,7 +203,16 @@ const addElement = async (elementType) => {
         uniforms: element.uniforms,
       };
       drawElements.push(object);
-    } else if (elementType === "Cilindro") {
+    } else if (elementType === "Disco") {
+      var object = {
+        programInfo: sceneProgram,
+        bufferInfo: discBufferInfo,
+        vertexArray: discVAO,
+        uniforms: element.uniforms,
+      };
+      drawElements.push(object);
+    } 
+    else if (elementType === "Cilindro") {
       var object = {
         programInfo: sceneProgram,
         bufferInfo: cylinderBufferInfo,
@@ -167,7 +220,16 @@ const addElement = async (elementType) => {
         uniforms: element.uniforms,
       };
       drawElements.push(object);
-    } else {
+    }
+    else if (elementType === "Plano") {
+      var object = {
+        programInfo: sceneProgram,
+        bufferInfo: planeBufferInfo,
+        vertexArray: planeVAO,
+        uniforms: element.uniforms,
+      };
+      drawElements.push(object);
+    }else {
       var object = {
         programInfo: sceneProgram,
         bufferInfo: coneBufferInfo,

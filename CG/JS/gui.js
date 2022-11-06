@@ -21,8 +21,20 @@ var config = {
     addElement("Cone");
     addGuiElement();
   },
+  Disco: () => {
+    addElement("Disco");
+    addGuiElement();
+  },
   Cilindro: () => {
     addElement("Cilindro");
+    addGuiElement();
+  },
+  Cilindro: () => {
+    addElement("Cilindro");
+    addGuiElement();
+  },
+  Plano: () => {
+    addElement("Plano");
     addGuiElement();
   },
   AddCamera: () => {
@@ -36,33 +48,32 @@ var config = {
     createGuiLight();
   },
   animation1: () => {
-    firstAnimation();
+    animationObj1();
   },
   animation2: () => {
-    secondAnimation();
+    animationObj2();
   },
   animation3: () => {
-    thirdAnimation();
+    animationObj3();
   },
   animationCamera1: () => {
-    firstCameraAnimation();
+    animationCam1();
   },
   animationCamera2: () => {
-    secondCameraAnimation();
+    animationCam2();
   },
   animationCamera3: () => {
-    thirdCameraAnimation();
+    animationCam3();
   },
-  /*animationLight1: () => {
-    firstLightAnimation();
+  animationLight1: () => {
+    animationLight1();
   },
   animationLight2: () => {
-    secondLightAnimation();
+    animationLight2();
   },
   animationLight3: () => {
-    thirdLightAnimation();
-  },*/
-  fps: 40,
+    animationLight3();
+  },
   isAnimationActive: false,
   SelectCameras: [],
   SelectLights: [],
@@ -76,7 +87,7 @@ var config = {
   index: 0,
   callback: 0,
   zoom: 120,
-  fieldOfView: 60,
+  fieldVision: 60,
   bezObj: 0,
   Bp1x: 50,
   Bp1y: 50,
@@ -104,7 +115,6 @@ const loadGUI = () => {
 
 const loadAnimationGUI = () => {
   const animations = animationGui.addFolder("Animações Elemento");
-  animations.add(config, "fps", 1, 60, 1).name("FPS");
   animations.add(config, "animation1").name("Animação 1");
   animations.add(config, "animation2").name("Animação 2");
   animations.add(config, "animation3").name("Animação 3");
@@ -112,15 +122,13 @@ const loadAnimationGUI = () => {
   animations2.add(config, "animationCamera1").name("Animação 1");
   animations2.add(config, "animationCamera2").name("Animação 2");
   animations2.add(config, "animationCamera3").name("Animação 3");
-  /*
   const animations3 = animationGui.addFolder("Animações Luz");
   animations3.add(config, "animationLight1").name("Animação 1");
   animations3.add(config, "animationLight2").name("Animação 2");
   animations3.add(config, "animationLight3").name("Animação 3");
-  */
   animations.open();
   animations2.open();
-  //animations3.open();
+  animations3.open();
 }
 
 const createGuiCamera = () => {
@@ -132,7 +140,7 @@ const createGuiCamera = () => {
   cameraGui
     .add(config, "zoom", 0, 180, 1)
     .name("Zoom")
-    .listen().onChange(() => (config.fieldOfView = 180 - config.zoom));
+    .listen().onChange(() => (config.fieldVision = 180 - config.zoom));
 
   cameraGui.add(config, "AddCamera").name("Add Câmera");
   cameraGui
@@ -228,7 +236,9 @@ const addGuiElement = () => {
   newElement.add(config, "Esfera");
   newElement.add(config, "Cubo");
   newElement.add(config, "Cone");
+  newElement.add(config, "Disco");
   newElement.add(config, "Cilindro");
+  newElement.add(config, "Plano");
   newElement.open();
   config.elements = objects?.map((elem) => elem.position);
 

@@ -1,11 +1,5 @@
-var cameraGui = new dat.GUI();
 var elementGui = new dat.GUI();
 var config = {
-  	AddCamera: () => {
-      config.SelectCameras.push(cameras.length);
-      addCamera();
-      createGuiCamera();
-    	},
     AddVertice: () => {
       config.SelectVertices.push(vertices.length);
     },
@@ -15,27 +9,38 @@ var config = {
   	AddElem: () => {
   	createGuiElement();
   	},
+    //-0.44, -0.77, 0.3
+    //-0.69, 0.54, 0.9
+    //0.97, 0.24, -0.58
   	SelectCameras: [],
     SelectVertices: [],
     SelectRender: ['TRIANGLES', 'LINES'],
     selected: false,
-    tipoRender: 'TRIANGLES',
+    typeRender: 'TRIANGLES',
     triangleTranslation: 0,
   	index: 0,
     value: 5,
+    Vp1x: -0.44,
+    Vp1y: -0.77,
+    Vp1z: 0.3,
+    Vp2x: -0.69,
+    Vp2y: 0.54,
+    Vp2z: 0.9,
+    Vp3x: 0.97, 
+    Vp3y: 0.24,
+    Vp3z: -0.58,
   	zoom: 120,
-  	subdivisao: 0,
-    angulo: 120,
+  	subdivision: 0,
+    angleMesh: 120,
     angle: 0,
     count: 2,
-  	fieldOfView: 60,
+  	fieldVision: 60,
     tessellationGrad: 5,
   	elements: [],
   	elementTarget: "none",
 };
 
 const loadGUI = () => {
-  config.AddCamera();
   config.AddElem();
 };
 
@@ -46,10 +51,10 @@ const createGuiElement = () => {
   elementGui = new dat.GUI();
 
   elementGui
-    .add(config, "subdivisao", 0, 9, 1)
+    .add(config, "subdivision", 0, 9, 1)
     .name("Subdivisão")
     .listen().onChange(() => {
-    config.tesselationGrad = config.subdivisao;
+    config.degreeSubdivision = config.subdivision;
     rerender();
     });
 
@@ -72,10 +77,10 @@ const createGuiElement = () => {
   });
 
   elementGui
-    .add(config, "angulo", 0, 380, 1)
-    .name("Rotação")
+    .add(config, "angleMesh", 0, 380, 1)
+    .name("Ângulo")
     .listen().onChange(() => {
-      config.angle = config.angulo * Math.PI / 180;
+      config.angle = config.angleMesh * Math.PI / 180;
       rerender(config.angle);
     });
 
@@ -84,54 +89,88 @@ const createGuiElement = () => {
     .name("Renderização")
     .listen()
     .onChange(() => {
-       config.tipoRender = config.SelectRender;
+       config.typeRender = config.SelectRender;
        config.selected = true;
        if(config.selected == false){
-        config.tipoRender = 'LINES';
+        config.typeRender = 'LINES';
        }
        rerender();
-    }); 
+    });
 
-};
+  const verticePositionGui = elementGui.addFolder("Vertices");
+    verticePositionGui
+    .add(config, "Vp1x", -1, 1, 0.1)
+    .name("Vértice X1")
+    .listen().onChange(() => {
+      initializeVertices();
+      rerender(config.Vp1x);
+    });
 
-const createGuiCamera = () => {
-  if (cameraGui) {
-    cameraGui.destroy();
-  }
-  cameraGui = new dat.GUI();
+    verticePositionGui
+    .add(config, "Vp1y", -1, 1, 0.1)
+    .name("Vértice Y1")
+    .listen().onChange(() => {
+      initializeVertices();
+      rerender(config.Vp1y);
+    });
 
-  cameraGui
-    .add(config, "zoom", 0, 180, 1)
-    .name("Zoom")
-    .listen().onChange(() => (config.fieldOfView = 180 - config.zoom));
+    verticePositionGui
+    .add(config, "Vp1z", -1, 1, 0.1)
+    .name("Vértice Z1")
+    .listen().onChange(() => {
+      initializeVertices();
+      rerender(config.Vp1z);
+    });
 
-  cameraGui.add(config, "AddCamera").name("Add Câmera");
-  cameraGui
-    .add(config, "index", config.SelectCameras)
-    .name("Câmera")
-    .listen()
-    .onChange(() => {
-      activateCamera(parseInt(config.index));
-      createGuiCamera();
-    }); 
-  cameraGui
-    .add(config, "elementTarget", config.elements.concat(["none"]))
-    .name("Olhar de").listen().onChange(() => {
-      cameras[config.index].translation.x = 0;
-      cameras[config.index].translation.y = 0;
-      createGuiCamera();
+    verticePositionGui
+    .add(config, "Vp2x", -1, 1, 0.1)
+    .name("Vértice X2")
+    .listen().onChange(() => {
+      initializeVertices();
+      rerender(config.Vp2x);
+    });
+
+    verticePositionGui
+    .add(config, "Vp2y", -1, 1, 0.1)
+    .name("Vértice Y2")
+    .listen().onChange(() => {
+      initializeVertices();
+      rerender(config.Vp2y);
+    });
+
+    verticePositionGui
+    .add(config, "Vp2z", -1, 1, 0.1)
+    .name("Vértice Z2")
+    .listen().onChange(() => {
+      initializeVertices();
+      rerender(config.Vp2z);
+    });
+
+    verticePositionGui
+    .add(config, "Vp3x", -1, 1, 0.1)
+    .name("Vértice X3")
+    .listen().onChange(() => {
+      initializeVertices();
+      rerender(config.Vp3x);
+    });
+
+    verticePositionGui
+    .add(config, "Vp3y", -1, 1, 0.1)
+    .name("Vértice Y3")
+    .listen().onChange(() => {
+      initializeVertices();
+      rerender(config.Vp3y);
+    });
+
+    verticePositionGui
+    .add(config, "Vp3z", -1, 1, 0.1)
+    .name("Vértice Z3")
+    .listen().onChange(() => {
+      initializeVertices();
+      rerender(config.Vp3z);
     });
 
 
-  const newCameraGui = cameraGui.addFolder(`Câmera ${config.index}`);
 
-  const camTranslation = newCameraGui.addFolder("Translação");
-  camTranslation.add(cameras[config.index].translation, "x", -360, 360, 1);
-  camTranslation.add(cameras[config.index].translation, "y", -360, 360, 1);
-  camTranslation.add(cameras[config.index].translation, "z", -360, 360, 1);
 
-  const camRotation = newCameraGui.addFolder("Rotação");
-  camRotation.add(cameras[config.index].rotation, "x", -360, 360, 1);
-  camRotation.add(cameras[config.index].rotation, "y", -360, 360, 1);
-  camRotation.add(cameras[config.index].rotation, "z", -360, 360, 1);
 };

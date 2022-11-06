@@ -1,7 +1,7 @@
 animationType = [];
 animationCameraType = [];
 
-const animation = (objects) => {
+function animation(objects){
     objects.forEach((object) => {
         switch (animationType[0].movementType) {
             case 'translation':
@@ -34,9 +34,9 @@ const animation = (objects) => {
                 break;
         }
     });
-};
+}
 
-const animationCamera = () => {
+function animationCamera(){
     switch (animationCameraType[0].movementType) {
         case 'translation':
             switch (animationCameraType[0].axysType) {
@@ -65,57 +65,27 @@ const animationCamera = () => {
             }
             break;
 
-        case 'fielOfView':
-            config.fieldOfView += animationCameraType[0].value;
+        case 'fieldVision':
+            config.fieldVision += animationCameraType[0].value;
         case 'default':
             break;
     }
-};
+}
 
 
 
 
-const firstAnimation = () => { //triângulo de objetos
-    for (let i = 0; i < 30; i++) {
-        animationType.push({
-            steps: 1,
-            movementType: "translation",
-            axysType: "x",
-            value: 5,
-        });
-        animationType.push({
-            steps: 1,
-            movementType: "translation",
-            axysType: "y",
-            value: 5,
-        });
-    }
-    for (let i = 0; i < 30; i++) {
-        animationType.push({
-            steps: 1,
-            movementType: "translation",
-            axysType: "x",
-            value: 5,
-        });
-        animationType.push({
-            steps: 1,
-            movementType: "translation",
-            axysType: "y",
-            value: -5,
-        });
-    }
-    for (let i = 0; i < 30; i++) {
-        animationType.push({
-            steps: 1,
-            movementType: "translation",
-            axysType: "x",
-            value: -5,
-        });
+function animationObj1(){
+    for (let i = 0; i < 10; i++) {
+        animationType.push({ steps: 5, movementType: 'translation', axysType: 'z', value: 5 });
+        animationType.push({ steps: 0, movementType: 'translation', axysType: 'z', value: 0 });
+        animationType.push({ steps: 10, movementType: 'rotation', axysType: 'x', value: 10 });
+        animationType.push({ steps: 10, movementType: 'rotation', axysType: 'x', value: -10 });
     }
 }
 
-const secondAnimation = () => {
-    for (let i = 0; i < 50; i++) {
+function animationObj2(){
+    for (let i = 0; i < 10; i++) {
         animationType.push({ steps: 8, movementType: 'translation', axysType: 'y', value: 8 });
         animationType.push({ steps: 3, movementType: 'rotation', axysType: 'x', value: 3 });
         animationType.push({ steps: 3, movementType: 'translation', axysType: 'x', value: 3 });
@@ -123,62 +93,62 @@ const secondAnimation = () => {
     }
 }
 
-const thirdAnimation = () => {
-    for (let i = 0; i < 50; i++) {
+function animationObj3(){
+    for (let i = 0; i < 10; i++) {
         animationType.push({ steps: 15, movementType: 'translation', axysType: 'z', value: 15 });
         animationType.push({ steps: 8, movementType: 'rotation', axysType: 'y', value: 8 });
         animationType.push({ steps: 15, movementType: 'translation', axysType: 'z', value: -15 });
     }
 }
 
-const firstCameraAnimation = () => {
-    for (let i = 0; i < 20; i++) {
-        animationCameraType.push({ stepsCamera: 15, movementType: 'translation', axysType: 'z', value: -15 });
-        animationCameraType.push({ stepsCamera: 15, movementType: 'translation', axysType: 'x', value: 15 });
-        animationCameraType.push({ stepsCamera: 15, movementType: 'translation', axysType: 'y', value: 15 });
-        animationCameraType.push({ stepsCamera: 15, movementType: 'translation', axysType: 'x', value: -15 });
-        animationCameraType.push({ stepsCamera: 15, movementType: 'translation', axysType: 'y', value: -15 });
-        animationCameraType.push({ stepsCamera: 15, movementType: 'translation', axysType: 'z', value: 15 });
+function animationCam1(){
+    for (let i = 0; i < 10; i++) {
+        animationCameraType.push({ stepsCamera: 10, movementType: 'translation', axysType: 'x', value: 10 });
+        animationCameraType.push({ stepsCamera: 100, movementType: 'rotation', axysType: 'y', value: 100 });
+        animationCameraType.push({ stepsCamera: 0, movementType: 'rotation', axysType: 'x', value: 0 });
+        animationCameraType.push({ stepsCamera: 100, movementType: 'rotation', axysType: 'y', value: -100 });
+        animationCameraType.push({ stepsCamera: 10, movementType: 'translation', axysType: 'x', value: -10 });
     }
 }
 
-const secondCameraAnimation = () => {
-    for (let i = 0; i < 20; i++) {
-        animationCameraType.push({ stepsCamera: 15, movementType: 'translation', axysType: 'z', value: -15 });
-        animationCameraType.push({ stepsCamera: 15, movementType: 'translation', axysType: 'y', value: 15 });
-        animationCameraType.push({ stepsCamera: 15, movementType: 'translation', axysType: 'z', value: 15 });
-        animationCameraType.push({ stepsCamera: 15, movementType: 'translation', axysType: 'y', value: -15 });
+function animationCam2(){
+    for (let i = 0; i < 10; i++) {
+        animationCameraType.push({ stepsCamera: 35, movementType: 'translation', axysType: 'z', value: -35 });
+        animationCameraType.push({ stepsCamera: 35, movementType: 'translation', axysType: 'z', value: 35 });
+        animationCameraType.push({ stepsCamera: 20, movementType: 'rotation', axysType: 'y', value: 20 });
+        animationCameraType.push({ stepsCamera: 20, movementType: 'rotation', axysType: 'y', value: -20 });
     }
 }
 
-const thirdCameraAnimation = () => {
-    for (let i = 0; i < 20; i++) {
-        animationCameraType.push({ stepsCamera: 10, movementType: 'fielOfView', value: 10 });
-        animationCameraType.push({ stepsCamera: 30, movementType: 'rotation', axysType: 'z', value: -30 });
-        animationCameraType.push({ stepsCamera: 30, movementType: 'rotation', axysType: 'z', value: 30 });
-        animationCameraType.push({ stepsCamera: 10, movementType: 'fielOfView', value: -10 });
+function animationCam3(){
+    for (let i = 0; i < 10; i++) {
+        animationCameraType.push({ stepsCamera: 10, movementType: 'fieldVision', value: 15 });
+        animationCameraType.push({ stepsCamera: 30, movementType: 'rotation', axysType: 'x', value: -30 });
+        animationCameraType.push({ stepsCamera: 10, movementType: 'translation', axysType: 'y', value: -10 });
+        animationCameraType.push({ stepsCamera: 10, movementType: 'translation', axysType: 'y', value: 10 });
+        animationCameraType.push({ stepsCamera: 30, movementType: 'rotation', axysType: 'x', value: 30 });
+        animationCameraType.push({ stepsCamera: 10, movementType: 'fieldVision', value: -15 });
     }
 }
 
-/*
-const firstLightAnimation = () => {
-    for (let i = 0; i < 20; i++){
+
+function animationLight1 (){
+    for (let i = 0; i < 10; i++){
             sleepFor(1000);
             config.lDirectionX += 0.5;
     }
 }
 
-const secondLightAnimation = () => {
+function animationLight2(){
     for (let i = 0; i < 20; i++){
             sleepFor(1000);
             config.lDirectionY += 0.5;
     }
 }
 
-const thirdLightAnimation = () => {
+function animationLight3(){
     for (let i = 0; i < 20; i++){
             sleepFor(1000);
-            config.lDirectionZ += 0.5;
+         config.lDirectionZ += 0.5;
     }
 }
-*/

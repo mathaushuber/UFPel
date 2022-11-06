@@ -1,3 +1,5 @@
+var reverseLightDirectionLocation; 
+
 function createObj(){
     const objScene = {
     elements: objects,
@@ -56,7 +58,7 @@ function main() {
     var worldInverseTransposeLocation =
       gl.getUniformLocation(sceneProgram.program, "u_worldInverseTranspose");
     var colorLocation = gl.getUniformLocation(sceneProgram.program, "u_colorMult");
-    var reverseLightDirectionLocation =
+    reverseLightDirectionLocation =
       gl.getUniformLocation(sceneProgram.program, "u_reverseLightDirection");
     
     var positionBuffer = gl.createBuffer();
@@ -77,7 +79,7 @@ function main() {
     // Ativando o atributo das normais
     gl.enableVertexAttribArray(normalAttributeLocation);
 
-    // Criando as variáveis para obter os dados do buffer de cores
+    // Criando as variáveis para obter os dados do buffer 
     var size = 3;          
     var type = gl.FLOAT;   
     var normalize = true; // normalizando os dados
@@ -86,13 +88,13 @@ function main() {
     gl.vertexAttribPointer(
         normalAttributeLocation, size, type, normalize, stride, offset);
 
-    var fieldOfViewRadians = degToRad(60);
+    var fieldVisionRadians = degToRad(60);
     var fRotationRadians = 0;
-    var fieldOfViewRadians = degToRad(config.fieldOfView);
+    var fieldVisionRadians = degToRad(config.fieldVision);
     var aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
     var zNear = 1;
     var zFar = 2000;
-    var projectionMatrix = m4.perspective(fieldOfViewRadians, aspect, zNear, zFar);
+    var projectionMatrix = m4.perspective(fieldVisionRadians, aspect, zNear, zFar);
 
     // Calculando a matriz da câmera usando look at
     var cameraPosition = [0, 0, 200];
@@ -161,24 +163,11 @@ function main() {
 
     // Setando a direção da luz
     gl.uniform3fv(reverseLightDirectionLocation, m4.normalize([config.lDirectionX, config.lDirectionY, config.lDirectionZ]));
-    
+
     var matrix = m4.xRotation(Math.PI);
     matrix = m4.translate(matrix, -50, -75, -15);
 
     objects.forEach((object) => {
-      if (object.isOrbiting) {
-        switch(object.Axys) {
-          case 'x':
-            object = orbitObjectX(1, object);
-            break;
-          case 'y':
-            object = orbitObjectY(1, object);
-            break;
-          case 'z':
-            object = orbitObjectsZ(1, object);
-            break;
-        }
-      }
       object.uniforms.u_matrix = computeMatrix(
         viewProjectionMatrix,
         object.translation,
