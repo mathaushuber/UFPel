@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Editor de Cena WebGL</title>
+  <script src="https://kit.fontawesome.com/6c36d92623.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="CSS/style.css">
+  <link rel="stylesheet" href="CSS/dat.gui.css">
+  <link rel="icon" href="Imagens/favicon.png">
+</head>
+<body>
+<ul class="nav">
+  <li>
+    <a id="downloadAnchorElem" onclick="createObj()">
+      <i class="fas fa-download fa-3x">
+        <div class = "circle"></div></i>
+      </i>
+      <div class = "title">Salvar</div>
+    </a>
+  </li>
+  
+  <li>
+    <a href="mesh.html">
+      <i class="fas fa-dice-d6 fa-3x">
+        <div class = "circle"></div>
+      </i>
+      <div class = "title">Malha</div>
+    </a>
+  </li>
+  
+  <li>
+    <a href="scene.html">
+      <i class="fas fa-globe fa-3x">
+        <div class = "circle"></div></i>
+      <div class = "title">Cena</div>
+    </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/HuberM1998/UFPel/tree/master/CG" target = "_blank">
+        <i class="fab fa-github fa-3x">
+          <div class = "circle"></div></i>
+        <div class = "title">Github</div>
+      </a>
+  </li>
+  <div class="background"></div>
+
+</ul>
+    <!-- Partial -->
+    <canvas id="canvas"></canvas>
+
+    <!-- Scripts -->
+    <script src="https://webgl2fundamentals.org/webgl/resources/twgl-full.min.js"></script>
+    <script src="https://webgl2fundamentals.org/webgl/resources/m4.js"></script>
+    <script src="https://webgl2fundamentals.org/webgl/resources/flattened-primitives.js"></script>
+    <script src="Bibliotecas/dat.gui.min.js"></script>
+    <script src="JS/webgl-scene.js"></script>
+    <script src="JS/helpers.js"></script>
+    <script src="JS/elements.js"></script>
+    <script src="JS/cameras.js"></script>
+    <script src="JS/animations.js"></script>
+    <script src="JS/gui.js"></script>
+    <script src="JS/scene-script.js"></script>
+    <script src="JS/lighting.js"></script>
+     <!--<script src="JS/texture.js"></script>-->
+</body>
+</html>
