@@ -17,7 +17,7 @@ data B = TRUE
    deriving(Eq,Show)
 
 data C =    While B C
-     | DoWhile B C
+     | DoWhile C B  -- Do C while B
      | If B C C
      | Seq C C
      | Atrib E E
@@ -55,6 +55,7 @@ exSigma7 :: Memoria
 exSigma7 = [ ("x", 2), ("temp",30), ("y",47)]
 exSigma8 :: Memoria
 exSigma8 = [ ("x", 8), ("temp",102), ("y",79)]
+
 --- A função procuraVar recebe uma memória, o nome de uma variável e retorna o conteúdo
 --- dessa variável na memória. Exemplo:
 ---
@@ -88,23 +89,23 @@ smallStepE :: (E,Memoria) -> (E,Memoria)
 -- variavel
 smallStepE (Var x,s) = (Num (procuraVar s x),s)
 -- soma
-smallStepE (Soma (Num x) (Num y), s) = (Num (x+y),s)
-smallStepE (Soma (Num x) e2, s) = let (ef,_) = smallStepE (e2 ,s)
-                                 in (Soma (Num x) ef,s)
-smallStepE (Soma e1 e2,s)  = let (ef,_) = smallStepE (e1, s)
-                            in (Soma ef e2,s)
+smallStepE (Soma (Num n1) (Num n2), s) = (Num (n1+n2),s)
+smallStepE (Soma (Num n) e, s)         = let (el,sl) = smallStepE (e ,s)
+                                         in (Soma (Num n) el,sl)
+smallStepE (Soma e1 e2,s)              = let (el,sl) = smallStepE (e1, s)
+                                         in (Soma el e2, sl)
+--multiplicação
+smallStepE (Mult (Num n1) (Num n2), s) = (Num (n1*n2),s)
+smallStepE (Mult (Num n) e, s)        = let (el,sl) = smallStepE (e ,s)
+                                         in (Mult (Num n) el,sl)
+smallStepE (Mult e1 e2,s)              = let (el,sl) = smallStepE (e1, s)
+                                         in (Mult el e2,sl)
 --subtração
-smallStepE (Sub (Num x) (Num y), s) = (Num (x-y),s)
-smallStepE (Sub (Num x) e2, s) = let (ef,_) = smallStepE (e2 ,s)
-                                 in (Sub (Num x) ef,s)
+smallStepE (Sub (Num n1) (Num n2), s) = (Num (n1-n2),s)
+smallStepE (Sub (Num n) e2, s) = let (ef,_) = smallStepE (e2 ,s)
+                                 in (Sub (Num n) ef,s)
 smallStepE (Sub e1 e2,s)  = let (ef,_) = smallStepE (e1, s)
                             in (Sub ef e2,s)
---multiplicação
-smallStepE (Mult (Num x) (Num y), s) = (Num (x*y),s)
-smallStepE (Mult (Num x) e2, s) = let (ef,_) = smallStepE (e2 ,s)
-                                 in (Mult (Num x) ef,s)
-smallStepE (Mult e1 e2,s)  = let (ef,_) = smallStepE (e1, s)
-                            in (Mult ef e2,s)
 
 smallStepB :: (B,Memoria) -> (B,Memoria)
 smallStepB (Not FALSE,s)      = (TRUE,s)
@@ -160,7 +161,7 @@ smallStepC (Seq c1 c2,s) = let(cl,sn) = smallStepC(c1,s)
 smallStepC (While b c, s) = ((If b (Seq c (While b c)) Skip), s)
 
 --doWhile
-smallStepC (DoWhile b c, s) = (Seq c (While b c), s)
+smallStepC (DoWhile c b,s) = (Seq c (While b c), s)
 
 ----------------------
 --  INTERPRETADORES
@@ -169,12 +170,12 @@ smallStepC (DoWhile b c, s) = (Seq c (While b c), s)
 
 --- Interpretador para Expressões Aritméticas:
 isFinalE :: E -> Bool
-isFinalE (Num a) = True
+isFinalE (Num n) = True
 isFinalE _       = False
 
 
 interpretadorE :: (E,Memoria) -> (E,Memoria)
-interpretadorE (a,s) = if isFinalE a then (a,s) else interpretadorE (smallStepE (a,s))
+interpretadorE (e,s) = if (isFinalE e) then (e,s) else interpretadorE (smallStepE (e,s))
 
 --- Interpretador para expressões booleanas
 isFinalB :: B -> Bool
@@ -193,6 +194,24 @@ isFinalC _      = False
 interpretadorC :: (C,Memoria) -> (C,Memoria)
 interpretadorC (c,s) = if isFinalC c then (c,s) else interpretadorC (smallStepC (c,s))
 
+--------------------------------------
+---
+--- Exemplos de programas para teste
+---
+--- O ALUNO DEVE IMPLEMENTAR DOIS EXEMPLOS DE PROGRAMA, UM USANDO O IF E OUTRO USANDO O DO WHILE
+-------------------------------------
+
+teste1 :: B
+teste1 = (Leq (Soma (Num 3) (Num 3))  (Mult (Num 2) (Num 3)))
+-- interpretadorB(teste1, exSigma)
+-- -*>
+--(FALSE,[("x",10),("temp",0),("y",0)])
+
+teste2 :: B
+teste2 = (Leq (Soma (Var "x") (Num 3))  (Mult (Num 2) (Num 3)))
+-- interpretadorB(teste2, exSigma)
+-- -*>
+-- (FALSE,[("x",10),("temp",0),("y",0)])
 exemplo :: E
 exemplo = Soma (Num 3) (Soma (Var "x") (Var "temp"))
 -- interpretadorE(exemplo, exSigma) 
@@ -248,6 +267,7 @@ testeSeq = (Seq (Seq (Atrib (Var "z") (Var "x")) (Atrib (Var "x") (Var "y")))(At
 -- interpretadorC(testeSeq, exSigma3)
 -- -*>
 -- (Skip,[("x",5),("y",2),("z",2)])
+
 fatorial :: C
 fatorial = (Seq (Atrib (Var "y") (Num 1))
                 (While (Not (Igual (Var "x") (Num 1)))
@@ -285,3 +305,12 @@ programaUm = (If (Leq (Var "x") (Var "y"))
 -- interpretadorC(programaUm, exSigma)
 -- -*>
 -- (Skip,[("x",10),("temp",5),("y",0)])
+
+programaDois :: C
+programaDois = DoWhile (Atrib (Var "x") (Soma (Var "x") (Num 1)))
+                    (Leq (Var "x") (Num 10))
+-- Do x += 1 
+-- while (x<=10)
+-- interpretadorC(programaDois, exSigma)
+-- -*>
+-- (Skip,[("x",11),("temp",0),("y",0)])
