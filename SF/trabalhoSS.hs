@@ -253,8 +253,8 @@ exemplo2 = And (And TRUE (Not FALSE)) (And (Not (Not TRUE)) TRUE)
 -- (TRUE,[("x",10),("temp",0),("y",0)])
 exemploOR :: B
 exemploOR = Or FALSE (And TRUE (Not FALSE)) 
--- *Main> interpretadorB (exemplo2,meuEstado)
--- (TRUE,[("x",3),("y",0),("z",0)])
+-- interpretadorB(exemploOR, exSigma)
+-- (TRUE,[("x",10),("temp",0),("y",0)])
 
 --- TESTES
 
@@ -266,7 +266,7 @@ testeSeq = (Seq (Seq (Atrib (Var "z") (Var "x")) (Atrib (Var "x") (Var "y")))(At
 -- y = z
 -- interpretadorC(testeSeq, exSigma3)
 -- -*>
--- (Skip,[("x",5),("y",2),("z",2)])
+-- (Skip,[("x",5),("y",0),("z",0)])
 
 fatorial :: C
 fatorial = (Seq (Atrib (Var "y") (Num 1))
