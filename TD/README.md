@@ -2,6 +2,14 @@
 
 Basic concepts about the operation and design of digital circuits used in the implementation of computer systems in hardware, to build the theoretical basis necessary for the good use of disciplines in the line of hardware, operating systems and computer networks.
 
+## Synchronous-Counter
+
+Synchronous counter is a digital circuit formed by parallel flip-flops, such that all clock inputs are connected to the same clock source.
+
+## ULA
+
+Digital circuit that performs addition and boolean AND operations. The ALU is a fundamental part of the central processing unit (CPU), and even the simplest microprocessors.
+
 ## Folders View
 ```
 ├─ Synchronous-Counter
