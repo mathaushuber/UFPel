@@ -1,0 +1,183 @@
+PARSER_BEGIN(Karloff)
+import java.io.*;
+
+public class Karloff {
+
+  public static void main(String args[]) throws ParseException, IOException {
+    Karloff analisador = new Karloff(new FileInputStream(args[0]));
+    analisador.Karloff();
+  }
+
+}
+
+PARSER_END(Karloff)
+
+SKIP :
+{
+  " "
+| "\t"
+| "\n"
+| "\r"
+}
+
+TOKEN :
+{
+  <MAIN: "main">
+| <VOID: "void">
+| <NEWVAR: "newVar">
+| <FUNC: "func">
+| <INTEGER: "integer">
+| <BOOLEAN: "bool">
+
+| <ACHAVES: "{">
+| <FCHAVES: "}">
+| <APARENTESES: "(">
+| <FPARENTESES: ")">
+| <ACOLCHETES: "[">
+| <FCOLCHETES: "]">
+
+| <SEMICOLON: ";">
+
+| <CIF: "if">
+| <CTHEN: "then">
+| <CWHILE: "while">
+| <CREPEAT: "repeat">
+| <CUNTIL: "until">
+| <CRETURN: "return">
+| <CATRIB: "=">
+| <CSOUT: "System.output">
+| <CSRINT: "System.readint">
+
+| <OPADD: "+">
+| <OPSUB: "-">
+| <OPMULT: "*">
+| <OPDIV: "/">
+| <OPAND: "&">
+| <OPOR: "|">
+| <OPLESSTHAN: "<">
+| <OPGREATERTHAN: ">">
+| <OPEQUAL: "==">
+| <OPNOT: "!"> 
+
+| <TRUE: "true"> 
+| <FALSE: "false">
+| <STRING: "\"" (~["\""])* "\"">
+}
+
+TOKEN :
+{
+  <NUM : (["0"-"9"])+>
+  | <ID: ["a"-"z","A"-"Z"] (["a"-"z","A"-"Z","0"-"9"])*>
+}
+
+void Karloff() :
+{}
+{
+  Main()
+  (Func())?
+  <EOF>
+}
+
+void Main() :
+{}
+{
+  <VOID> <MAIN> <APARENTESES> <FPARENTESES> <ACHAVES>
+  VarDecl()
+  SeqComandos()
+  <FCHAVES>
+}
+
+void VarDecl() :
+{}
+{
+  ( <NEWVAR> Tipo() <ID> <SEMICOLON> )*
+}
+
+void Tipo() :
+{}
+{
+  ( <INTEGER> | <BOOLEAN> )
+}
+
+void SeqComandos() :
+{}
+{
+  ( Comando() )*
+}
+
+void Comando() :
+{}
+{
+  VarAtrib() <SEMICOLON>
+  | FuncChamada() <SEMICOLON>
+  | <CIF> <APARENTESES> Exp() <FPARENTESES> <CTHEN> <ACHAVES> SeqComandos() <FCHAVES> <SEMICOLON>
+  | <CWHILE> <APARENTESES> Exp() <FPARENTESES> <ACHAVES> SeqComandos() <FCHAVES> <SEMICOLON>
+  | <CREPEAT> <ACHAVES> SeqComandos() <FCHAVES> <CUNTIL> <APARENTESES> Exp() <FPARENTESES> <SEMICOLON>
+  | <CRETURN> Exp() <SEMICOLON>
+  | <CSOUT> <APARENTESES> Exp() <FPARENTESES> <SEMICOLON>
+  | VarAtribSintetico() <SEMICOLON>
+}
+
+void VarAtrib() :
+{}
+{
+  <ID> <CATRIB> Exp()
+  (LOOKAHEAD(2) <ID> <CATRIB> Exp())?
+}
+
+void FuncChamada() :
+{}
+{
+  <ID> <APARENTESES> (ListaExp())? <FPARENTESES>
+}
+
+void VarAtribSintetico() :
+{}
+{
+  <ID> <ATRIB> <CSRINT> <APARENTESES> <FPARENTESES>
+}
+
+void Exp() :
+{}
+{
+  ( <APARENTESES> Exp() Op() Exp() <FPARENTESES> )
+  | Fator()
+}
+
+void Fator() :
+{}
+{
+  <ID> ( <APARENTESES> (ListaExp())? <FPARENTESES> )?
+  | <NUM>
+  | <TRUE>
+  | <FALSE>
+  | <STRING>
+  | <OPNOT> Fator() // Adicionando o operador "!"
+}
+
+void Op() :
+{}
+{
+  <OPADD> | <OPSUB> | <OPMULT> | <OPDIV> | <OPAND> | <OPOR> | <OPLESSTHAN> | <OPGREATERTHAN> | <OPEQUAL>
+}
+
+void ListaExp() :
+{}
+{
+  Exp() ( <SEMICOLON> Exp() )*
+}
+
+void Func() :
+{}
+{
+  ( <FUNC> Tipo() <ID> <APARENTESES> (ListaArg())? <FPARENTESES> <ACHAVES>
+    VarDecl()
+    SeqComandos()
+  <FCHAVES> )+
+}
+
+void ListaArg() :
+{}
+{
+  Tipo() <ID> ( <SEMICOLON> Tipo() <ID> )*
+}
