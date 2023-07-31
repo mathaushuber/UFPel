@@ -1,0 +1,124 @@
+Circuit: * Porta Complexa F2 ((!a∗ !b∗ !c) + (!a ∗ b ∗ c) + (a∗ !b ∗ c) + (a ∗ b∗ !c))
+
+Vinc: Removing PWL point (1e-009,0)
+Vinc: Removing PWL point (4e-009,1)
+Vinc: Removing PWL point (7e-009,0)
+Vinc: Removing PWL point (1e-008,1)
+Vinc: Removing PWL point (1.3e-008,0)
+Vinc: Removing PWL point (1.6e-008,1)
+Vinc: Removing PWL point (1.9e-008,0)
+Vinc: Removing PWL point (2.2e-008,1)
+Vinc: Removing PWL point (2.5e-008,0)
+Vinc: Removing PWL point (3e-008,0)
+Vinc: Removing PWL point (3.3e-008,0)
+Vinb: Removing PWL point (1e-009,0)
+Vinb: Removing PWL point (7e-009,1)
+Vinb: Removing PWL point (1.5e-008,0)
+Vinb: Removing PWL point (1.8e-008,0)
+Vinb: Removing PWL point (2.1e-008,0)
+Vinb: Removing PWL point (2.4e-008,0)
+Vinb: Removing PWL point (2.8e-008,1)
+Vinb: Removing PWL point (3e-008,0)
+Vinb: Removing PWL point (3.4e-008,1)
+Vina: Removing PWL point (3e-009,0)
+Vina: Removing PWL point (7e-009,0)
+Vina: Removing PWL point (1e-008,0)
+Vina: Removing PWL point (1.3e-008,0)
+Vina: Removing PWL point (2e-008,1)
+Vina: Removing PWL point (2.6e-008,0)
+Vina: Removing PWL point (3.2e-008,1)
+Direct Newton iteration for .op point succeeded.
+
+atrasoa00lh=6.59875e-011 FROM 2.01218e-009 TO 2.07817e-009
+atrasoa00hl=2.43637e-011 FROM 1.01219e-009 TO 1.03655e-009
+atrasoa01lh=-9.14915e-010 FROM 6.01163e-009 TO 5.09672e-009
+atrasoa01hl=1.04017e-009 FROM 5.0123e-009 TO 6.05246e-009
+atrasoa10lh=-9.2674e-010 FROM 9.01164e-009 TO 8.08491e-009
+tran7atrasoa10hl=3.02562e-009 FROM 8.0123e-009 TO 1.10379e-008
+atrasoa11lh=6.00875e-011 FROM 1.20121e-008 TO 1.20722e-008
+atrasoa11hl=2.57228e-011 FROM 1.10122e-008 TO 1.10379e-008
+atraso0b0lh=5.75956e-011 FROM 1.40138e-008 TO 1.40714e-008
+atraso0b0hl=2.81416e-011 FROM 1.30141e-008 TO 1.30423e-008
+
+Measurement "atraso0b1lh" FAIL'ed
+
+Measurement "atraso0b1hl" FAIL'ed
+
+Measurement "atraso1b0lh" FAIL'ed
+
+Measurement "atraso1b0hl" FAIL'ed
+
+Measurement "atraso1b1lh" FAIL'ed
+
+Measurement "atraso1b1hl" FAIL'ed
+
+Measurement "atraso00clh" FAIL'ed
+
+Measurement "atraso00chl" FAIL'ed
+
+Measurement "atraso01clh" FAIL'ed
+
+Measurement "atraso01chl" FAIL'ed
+
+Measurement "atraso10clh" FAIL'ed
+
+Measurement "atraso10chl" FAIL'ed
+
+Measurement "atraso11clh" FAIL'ed
+
+Measurement "atraso11chl" FAIL'ed
+
+Measurement "consumo_medio" FAIL'ed
+consumo_estatico_a00hl: AVG(i(v1)*-v(vdd))=2.87296e-008 FROM 1.97e-009 TO 2e-009
+consumo_estatico_a00lh: AVG(i(v1)*-v(vdd))=1.90656e-008 FROM 2.97e-009 TO 3e-009
+consumo_estatico_a01hl: AVG(i(v1)*-v(vdd))=9.8534e-009 FROM 3.97e-009 TO 4e-009
+consumo_estatico_a01lh: AVG(i(v1)*-v(vdd))=5.97475e-009 FROM 4.97e-009 TO 5e-009
+consumo_estatico_a10hl: AVG(i(v1)*-v(vdd))=6.78926e-008 FROM 5.97e-009 TO 6e-009
+consumo_estatico_a10lh: AVG(i(v1)*-v(vdd))=7.24652e-009 FROM 6.97e-009 TO 7e-009
+consumo_estatico_a11hl: AVG(i(v1)*-v(vdd))=4.83506e-009 FROM 7.97e-009 TO 8e-009
+consumo_estatico_a11lh: AVG(i(v1)*-v(vdd))=4.7896e-008 FROM 8.97e-009 TO 9e-009
+consumo_estatico_0b0hl: AVG(i(v1)*-v(vdd))=3.77956e-009 FROM 9.97e-009 TO 1e-008
+consumo_estatico_0b0lh: AVG(i(v1)*-v(vdd))=3.84622e-009 FROM 1.097e-008 TO 1.1e-008
+consumo_estatico_0b1hl: AVG(i(v1)*-v(vdd))=3.75959e-008 FROM 1.197e-008 TO 1.2e-008
+consumo_estatico_0b1lh: AVG(i(v1)*-v(vdd))=1.88557e-008 FROM 1.297e-008 TO 1.3e-008
+consumo_estatico_1b0hl: AVG(i(v1)*-v(vdd))=7.813e-009 FROM 1.397e-008 TO 1.4e-008
+consumo_estatico_1b0lh: AVG(i(v1)*-v(vdd))=1.89481e-008 FROM 1.497e-008 TO 1.5e-008
+consumo_estatico_1b1hl: AVG(i(v1)*-v(vdd))=9.32921e-009 FROM 1.597e-008 TO 1.6e-008
+
+Measurement "consumo_estatico_1b1lh" FAIL'ed
+
+Measurement "consumo_estatico_00chl" FAIL'ed
+
+Measurement "consumo_estatico_00clh" FAIL'ed
+
+Measurement "consumo_estatico_01chl" FAIL'ed
+
+Measurement "consumo_estatico_01clh" FAIL'ed
+
+Measurement "consumo_estatico_10chl" FAIL'ed
+
+Measurement "consumo_estatico_10clh" FAIL'ed
+
+Measurement "consumo_estatico_11chl" FAIL'ed
+
+Measurement "consumo_estatico_11clh" FAIL'ed
+
+
+Date: Sun Jul 23 21:04:35 2023
+Total elapsed time: 0.310 seconds.
+
+tnom = 27
+temp = 27
+method = Gear
+totiter = 2964
+traniter = 2916
+tranpoints = 1245
+accept = 1234
+rejected = 11
+matrix size = 214
+fillins = 30
+solver = Normal
+Thread vector: 79.3/22.8[4] 10.4/3.0[4] 3.5/2.3[4] 1.1/2.4[1]  2592/500
+Matrix Compiler1: 37.97 KB object code size  8.8/6.4/[2.8]
+Matrix Compiler2: 27.66 KB object code size  3.6/3.9/[1.7]
+

@@ -1,0 +1,47 @@
+Circuit: * Porta Complexa AOI21 !((a + b) * (a + c))
+
+Vina: Removing PWL point (3e-009,0)
+Vina: Removing PWL point (6e-009,0)
+Direct Newton iteration for .op point succeeded.
+
+atrasoa00lh=1.66367e-011 FROM 2.01211e-009 TO 2.02874e-009
+atrasoa00hl=1.94762e-011 FROM 1.01152e-009 TO 1.031e-009
+atrasoa01lh=1.95039e-011 FROM 5.01211e-009 TO 5.03162e-009
+atrasoa01hl=1.82832e-011 FROM 4.01152e-009 TO 4.0298e-009
+atrasoa10lh=2.17521e-011 FROM 8.01211e-009 TO 8.03386e-009
+atrasoa10hl=1.90219e-011 FROM 7.01152e-009 TO 7.03054e-009
+atraso0b1lh=1.65735e-011 FROM 1.10124e-008 TO 1.1029e-008
+atraso0b1hl=1.4094e-011 FROM 1.00121e-008 TO 1.00262e-008
+atraso01clh=1.85555e-011 FROM 1.40124e-008 TO 1.40309e-008
+atraso01chl=1.64366e-011 FROM 1.30123e-008 TO 1.30287e-008
+consumo_medio: AVG(i(v1)*-v(vdd))=9.96903e-007 FROM 0 TO 1.5e-008
+consumo_estatico_a00hl: AVG(i(v1)*-v(vdd))=6.23798e-008 FROM 1.97e-009 TO 2e-009
+consumo_estatico_a00lh: AVG(i(v1)*-v(vdd))=1.76744e-007 FROM 2.97e-009 TO 3e-009
+consumo_estatico_a01hl: AVG(i(v1)*-v(vdd))=2.81123e-008 FROM 4.97e-009 TO 5e-009
+consumo_estatico_a01lh: AVG(i(v1)*-v(vdd))=8.12592e-007 FROM 5.97e-009 TO 6e-009
+consumo_estatico_a10hl: AVG(i(v1)*-v(vdd))=3.05286e-008 FROM 7.97e-009 TO 8e-009
+consumo_estatico_a10lh: AVG(i(v1)*-v(vdd))=1.01827e-006 FROM 8.97e-009 TO 9e-009
+consumo_estatico_0b1hl: AVG(i(v1)*-v(vdd))=-4.76146e-007 FROM 1.097e-008 TO 1.1e-008
+consumo_estatico_0b1lh: AVG(i(v1)*-v(vdd))=4.31529e-007 FROM 1.197e-008 TO 1.2e-008
+consumo_estatico_01chl: AVG(i(v1)*-v(vdd))=-6.0312e-007 FROM 1.397e-008 TO 1.4e-008
+consumo_estatico_01clh: AVG(i(v1)*-v(vdd))=4.94889e-007 FROM 1.497e-008 TO 1.5e-008
+
+
+Date: Sat Jul 22 16:15:44 2023
+Total elapsed time: 0.175 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 3564
+traniter = 3516
+tranpoints = 1267
+accept = 1258
+rejected = 9
+matrix size = 124
+fillins = 6
+solver = Normal
+Thread vector: 29.6/26.3[2] 3.7/3.5[1] 1.4/1.5[1] 0.4/1.1[1]  2592/500
+Matrix Compiler1: 16.76 KB object code size  3.1/1.5/[1.1]
+Matrix Compiler2: 14.82 KB object code size  1.3/1.8/[0.9]
+
