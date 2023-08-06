@@ -1,0 +1,37 @@
+void main() {
+    newVar integer a;
+    newVar integer b;
+    newVar integer num1;
+    newVar integer num2;
+    newVar integer soma;
+    newVar integer f1;
+    newVar integer divisao;
+
+    a = 10;
+    b = 5;
+    isFlag = true;
+    
+    num1 = 20;
+    num2 = 3;
+    
+    soma = (a + b);
+    divisao = (num2 / b);
+
+    System.output(soma);  
+    System.output(f1); 
+    System.output(divisao); 
+    
+    if (((num1 / num2) < 0)) then {
+        System.output(100);
+    }; 
+    
+    repeat {
+        System.output(a);
+        a = (a - 1);
+    } until ((a < 0));
+    
+}
+
+func integer testFunc(integer a) {
+    return a;
+}

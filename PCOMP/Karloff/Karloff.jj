@@ -4,8 +4,8 @@ public class Karloff {
 
   public static void main(String args[]) throws ParseException,IOException {
     
- Karloff analisador = new Karloff(new FileInputStream(args[0]));
- analisador.Karloff();
+    Karloff parser = new Karloff(new FileInputStream(args[0]));
+    parser.Karloff();
   }
 
 }
@@ -23,104 +23,163 @@ SKIP :
 TOKEN :
 {
   <MAIN: "main">
-| <VOID: "void">
-| <NEWVAR: "newVar">
-| <WFUNC: "func">
-
 | <ACHAVES: "{">
 | <FCHAVES: "}">
-| <APARENTESES: "(">
-| <FPARENTESES: ")">
-| <ACOLCHETES: "[">
-| <FCOLCHETES: "]">
-
-| <SEMICOLON: ";">
-
-| <TINT: "integer">
-| <TBOOL: "bool">
-
-| <CIF: "if">
-| <CTHEN: "then">
-| <CWHILE: "while">
-| <CREPEAT: "repeat">
-| <CUNTIL: "until">
-| <CRETURN: "return">
-| <CATRIB: "=">
-| <CSOUT: "System.output">
-| <CSRINT: "System.readint">
-
-| <OPADD: "+">
-| <OPSUB: "-">
-| <OPMULT: "*">
-| <OPDIV: "/">
-| <OPAND: "&">
-| <OPOR: "|">
-| <OPLESSTHAN: "<">
-| <OPGREATERTHAN: ">">
-| <OPEQUAL: "==">
+| <VOID: "void">
+| <VARDECL:"newVar">
+| <SEMICOLON:";">
+| <TIPO:("integer" | "bool")>
+| <ATTR:"=">
+| <OPENPAR:"(">
+| <CLOSEPAR:")">
+| <COMMA:",">
+| <TRUE:"true">
+| <FALSE:"false">
+| <IF: "if">
+| <UNTIL:"until">
+| <THEN:"then">
+| <REPEAT:"repeat">
+| <RETURN:"return">
+| <SYSOUTPUT:"System.output">
+| <SYSREADINT:"System.readint">
+| <FUNC:"func">
+| <TOKEN_ID: ["a"-"z","A"-"Z"] ( ["a"-"z","A"-"Z","0"-"9"])* ("_")*>
+| <TOKEN_NUM_LITERAL:(["0"-"9"])+ ("."(["0"-"9"])+ )? ("E" ("+" | "-")? (["0"-"9"])+)?>
 }
+
 
 TOKEN :
 {
-  <NUM : (["0"-"9"])+>
- |< ID: ["a"-"z","A"-"Z"] ( ["a"-"z","A"-"Z","0"-"9"])*>
- |< FUNC: <WFUNC> >
+ <OP: ("+" | "-" | "*" | "/" | "&" | "|" | "<" | ">" | "==" | ">=" | "<=")>
+|< ID: ["a"-"z","A"-"Z"] ( ["a"-"z","A"-"Z","0"-"9"])*>
 
 }
 
 
-
-void Karloff () :
-{Token t;}
+void Karloff():
+{}
 {
-
-(
-  <MAIN> { System.out.println("Palavra reservada: main");}
-| <VOID> { System.out.println("Palavra reservada: void");}
-| <NEWVAR> { System.out.println("Palavra reservada: newVar");}
-| <WFUNC> { System.out.println("Palavra reservada: func");}
-
-| <ACHAVES> { System.out.println("Abre chaves: {");}
-| <FCHAVES> { System.out.println("Fecha chaves: }");}
-| <ACOLCHETES> { System.out.println("Abre colchetes: [");}
-| <FCOLCHETES> { System.out.println("Abre colchetes: ]");}
-| <APARENTESES> { System.out.println("Abre parenteses: (");}
-| <FPARENTESES> { System.out.println("Fecha parenteses: )");}
-
-| <SEMICOLON> { System.out.println("Ponto e vírgula: ;");}
-
-| <TINT> { System.out.println("Tipo: integer");}
-| <TBOOL> { System.out.println("Tipo: bool");}
-
-| <CIF> { System.out.println("Comando: if");}
-| <CTHEN> { System.out.println("Comando: then");}
-| <CWHILE> { System.out.println("Comando: while");}
-| <CREPEAT> { System.out.println("Comando: repeat");}
-| <CUNTIL> { System.out.println("Comando: until");}
-| <CRETURN> { System.out.println("Comando: return");}
-| <CATRIB> { System.out.println("Comando de atribuição: =");}
-| <CSOUT> { System.out.println("Comando: System.output");}
-| <CSRINT> { System.out.println("Comando: System.readint");}
-
-| <OPADD> { System.out.println("Operação: +");}
-| <OPSUB> { System.out.println("Operação: -");}
-| <OPMULT> { System.out.println("Operação: *");}
-| <OPDIV> { System.out.println("Operação: /");}
-| <OPAND> { System.out.println("Operação: &");}
-| <OPOR> { System.out.println("Operação: |");}
-| <OPLESSTHAN> { System.out.println("Operação: <");}
-| <OPGREATERTHAN> { System.out.println("Operação: >");}
-| <OPEQUAL> { System.out.println("Operação: ==");}
-
-| t=<NUM> { System.out.println("Número: "+ t.image);}
-| t=<ID> { System.out.println("Identificador: "+ t.image);}
-)*
-<EOF> 
-
-
+  Main() (Func())? <EOF>
 }
 
+//MAIN -> "void" "main" "(" ")" "{" VARDECL SEQCOMANDOS "}"
+void Main():
+{}
+{
+  <VOID> <MAIN> <OPENPAR> ListaArg() <CLOSEPAR> <ACHAVES> VarDeclaration() CommandsSequence() <FCHAVES>
+}
 
+//FUNC -> FUNC "func" TIPO TOKEN_id "(" LISTAARG? ")" "{" VARDECL SEQCOMANDOS "}"
+//| "func" TIPO TOKEN_id "(" LISTAARG? ")" "{" VARDECL SEQCOMANDOS "}"
+void Func():
+{}
+{
+  (<FUNC> Tipo() <TOKEN_ID> <OPENPAR> ListaArg() <CLOSEPAR> <ACHAVES> VarDeclaration() CommandsSequence() <FCHAVES>)+
+}
 
+//LISTAARG -> TIPO TOKEN_id | LISTAARG "," TIPO TOKEN_id
+void ListaArg():
+{}
+{
+  (Tipo() <TOKEN_ID> (<COMMA> Tipo() <TOKEN_ID>)*)?
+}
 
+//VARDECL -> VARDECL "newVar" TIPO TOKEN_id ";" | vazio
+//Abordagem diferente usando o operador *. Esse operador permite que a sequência de declarações de variáveis seja repetida zero ou mais vezes. 
+//Nesse caso, a sequência é repetida por quantas vezes houver novas declarações de variáveis no código-fonte.
+void VarDeclaration():
+{}
+{
+  (<VARDECL> Tipo() <TOKEN_ID> <SEMICOLON>)*
+}
 
+//TIPO -> "integer" | "bool"
+void Tipo():
+{}
+{
+  <TIPO>
+}
+
+//SEQCOMANDOS -> SEQCOMANDOS COMANDO | vazio
+void CommandsSequence():
+{}
+{
+  (Command_A())*
+}
+
+//COMANDO -> TOKEN_id "=" EXP ";"
+//| TOKEN_id "(" LISTAEXP? ")" ";"
+//| "if" "(" EXP ")" "then" "{" SEQCOMANDOS "}" ";"
+//| "while" "(" EXP ")" "{" SEQCOMANDOS "}" ";"
+//| "repeat" "{" SEQCOMANDOS "}" "until" "(" EXP ")" ";"
+//| "return" EXP ";"
+//| "System.output" "(" EXP ")" ";"
+//| TOKEN_id "=" "System.readint" "(" ")" ";"
+void Command_A():
+{}
+{
+  (<TOKEN_ID> Command_B())
+  | (<IF> <OPENPAR> Exp() <CLOSEPAR> <THEN> <ACHAVES> CommandsSequence() <FCHAVES> <SEMICOLON>)
+  | (<UNTIL> <OPENPAR> Exp() <CLOSEPAR> <REPEAT> <ACHAVES> CommandsSequence() <FCHAVES> <SEMICOLON>)
+  | (<REPEAT> <ACHAVES> CommandsSequence() <FCHAVES> <UNTIL> <OPENPAR> Exp() <CLOSEPAR> <SEMICOLON>)
+  | (<RETURN> Exp() <SEMICOLON>)
+  | SystemOutput()
+  //| SystemReadInt()
+}
+
+void Command_B():
+{}
+{
+  (<ATTR> Exp() <SEMICOLON>) 
+  | (<TOKEN_ID> <ATTR> Exp() <SEMICOLON>)
+}
+
+void SystemOutput():
+{}
+{
+  <SYSOUTPUT> <OPENPAR> Exp() <CLOSEPAR> <SEMICOLON>
+}
+
+void SystemReadInt():
+{}
+{
+  <TOKEN_ID> <ATTR> <SYSREADINT> <OPENPAR> <CLOSEPAR> <SEMICOLON>
+}
+
+//EXP -> "(" EXP OP EXP ")" | FATOR
+void Exp():
+{}
+{
+  (<OPENPAR> Exp() <OP> Exp() <CLOSEPAR>)
+  | Fator_A()
+}
+
+//LISTAEXP -> EXP | LISTAEXP "," EXP
+void ListaExp_A():
+{}
+{
+  Exp() ListaExp_B()
+}
+
+void ListaExp_B():
+{}
+{
+  (<COMMA> Exp() ListaExp_B())?
+}
+
+//FATOR -> TOKEN_id | TOKEN_id "(" LISTAEXP? ")"
+//| TOKEN_numliteral | "true" | "false"
+void Fator_A():
+{}
+{
+  (<TOKEN_ID> Fator_B()) 
+  | <TOKEN_NUM_LITERAL> 
+  | <TRUE> 
+  | <FALSE>
+}
+
+void Fator_B():
+{}
+{
+  (<OPENPAR> (ListaExp_A())? <CLOSEPAR>)?
+}

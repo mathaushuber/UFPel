@@ -11,77 +11,53 @@ public interface KarloffConstants {
   /** RegularExpression Id. */
   int MAIN = 5;
   /** RegularExpression Id. */
-  int VOID = 6;
+  int ACHAVES = 6;
   /** RegularExpression Id. */
-  int NEWVAR = 7;
+  int FCHAVES = 7;
   /** RegularExpression Id. */
-  int FUNC = 8;
+  int VOID = 8;
   /** RegularExpression Id. */
-  int INTEGER = 9;
+  int VARDECL = 9;
   /** RegularExpression Id. */
-  int BOOLEAN = 10;
+  int SEMICOLON = 10;
   /** RegularExpression Id. */
-  int ACHAVES = 11;
+  int TIPO = 11;
   /** RegularExpression Id. */
-  int FCHAVES = 12;
+  int ATTR = 12;
   /** RegularExpression Id. */
-  int APARENTESES = 13;
+  int OPENPAR = 13;
   /** RegularExpression Id. */
-  int FPARENTESES = 14;
+  int CLOSEPAR = 14;
   /** RegularExpression Id. */
-  int ACOLCHETES = 15;
+  int COMMA = 15;
   /** RegularExpression Id. */
-  int FCOLCHETES = 16;
+  int TRUE = 16;
   /** RegularExpression Id. */
-  int SEMICOLON = 17;
+  int FALSE = 17;
   /** RegularExpression Id. */
-  int CIF = 18;
+  int IF = 18;
   /** RegularExpression Id. */
-  int CTHEN = 19;
+  int UNTIL = 19;
   /** RegularExpression Id. */
-  int CWHILE = 20;
+  int THEN = 20;
   /** RegularExpression Id. */
-  int CREPEAT = 21;
+  int REPEAT = 21;
   /** RegularExpression Id. */
-  int CUNTIL = 22;
+  int RETURN = 22;
   /** RegularExpression Id. */
-  int CRETURN = 23;
+  int SYSOUTPUT = 23;
   /** RegularExpression Id. */
-  int CATRIB = 24;
+  int SYSREADINT = 24;
   /** RegularExpression Id. */
-  int CSOUT = 25;
+  int FUNC = 25;
   /** RegularExpression Id. */
-  int CSRINT = 26;
+  int TOKEN_ID = 26;
   /** RegularExpression Id. */
-  int OPADD = 27;
+  int TOKEN_NUM_LITERAL = 27;
   /** RegularExpression Id. */
-  int OPSUB = 28;
+  int OP = 28;
   /** RegularExpression Id. */
-  int OPMULT = 29;
-  /** RegularExpression Id. */
-  int OPDIV = 30;
-  /** RegularExpression Id. */
-  int OPAND = 31;
-  /** RegularExpression Id. */
-  int OPOR = 32;
-  /** RegularExpression Id. */
-  int OPLESSTHAN = 33;
-  /** RegularExpression Id. */
-  int OPGREATERTHAN = 34;
-  /** RegularExpression Id. */
-  int OPEQUAL = 35;
-  /** RegularExpression Id. */
-  int OPNOT = 36;
-  /** RegularExpression Id. */
-  int TRUE = 37;
-  /** RegularExpression Id. */
-  int FALSE = 38;
-  /** RegularExpression Id. */
-  int STRING = 39;
-  /** RegularExpression Id. */
-  int NUM = 40;
-  /** RegularExpression Id. */
-  int ID = 41;
+  int ID = 29;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -94,41 +70,29 @@ public interface KarloffConstants {
     "\"\\n\"",
     "\"\\r\"",
     "\"main\"",
-    "\"void\"",
-    "\"newVar\"",
-    "\"func\"",
-    "\"integer\"",
-    "\"bool\"",
     "\"{\"",
     "\"}\"",
+    "\"void\"",
+    "\"newVar\"",
+    "\";\"",
+    "<TIPO>",
+    "\"=\"",
     "\"(\"",
     "\")\"",
-    "\"[\"",
-    "\"]\"",
-    "\";\"",
-    "\"if\"",
-    "\"then\"",
-    "\"while\"",
-    "\"repeat\"",
-    "\"until\"",
-    "\"return\"",
-    "\"=\"",
-    "\"System.output\"",
-    "\"System.readint\"",
-    "\"+\"",
-    "\"-\"",
-    "\"*\"",
-    "\"/\"",
-    "\"&\"",
-    "\"|\"",
-    "\"<\"",
-    "\">\"",
-    "\"==\"",
-    "\"!\"",
+    "\",\"",
     "\"true\"",
     "\"false\"",
-    "<STRING>",
-    "<NUM>",
+    "\"if\"",
+    "\"until\"",
+    "\"then\"",
+    "\"repeat\"",
+    "\"return\"",
+    "\"System.output\"",
+    "\"System.readint\"",
+    "\"func\"",
+    "<TOKEN_ID>",
+    "<TOKEN_NUM_LITERAL>",
+    "<OP>",
     "<ID>",
   };
 

@@ -1,0 +1,16 @@
+void main(){
+    newVar integer a;
+    newVar integer b;
+    newVar bool isFlag;
+
+    System.output(a);
+    if (((num1 / num2) < 0)) then {
+        repeat{ 
+            return false;
+        }until (true);
+    }; 
+}
+
+func integer testFunc(integer a){
+    return a;
+}
