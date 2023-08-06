@@ -11,7 +11,7 @@ class Compilador{
 		
 			arv = as.parseProg();
 		
-			
+			// Com o compilador
 			CodeGen backend = new CodeGen();
 			String codigo = backend.geraCodigo(arv);
 			System.out.println(codigo);
