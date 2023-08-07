@@ -1,27 +1,29 @@
-class Compilador{
+// Classe que serve como ponto de entrada do compilador
+class Compilador {
 
-	public static void main(String[]args)
-	{	
-		ArvoreSintatica arv=null;
-	
-		try{
+    public static void main(String[] args) {
+        ArvoreSintatica arv = null;  // Inicializa uma árvore sintática como nulo
 
-			AnaliseLexica al = new AnaliseLexica(args[0]);
-			Parser as = new Parser(al);
-		
-			arv = as.parseProg();
-		
-			// Com o compilador
-			CodeGen backend = new CodeGen();
-			String codigo = backend.geraCodigo(arv);
-			System.out.println(codigo);
+        try {
+            // Realiza a análise léxica do arquivo de entrada fornecido como argumento
+            AnaliseLexica al = new AnaliseLexica(args[0]);
+            
+            // Inicializa o parser com a análise léxica
+            Parser as = new Parser(al);
+            
+            // Realiza o parsing do programa e obtém a árvore sintática resultante
+            arv = as.parseProg();
 
-		}catch(Exception e)
-		{			
-			System.out.println("Erro de compilação:\n" + e);
-		}
+            // Compila a árvore sintática utilizando o gerador de código
+            CodeGen backend = new CodeGen();
+            String codigo = backend.geraCodigo(arv);
+            
+            // Imprime o código gerado
+            System.out.println(codigo);
 
-
-
-	}
+        } catch (Exception e) {
+            // Captura exceções durante a compilação e imprime uma mensagem de erro
+            System.out.println("Erro de compilação:\n" + e);
+        }
+    }
 }
