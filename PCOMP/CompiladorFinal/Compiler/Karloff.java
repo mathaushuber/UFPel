@@ -4,17 +4,38 @@ import java.util.ArrayList;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Scanner;
+
+class KarloffMain{
+    ArrayList<VariableDeclaration> variableDeclaration;
+    CommandSequence commandSequence;
+
+    KarloffMain(ArrayList<VariableDeclaration> variableDeclaration, CommandSequence commandSequence){
+        this.variableDeclaration = variableDeclaration;
+        this.commandSequence = commandSequence;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("public static void main(String[] args) {\u005cn");
+        for (VariableDeclaration decVar : this.variableDeclaration) {
+            stringBuilder.append(decVar).append("\u005cn");
+        }
+        return stringBuilder.append(this.commandSequence).append("}\u005cn").toString();
+    }
+}
+
 class KarloffTree{
-    Principal main;
-    ListaFuncao lf;
+    KarloffMain main;
+    FunctionList lf;
     String inputFileName;
 
-    KarloffTree(Principal main, String inputFileName){
+    KarloffTree(KarloffMain main, String inputFileName){
         this.main = main;
         this.inputFileName = inputFileName;
     }
 
-    KarloffTree(Principal main, ListaFuncao lf, String inputFileName){
+    KarloffTree(KarloffMain main, FunctionList lf, String inputFileName){
         this.main = main;
         this.lf = lf;
         this.inputFileName = inputFileName;
@@ -29,31 +50,11 @@ class KarloffTree{
     }
 }
 
-class Principal{
-    ArrayList<DeclaracaoVar> declaracaoVar;
-    SequenciaDeComandos sequenciaDeComandos;
-
-    Principal(ArrayList<DeclaracaoVar> declaracaoVar, SequenciaDeComandos sequenciaDeComandos){
-        this.declaracaoVar = declaracaoVar;
-        this.sequenciaDeComandos = sequenciaDeComandos;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("public static void main(String[] args) {\u005cn");
-        for (DeclaracaoVar decVar : this.declaracaoVar) {
-            stringBuilder.append(decVar).append("\u005cn");
-        }
-        return stringBuilder.append(this.sequenciaDeComandos).append("}\u005cn").toString();
-    }
-}
-
-class DeclaracaoVar{
+class VariableDeclaration{
     TokenId tokenId;
     TipoDeVar tipoDeVar;
 
-    DeclaracaoVar(TipoDeVar tipoDeVar, TokenId tokenId){
+    VariableDeclaration(TipoDeVar tipoDeVar, TokenId tokenId){
         this.tipoDeVar = tipoDeVar;
         this.tokenId = tokenId;
     }
@@ -87,10 +88,10 @@ class TipoDeVar{
     }
 }
 
-class SequenciaDeComandos{
+class CommandSequence{
     ArrayList<Com> comandos;
 
-    SequenciaDeComandos(ArrayList<Com> comandos){
+    CommandSequence(ArrayList<Com> comandos){
         this.comandos = comandos;
     }
 
@@ -105,11 +106,11 @@ class SequenciaDeComandos{
 }
 
 class Com{}
-class Atribuicao extends Com{
-    Expressao exp;
+class Assignment extends Com{
+    Expression exp;
     TokenId tokenId;
 
-    Atribuicao(Expressao exp, TokenId tokenId){
+    Assignment(Expression exp, TokenId tokenId){
         this.exp = exp;
         this.tokenId = tokenId;
     }
@@ -121,65 +122,65 @@ class Atribuicao extends Com{
 }
 class ChamadaFuncCom extends Com{
     TokenId tokenId;
-    ListaExpressao listaExp;
+    ExpressionList expList;
 
-    ChamadaFuncCom(TokenId tokenId, ListaExpressao listaExp){
+    ChamadaFuncCom(TokenId tokenId, ExpressionList expList){
         this.tokenId = tokenId;
-        this.listaExp = listaExp;
+        this.expList = expList;
     }
 
     @Override
     public String toString() {
-        if (this.listaExp == null) return this.tokenId + "()" + ";";
-        return this.tokenId + "(" + this.listaExp + ")" + ";";
+        if (this.expList == null) return this.tokenId + "()" + ";";
+        return this.tokenId + "(" + this.expList + ")" + ";";
     }
 }
-class Condicional extends Com{
-    Expressao exp;
-    SequenciaDeComandos sequenciaDeComandos;
+class ConditionalStatement extends Com{
+    Expression exp;
+    CommandSequence commandSequence;
 
-    Condicional(Expressao exp, SequenciaDeComandos sequenciaDeComandos){
+    ConditionalStatement(Expression exp, CommandSequence commandSequence){
         this.exp = exp;
-        this.sequenciaDeComandos = sequenciaDeComandos;
+        this.commandSequence = commandSequence;
     }
 
     @Override
     public String toString() {
-        return "if (" + this.exp + ") {\u005cn" + this.sequenciaDeComandos + "}";
+        return "if (" + this.exp + ") {\u005cn" + this.commandSequence + "}";
     }
 }
-class LacoWhile extends Com{
-    Expressao exp;
-    SequenciaDeComandos sequenciaDeComandos;
+class WhileLoop extends Com{
+    Expression exp;
+    CommandSequence commandSequence;
 
-    LacoWhile(Expressao exp, SequenciaDeComandos sequenciaDeComandos){
+    WhileLoop(Expression exp, CommandSequence commandSequence){
         this.exp = exp;
-        this.sequenciaDeComandos = sequenciaDeComandos;
+        this.commandSequence = commandSequence;
     }
 
     @Override
     public String toString() {
-        return "while (" + this.exp + ") {\u005cn" + this.sequenciaDeComandos + "}";
+        return "while (" + this.exp + ") {\u005cn" + this.commandSequence + "}";
     }
 }
-class LacoRepeat extends Com{
-    Expressao exp;
-    SequenciaDeComandos sequenciaDeComandos;
+class RepeatLoop extends Com{
+    Expression exp;
+    CommandSequence commandSequence;
 
-    LacoRepeat(Expressao exp, SequenciaDeComandos sequenciaDeComandos){
+    RepeatLoop(Expression exp, CommandSequence commandSequence){
         this.exp = exp;
-        this.sequenciaDeComandos = sequenciaDeComandos;
+        this.commandSequence = commandSequence;
     }
 
     @Override
     public String toString() {
-        return "do {\u005cn" + this.sequenciaDeComandos + "} while (" + this.exp + ");";
+        return "do {\u005cn" + this.commandSequence + "} while (" + this.exp + ");";
     }
 }
-class Retorno extends Com{
-    Expressao exp;
+class ReturnStatement extends Com{
+    Expression exp;
 
-    Retorno(Expressao exp){
+    ReturnStatement(Expression exp){
         this.exp = exp;
     }
 
@@ -189,9 +190,9 @@ class Retorno extends Com{
     }
 }
 class Saida extends Com{
-    Expressao exp;
+    Expression exp;
 
-    Saida(Expressao exp){
+    Saida(Expression exp){
         this.exp = exp;
     }
 
@@ -218,12 +219,12 @@ class Scan extends Com{
     }
 }
 
-class Expressao{}
-class RecursaoExpressao extends Expressao{
-    Expressao exp1, exp2;
-    Operacao op;
+class Expression{}
+class ExpressionRecursion extends Expression{
+    Expression exp1, exp2;
+    Operation op;
 
-    RecursaoExpressao(Expressao exp1, Expressao exp2, Operacao op){
+    ExpressionRecursion(Expression exp1, Expression exp2, Operation op){
         this.exp1 = exp1;
         this.exp2 = exp2;
         this.op = op;
@@ -234,7 +235,7 @@ class RecursaoExpressao extends Expressao{
         return "(" + this.exp1 + " " + this.op + " " + this.exp2 + ")";
     }
 }
-class Fator extends Expressao{}
+class Fator extends Expression{}
 class TokenId extends Fator {
     String var;
 
@@ -259,19 +260,19 @@ class TokenNum extends Fator {
         return this.num.toString();
     }
 }
-class ChamadaFuncFator extends Fator{
+class FunctionCallFactor extends Fator{
     TokenId tokenId;
-    ListaExpressao listaExp;
+    ExpressionList expList;
 
-    ChamadaFuncFator(TokenId tokenId, ListaExpressao listaExp){
+    FunctionCallFactor(TokenId tokenId, ExpressionList expList){
         this.tokenId = tokenId;
-        this.listaExp = listaExp;
+        this.expList = expList;
     }
 
     @Override
     public String toString() {
-        if (this.listaExp == null) return this.tokenId + "()";
-        return this.tokenId + "(" + this.listaExp + ")";
+        if (this.expList == null) return this.tokenId + "()";
+        return this.tokenId + "(" + this.expList + ")";
     }
 }
 class VF extends Fator{
@@ -287,10 +288,10 @@ class VF extends Fator{
     }
 }
 
-class Operacao{
+class Operation{
      String op;
 
-     Operacao(String op){
+     Operation(String op){
          this.op = op;
      }
 
@@ -300,10 +301,10 @@ class Operacao{
      }
 }
 
-class ListaExpressao{
-    ArrayList<Expressao> expressoes;
+class ExpressionList{
+    ArrayList<Expression> expressoes;
 
-    ListaExpressao(ArrayList<Expressao> expressoes){
+    ExpressionList(ArrayList<Expression> expressoes){
         this.expressoes = expressoes;
     }
 
@@ -311,42 +312,42 @@ class ListaExpressao{
      public String toString() {
         if (this.expressoes.size() == 1) return expressoes.get(0).toString();
         StringBuilder stringBuilder = new StringBuilder();
-        for (Expressao exp : this.expressoes) {
+        for (Expression exp : this.expressoes) {
             stringBuilder.append(exp).append(", ");
         }
         return stringBuilder.toString();
     }
 }
 
-class Funcao{
+class FunctionDefinition{
     TokenId tokenId;
     TipoDeVar tipoDeVar;
     ListaArgumentos listaArgumentos;
-    ArrayList<DeclaracaoVar> declaracaoVar;
-    SequenciaDeComandos sequenciaDeComandos;
+    ArrayList<VariableDeclaration> variableDeclaration;
+    CommandSequence commandSequence;
 
-    Funcao(TokenId tokenId, TipoDeVar tipoDeVar, ListaArgumentos listaArgumentos, ArrayList<DeclaracaoVar> declaracaoVar, SequenciaDeComandos sequenciaDeComandos){
+    FunctionDefinition(TokenId tokenId, TipoDeVar tipoDeVar, ListaArgumentos listaArgumentos, ArrayList<VariableDeclaration> variableDeclaration, CommandSequence commandSequence){
             this.tokenId = tokenId;
             this.tipoDeVar = tipoDeVar;
             this.listaArgumentos = listaArgumentos;
-            this.declaracaoVar = declaracaoVar;
-            this.sequenciaDeComandos = sequenciaDeComandos;
+            this.variableDeclaration = variableDeclaration;
+            this.commandSequence = commandSequence;
     }
 
     @Override
      public String toString() {
         StringBuilder stringBuilder = new StringBuilder("public static " + this.tipoDeVar + " " + this.tokenId + "(" + this.listaArgumentos + ") {\u005cn");
-        for (DeclaracaoVar decVar : this.declaracaoVar) {
+        for (VariableDeclaration decVar : this.variableDeclaration) {
             stringBuilder.append(decVar).append("\u005cn");
         }
-        stringBuilder.append(sequenciaDeComandos).append("}\u005cn");
+        stringBuilder.append(commandSequence).append("}\u005cn");
         return stringBuilder.toString();
     }
 }
-class ListaFuncao{
-    ArrayList<Funcao> funcoes;
+class FunctionList{
+    ArrayList<FunctionDefinition> funcoes;
 
-    ListaFuncao(ArrayList<Funcao> funcoes){
+    FunctionList(ArrayList<FunctionDefinition> funcoes){
         this.funcoes = funcoes;
     }
 
@@ -354,18 +355,18 @@ class ListaFuncao{
      public String toString() {
         if (this.funcoes.size() == 1) return this.funcoes.get(0).toString();
         StringBuilder stringBuilder = new StringBuilder();
-        for (Funcao func : this.funcoes) {
+        for (FunctionDefinition func : this.funcoes) {
             stringBuilder.append(func.toString()).append("\u005cn");
         }
         return stringBuilder.toString();
     }
 }
 
-class Argumento{
+class Argument{
     TokenId tokenId;
     TipoDeVar tipoDeVar;
 
-    Argumento(TokenId tokenId, TipoDeVar tipoDeVar){
+    Argument(TokenId tokenId, TipoDeVar tipoDeVar){
         this.tokenId = tokenId;
         this.tipoDeVar = tipoDeVar;
     }
@@ -376,9 +377,9 @@ class Argumento{
     }
 }
 class ListaArgumentos{
-    ArrayList<Argumento> argumentos;
+    ArrayList<Argument> argumentos;
 
-    ListaArgumentos(ArrayList<Argumento> argumentos){
+    ListaArgumentos(ArrayList<Argument> argumentos){
         this.argumentos = argumentos;
     }
 
@@ -386,7 +387,7 @@ class ListaArgumentos{
      public String toString() {
         if (this.argumentos.size() == 1) return this.argumentos.get(0).toString();
         StringBuilder stringBuilder = new StringBuilder();
-        for (Argumento arg : this.argumentos) {
+        for (Argument arg : this.argumentos) {
             stringBuilder.append(arg).append(", ");
         }
         return stringBuilder.toString();
@@ -440,7 +441,7 @@ public class Karloff implements KarloffConstants {
 
 // KARLOFF → MAIN FUNC?
   static final public KarloffTree Karloff(String inputFileName) throws ParseException {
- Principal main = null; ListaFuncao lf = null;
+ KarloffMain main = null; FunctionList lf = null;
     main = Main();
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case FUNC:
@@ -456,8 +457,8 @@ public class Karloff implements KarloffConstants {
   }
 
 // MAIN → "void" "main" "(" ")" "{" VARDECL SEQCOMANDOS "}"
-  static final public Principal Main() throws ParseException {
- ArrayList<DeclaracaoVar> varDec = null; SequenciaDeComandos seqCom = null;
+  static final public KarloffMain Main() throws ParseException {
+ ArrayList<VariableDeclaration> varDec = null; CommandSequence seqCom = null;
     jj_consume_token(VOID);
     jj_consume_token(MAIN);
     jj_consume_token(APARENTESES);
@@ -466,13 +467,13 @@ public class Karloff implements KarloffConstants {
     varDec = Vardecl();
     seqCom = SeqComandos();
     jj_consume_token(FCHAVES);
-     {if (true) return new Principal(varDec, seqCom);}
+     {if (true) return new KarloffMain(varDec, seqCom);}
     throw new Error("Missing return statement in function");
   }
 
 // VARDECL → VARDECL "newVar" TIPO TOKEN_id ";" | vazio
-  static final public ArrayList<DeclaracaoVar> Vardecl() throws ParseException {
- Token t = null; TipoDeVar tipoDeVar = null; ArrayList<DeclaracaoVar> ldv = new ArrayList();
+  static final public ArrayList<VariableDeclaration> Vardecl() throws ParseException {
+ Token t = null; TipoDeVar tipoDeVar = null; ArrayList<VariableDeclaration> ldv = new ArrayList();
     label_1:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -487,7 +488,7 @@ public class Karloff implements KarloffConstants {
       tipoDeVar = Tipo();
       t = jj_consume_token(ID);
       jj_consume_token(PONTOVIRGULA);
-                                                      ldv.add(new DeclaracaoVar(tipoDeVar, new TokenId(t.image)));
+                                                      ldv.add(new VariableDeclaration(tipoDeVar, new TokenId(t.image)));
     }
      {if (true) return ldv;}
     throw new Error("Missing return statement in function");
@@ -515,7 +516,7 @@ public class Karloff implements KarloffConstants {
   }
 
 // SEQCOMANDOS → SEQCOMANDOS COMANDO | vazio
-  static final public SequenciaDeComandos SeqComandos() throws ParseException {
+  static final public CommandSequence SeqComandos() throws ParseException {
  Com c = null; ArrayList<Com> comandos = new ArrayList();
     label_2:
     while (true) {
@@ -535,7 +536,7 @@ public class Karloff implements KarloffConstants {
       c = Comando();
                   comandos.add(c);
     }
-     {if (true) return new SequenciaDeComandos(comandos);}
+     {if (true) return new CommandSequence(comandos);}
     throw new Error("Missing return statement in function");
   }
 
@@ -546,8 +547,8 @@ public class Karloff implements KarloffConstants {
 // | "return" EXP  ";"
 // | "System.output" "(" EXP ")"  ";"
   static final public Com Comando() throws ParseException {
- Token t = null; TokenId tokenId = null; SequenciaDeComandos seqCom = null;
-Expressao e = null; Com result = null; Com comL = null;
+ Token t = null; TokenId tokenId = null; CommandSequence seqCom = null;
+Expression e = null; Com result = null; Com comL = null;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case ID:
       t = jj_consume_token(ID);
@@ -564,7 +565,7 @@ Expressao e = null; Com result = null; Com comL = null;
       seqCom = SeqComandos();
       jj_consume_token(FCHAVES);
       jj_consume_token(PONTOVIRGULA);
-                                                                                                                   result = new Condicional(e, seqCom);
+                                                                                                                   result = new ConditionalStatement(e, seqCom);
       break;
     case WHILE:
       jj_consume_token(WHILE);
@@ -575,7 +576,7 @@ Expressao e = null; Com result = null; Com comL = null;
       seqCom = SeqComandos();
       jj_consume_token(FCHAVES);
       jj_consume_token(PONTOVIRGULA);
-                                                                                                               result = new LacoWhile(e, seqCom);
+                                                                                                               result = new WhileLoop(e, seqCom);
       break;
     case REPEAT:
       jj_consume_token(REPEAT);
@@ -587,13 +588,13 @@ Expressao e = null; Com result = null; Com comL = null;
       e = Exp();
       jj_consume_token(FPARENTESES);
       jj_consume_token(PONTOVIRGULA);
-                                                                                                                        result = new LacoRepeat(e, seqCom);
+                                                                                                                        result = new RepeatLoop(e, seqCom);
       break;
     case RETURN:
       jj_consume_token(RETURN);
       e = Exp();
       jj_consume_token(PONTOVIRGULA);
-                                           result = new Retorno(e);
+                                           result = new ReturnStatement(e);
       break;
     case SOUT:
       jj_consume_token(SOUT);
@@ -614,7 +615,7 @@ Expressao e = null; Com result = null; Com comL = null;
 
 // COMANDO’ → "=" COMANDO’’ | "(" LISTAEXP? ")"  ";"
   static final public Com Comando_(TokenId t) throws ParseException {
- Com result = null; Com comLL = null; ListaExpressao l = null;
+ Com result = null; Com comLL = null; ExpressionList l = null;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case ATRIB:
       jj_consume_token(ATRIB);
@@ -650,7 +651,7 @@ Expressao e = null; Com result = null; Com comL = null;
 
 // COMANDO’’ → EXP ";" | "System.readint" "(" ")" ";"
   static final public Com Comando__(TokenId t) throws ParseException {
- Com result = null; Expressao e = null;
+ Com result = null; Expression e = null;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case APARENTESES:
     case TRUE:
@@ -659,7 +660,7 @@ Expressao e = null; Com result = null; Com comL = null;
     case ID:
       e = Exp();
       jj_consume_token(PONTOVIRGULA);
-                                result = new Atribuicao(e, t);
+                                result = new Assignment(e, t);
       break;
     case SREADINT:
       jj_consume_token(SREADINT);
@@ -678,8 +679,8 @@ Expressao e = null; Com result = null; Com comL = null;
   }
 
 //EXP →  "(" EXP OP EXP ")" | FATOR
-  static final public Expressao Exp() throws ParseException {
- Expressao e1 = null; Expressao e2 = null; Operacao op = null; Expressao result = null; Fator f = null;
+  static final public Expression Exp() throws ParseException {
+ Expression e1 = null; Expression e2 = null; Operation op = null; Expression result = null; Fator f = null;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case APARENTESES:
       jj_consume_token(APARENTESES);
@@ -687,7 +688,7 @@ Expressao e = null; Com result = null; Com comL = null;
       op = Op();
       e2 = Exp();
       jj_consume_token(FPARENTESES);
-                                                               result = new RecursaoExpressao(e1, e2, op);
+                                                               result = new ExpressionRecursion(e1, e2, op);
       break;
     case TRUE:
     case FALSE:
@@ -737,7 +738,7 @@ Expressao e = null; Com result = null; Com comL = null;
 
 //FATOR’ →  "(" LISTAEXP? ")" | vazio
   static final public Fator Fator_(TokenId tokenId) throws ParseException {
- ListaExpressao le = null; Token t = null;
+ ExpressionList le = null; Token t = null;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case APARENTESES:
       t = jj_consume_token(APARENTESES);
@@ -759,57 +760,57 @@ Expressao e = null; Com result = null; Com comL = null;
       jj_la1[11] = jj_gen;
       ;
     }
-                                                       {if (true) return t == null ? tokenId : new ChamadaFuncFator(tokenId, le);}
+                                                       {if (true) return t == null ? tokenId : new FunctionCallFactor(tokenId, le);}
     throw new Error("Missing return statement in function");
   }
 
 //OP →  "+" | "-" | "*" | "/" | "&" | "|" | "<" | ">" | "=="
-  static final public Operacao Op() throws ParseException {
- Operacao result = null;
+  static final public Operation Op() throws ParseException {
+ Operation result = null;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case SOMA:
       jj_consume_token(SOMA);
-                result = new Operacao("+");
+                result = new Operation("+");
       break;
     case SUB:
       jj_consume_token(SUB);
-                 result = new Operacao("-");
+                 result = new Operation("-");
       break;
     case MULT:
       jj_consume_token(MULT);
-                  result = new Operacao("*");
+                  result = new Operation("*");
       break;
     case DIV:
       jj_consume_token(DIV);
-                 result = new Operacao("/");
+                 result = new Operation("/");
       break;
     case AND:
       jj_consume_token(AND);
-                 result = new Operacao("&");
+                 result = new Operation("&");
       break;
     case OR:
       jj_consume_token(OR);
-                result = new Operacao("|");
+                result = new Operation("|");
       break;
     case MENOR:
       jj_consume_token(MENOR);
-                   result = new Operacao("<");
+                   result = new Operation("<");
       break;
     case MENORIGUAL:
       jj_consume_token(MENORIGUAL);
-                        result = new Operacao("<=");
+                        result = new Operation("<=");
       break;
     case MAIORIGUAL:
       jj_consume_token(MAIORIGUAL);
-                        result = new Operacao(">=");
+                        result = new Operation(">=");
       break;
     case MAIOR:
       jj_consume_token(MAIOR);
-                   result = new Operacao(">");
+                   result = new Operation(">");
       break;
     case IGUAL:
       jj_consume_token(IGUAL);
-                   result = new Operacao("==");
+                   result = new Operation("==");
       break;
     default:
       jj_la1[12] = jj_gen;
@@ -821,8 +822,8 @@ Expressao e = null; Com result = null; Com comL = null;
   }
 
 //LISTAEXP → EXP | LISTAEXP "," EXP
-  static final public ListaExpressao ListaExp() throws ParseException {
- Expressao e = null; ArrayList<Expressao> lista = new ArrayList();
+  static final public ExpressionList ListaExp() throws ParseException {
+ Expression e = null; ArrayList<Expression> lista = new ArrayList();
     e = Exp();
              lista.add(e);
     label_3:
@@ -839,15 +840,15 @@ Expressao e = null; Com result = null; Com comL = null;
       e = Exp();
                                                 lista.add(e);
     }
-     {if (true) return new ListaExpressao(lista);}
+     {if (true) return new ExpressionList(lista);}
     throw new Error("Missing return statement in function");
   }
 
 //FUNC → FUNC "func" TIPO TOKEN_id "(" LISTAARG? ")" "{" VARDECL SEQCOMANDOS "}"
 //        | "func" TIPO TOKEN_id "(" LISTAARG? ")" "{" VARDECL SEQCOMANDOS "}"
-  static final public ListaFuncao Func() throws ParseException {
- TipoDeVar tipoDeVar = null; ListaArgumentos la = null; ArrayList<Funcao> funcoes = new ArrayList();
-ArrayList<DeclaracaoVar> declaracaoVar = null; SequenciaDeComandos sequenciaDeComandos = null;
+  static final public FunctionList Func() throws ParseException {
+ TipoDeVar tipoDeVar = null; ListaArgumentos la = null; ArrayList<FunctionDefinition> funcoes = new ArrayList();
+ArrayList<VariableDeclaration> variableDeclaration = null; CommandSequence commandSequence = null;
 Token t = null; TokenId tokenId = null;
     label_4:
     while (true) {
@@ -866,10 +867,10 @@ Token t = null; TokenId tokenId = null;
       }
       jj_consume_token(FPARENTESES);
       jj_consume_token(ACHAVES);
-      declaracaoVar = Vardecl();
-      sequenciaDeComandos = SeqComandos();
+      variableDeclaration = Vardecl();
+      commandSequence = SeqComandos();
       jj_consume_token(FCHAVES);
-                                                                                                                                                                funcoes.add(new Funcao(new TokenId(t.image), tipoDeVar, la, declaracaoVar, sequenciaDeComandos));
+                                                                                                                                                                  funcoes.add(new FunctionDefinition(new TokenId(t.image), tipoDeVar, la, variableDeclaration, commandSequence));
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case FUNC:
         ;
@@ -879,17 +880,17 @@ Token t = null; TokenId tokenId = null;
         break label_4;
       }
     }
-     {if (true) return new ListaFuncao(funcoes);}
+     {if (true) return new FunctionList(funcoes);}
     throw new Error("Missing return statement in function");
   }
 
 //LISTAARG → TIPO TOKEN_id | LISTAARG "," TIPO TOKEN_id
   static final public ListaArgumentos ListaArg() throws ParseException {
  Token t = null; TipoDeVar tipoDeVar = null; TokenId tokenId = null;
-ListaArgumentos la = null; Argumento arg = null; ArrayList<Argumento> args = new ArrayList();
+ListaArgumentos la = null; Argument arg = null; ArrayList<Argument> args = new ArrayList();
     tipoDeVar = Tipo();
     t = jj_consume_token(ID);
-                             args.add(new Argumento(new TokenId(t.image), tipoDeVar));
+                             args.add(new Argument(new TokenId(t.image), tipoDeVar));
     label_5:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -903,7 +904,7 @@ ListaArgumentos la = null; Argumento arg = null; ArrayList<Argumento> args = new
       jj_consume_token(VIRGULA);
       tipoDeVar = Tipo();
       t = jj_consume_token(ID);
-                                                                                                                            args.add(new Argumento(new TokenId(t.image), tipoDeVar));
+                                                                                                                           args.add(new Argument(new TokenId(t.image), tipoDeVar));
     }
      {if (true) return new ListaArgumentos(args);}
     throw new Error("Missing return statement in function");
