@@ -5,439 +5,54 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-class KarloffMain{
-    ArrayList<VariableDeclaration> variableDeclaration;
-    CommandSequence commandSequence;
-
-    KarloffMain(ArrayList<VariableDeclaration> variableDeclaration, CommandSequence commandSequence){
-        this.variableDeclaration = variableDeclaration;
-        this.commandSequence = commandSequence;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("public static void main(String[] args) {\u005cn");
-        for (VariableDeclaration decVar : this.variableDeclaration) {
-            stringBuilder.append(decVar).append("\u005cn");
-        }
-        return stringBuilder.append(this.commandSequence).append("}\u005cn").toString();
-    }
-}
-
-class KarloffTree{
-    KarloffMain main;
-    FunctionList lf;
-    String inputFileName;
-
-    KarloffTree(KarloffMain main, String inputFileName){
-        this.main = main;
-        this.inputFileName = inputFileName;
-    }
-
-    KarloffTree(KarloffMain main, FunctionList lf, String inputFileName){
-        this.main = main;
-        this.lf = lf;
-        this.inputFileName = inputFileName;
-    }
-
-    @Override
-    public String toString() {
-        String baseName = this.inputFileName.substring(0, this.inputFileName.lastIndexOf('.'));
-        String outputFileName = baseName + "_output_generator";
-        return "import java.util.Scanner;\u005cnpublic class " + outputFileName + "{\u005cn\u005cn"
-        + this.main + (this.lf == null ? "" : "\u005cn" + this.lf) + "\u005cn}\u005cn";
-    }
-}
-
-class VariableDeclaration{
-    TokenId tokenId;
-    TipoDeVar tipoDeVar;
-
-    VariableDeclaration(TipoDeVar tipoDeVar, TokenId tokenId){
-        this.tipoDeVar = tipoDeVar;
-        this.tokenId = tokenId;
-    }
-
-    @Override
-    public String toString() {
-        if (this.tipoDeVar != null && this.tokenId != null)
-            return this.tipoDeVar + " " + this.tokenId + ";";
-        else
-            return "";
-    }
-}
-
-class TipoDeVar{
-    String tipo;
-
-    TipoDeVar(String tipo){
-        this.tipo = tipo;
-    }
-
-    @Override
-    public String toString() {
-        switch (this.tipo){
-            case "integer":
-                return "int";
-            case "bool":
-                return "boolean";
-            default:
-                return "";
-        }
-    }
-}
-
-class CommandSequence{
-    ArrayList<Com> comandos;
-
-    CommandSequence(ArrayList<Com> comandos){
-        this.comandos = comandos;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Com com : this.comandos) {
-            stringBuilder.append(com).append("\u005cn");
-        }
-        return stringBuilder.toString();
-    }
-}
-
-class Com{}
-class Assignment extends Com{
-    Expression exp;
-    TokenId tokenId;
-
-    Assignment(Expression exp, TokenId tokenId){
-        this.exp = exp;
-        this.tokenId = tokenId;
-    }
-
-    @Override
-    public String toString() {
-        return this.tokenId + " = " + this.exp + ";";
-    }
-}
-class ChamadaFuncCom extends Com{
-    TokenId tokenId;
-    ExpressionList expList;
-
-    ChamadaFuncCom(TokenId tokenId, ExpressionList expList){
-        this.tokenId = tokenId;
-        this.expList = expList;
-    }
-
-    @Override
-    public String toString() {
-        if (this.expList == null) return this.tokenId + "()" + ";";
-        return this.tokenId + "(" + this.expList + ")" + ";";
-    }
-}
-class ConditionalStatement extends Com{
-    Expression exp;
-    CommandSequence commandSequence;
-
-    ConditionalStatement(Expression exp, CommandSequence commandSequence){
-        this.exp = exp;
-        this.commandSequence = commandSequence;
-    }
-
-    @Override
-    public String toString() {
-        return "if (" + this.exp + ") {\u005cn" + this.commandSequence + "}";
-    }
-}
-class WhileLoop extends Com{
-    Expression exp;
-    CommandSequence commandSequence;
-
-    WhileLoop(Expression exp, CommandSequence commandSequence){
-        this.exp = exp;
-        this.commandSequence = commandSequence;
-    }
-
-    @Override
-    public String toString() {
-        return "while (" + this.exp + ") {\u005cn" + this.commandSequence + "}";
-    }
-}
-class RepeatLoop extends Com{
-    Expression exp;
-    CommandSequence commandSequence;
-
-    RepeatLoop(Expression exp, CommandSequence commandSequence){
-        this.exp = exp;
-        this.commandSequence = commandSequence;
-    }
-
-    @Override
-    public String toString() {
-        return "do {\u005cn" + this.commandSequence + "} while (" + this.exp + ");";
-    }
-}
-class ReturnStatement extends Com{
-    Expression exp;
-
-    ReturnStatement(Expression exp){
-        this.exp = exp;
-    }
-
-    @Override
-    public String toString() {
-        return "return " + this.exp + ";";
-    }
-}
-class Saida extends Com{
-    Expression exp;
-
-    Saida(Expression exp){
-        this.exp = exp;
-    }
-
-    @Override
-    public String toString() {
-        return "System.out.println(" + this.exp + ");";
-    }
-}
-class Scan extends Com{
-    TokenId tokenId;
-    private static int counter = 0;
-
-    Scan(TokenId tokenId){
-        this.tokenId = tokenId;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        if (counter == 0) stringBuilder.append("Scanner scan = new Scanner(System.in);\u005cn");
-        stringBuilder.append(this.tokenId).append(" = scan.nextInt();\u005cnscan.nextLine();\u005cn");
-        counter++;
-        return stringBuilder.toString();
-    }
-}
-
-class Expression{}
-class ExpressionRecursion extends Expression{
-    Expression exp1, exp2;
-    Operation op;
-
-    ExpressionRecursion(Expression exp1, Expression exp2, Operation op){
-        this.exp1 = exp1;
-        this.exp2 = exp2;
-        this.op = op;
-    }
-
-    @Override
-    public String toString() {
-        return "(" + this.exp1 + " " + this.op + " " + this.exp2 + ")";
-    }
-}
-class Fator extends Expression{}
-class TokenId extends Fator {
-    String var;
-
-    TokenId(String var){
-        this.var = var;
-    }
-
-    @Override
-    public String toString() {
-        return this.var;
-    }
-}
-class TokenNum extends Fator {
-    Integer num;
-
-    TokenNum(Integer num){
-        this.num = num;
-    }
-
-    @Override
-    public String toString() {
-        return this.num.toString();
-    }
-}
-class FunctionCallFactor extends Fator{
-    TokenId tokenId;
-    ExpressionList expList;
-
-    FunctionCallFactor(TokenId tokenId, ExpressionList expList){
-        this.tokenId = tokenId;
-        this.expList = expList;
-    }
-
-    @Override
-    public String toString() {
-        if (this.expList == null) return this.tokenId + "()";
-        return this.tokenId + "(" + this.expList + ")";
-    }
-}
-class VF extends Fator{
-    String vf;
-
-    VF(String vf){
-        this.vf = vf;
-    }
-
-    @Override
-    public String toString() {
-        return this.vf;
-    }
-}
-
-class Operation{
-     String op;
-
-     Operation(String op){
-         this.op = op;
-     }
-
-     @Override
-     public String toString() {
-         return this.op;
-     }
-}
-
-class ExpressionList{
-    ArrayList<Expression> expressoes;
-
-    ExpressionList(ArrayList<Expression> expressoes){
-        this.expressoes = expressoes;
-    }
-
-    @Override
-     public String toString() {
-        if (this.expressoes.size() == 1) return expressoes.get(0).toString();
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Expression exp : this.expressoes) {
-            stringBuilder.append(exp).append(", ");
-        }
-        return stringBuilder.toString();
-    }
-}
-
-class FunctionDefinition{
-    TokenId tokenId;
-    TipoDeVar tipoDeVar;
-    ListaArgumentos listaArgumentos;
-    ArrayList<VariableDeclaration> variableDeclaration;
-    CommandSequence commandSequence;
-
-    FunctionDefinition(TokenId tokenId, TipoDeVar tipoDeVar, ListaArgumentos listaArgumentos, ArrayList<VariableDeclaration> variableDeclaration, CommandSequence commandSequence){
-            this.tokenId = tokenId;
-            this.tipoDeVar = tipoDeVar;
-            this.listaArgumentos = listaArgumentos;
-            this.variableDeclaration = variableDeclaration;
-            this.commandSequence = commandSequence;
-    }
-
-    @Override
-     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder("public static " + this.tipoDeVar + " " + this.tokenId + "(" + this.listaArgumentos + ") {\u005cn");
-        for (VariableDeclaration decVar : this.variableDeclaration) {
-            stringBuilder.append(decVar).append("\u005cn");
-        }
-        stringBuilder.append(commandSequence).append("}\u005cn");
-        return stringBuilder.toString();
-    }
-}
-class FunctionList{
-    ArrayList<FunctionDefinition> funcoes;
-
-    FunctionList(ArrayList<FunctionDefinition> funcoes){
-        this.funcoes = funcoes;
-    }
-
-    @Override
-     public String toString() {
-        if (this.funcoes.size() == 1) return this.funcoes.get(0).toString();
-        StringBuilder stringBuilder = new StringBuilder();
-        for (FunctionDefinition func : this.funcoes) {
-            stringBuilder.append(func.toString()).append("\u005cn");
-        }
-        return stringBuilder.toString();
-    }
-}
-
-class Argument{
-    TokenId tokenId;
-    TipoDeVar tipoDeVar;
-
-    Argument(TokenId tokenId, TipoDeVar tipoDeVar){
-        this.tokenId = tokenId;
-        this.tipoDeVar = tipoDeVar;
-    }
-
-    @Override
-     public String toString() {
-        return this.tipoDeVar + " " + this.tokenId;
-    }
-}
-class ListaArgumentos{
-    ArrayList<Argument> argumentos;
-
-    ListaArgumentos(ArrayList<Argument> argumentos){
-        this.argumentos = argumentos;
-    }
-
-    @Override
-     public String toString() {
-        if (this.argumentos.size() == 1) return this.argumentos.get(0).toString();
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Argument arg : this.argumentos) {
-            stringBuilder.append(arg).append(", ");
-        }
-        return stringBuilder.toString();
-    }
-}
-
+/**
+ * Ponto de entrada para o parser. Esta classe gera código Java com base na entrada
+ * analisada da linguagem Karloff.
+ */
 public class Karloff implements KarloffConstants {
-  public static void main(String[] args) throws ParseException, IOException {
-      Karloff parser = new Karloff(new FileInputStream(args[0]));
-      String inputFileName = new File(args[0]).getName();
-      KarloffTree tree = parser.Karloff(inputFileName);
+    public static void main(String[] args) throws ParseException, IOException {
+        Karloff parser = new Karloff(new FileInputStream(args[0]));
+        String inputFileName = new File(args[0]).getName();
+        KarloffTree tree = parser.Karloff(inputFileName);
 
-      // Verifica e cria o diretório se não existir
-      File directory = new File("../GeneratedOutputs/");
-      if (!directory.exists()){
-          directory.mkdirs();
-      }
+        // Verifica e cria o diretório se não existir
+        File directory = new File("../GeneratedOutputs/");
+        if (!directory.exists()){
+            directory.mkdirs();
+        }
 
-      String baseName = inputFileName.substring(0, inputFileName.lastIndexOf('.'));
-      String outputFileName = baseName + "_output_generator.java";
-      File outputFile = new File(directory.getPath() + "/" + outputFileName);
+        String baseName = inputFileName.substring(0, inputFileName.lastIndexOf('.'));
+        String outputFileName = baseName + "_output_generator.java";
+        File outputFile = new File(directory.getPath() + "/" + outputFileName);
 
-      // Verificar se o arquivo já existe
-      if (outputFile.exists()) {
-          Scanner scanner = new Scanner(System.in);
-          System.out.println("J\u00e1 existe um arquivo com esse nome na pasta. Deseja sobrescrev\u00ea-lo? (Sim/Nao)");
+        // Verificar se o arquivo já existe
+        if (outputFile.exists()) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("J\u00e1 existe um arquivo com esse nome na pasta. Deseja sobrescrev\u00ea-lo? (Sim/Nao)");
 
-          while (true) { // Um loop para continuar perguntando até receber uma resposta válida
-              String userResponse = scanner.nextLine();
+            while (true) { // Um loop para continuar perguntando até receber uma resposta válida
+                String userResponse = scanner.nextLine();
 
-              if ("Sim".equalsIgnoreCase(userResponse)) {
-                  break;
-              } else if ("Nao".equalsIgnoreCase(userResponse)) {
-                  System.out.println("Opera\u00e7\u00e3o cancelada pelo usu\u00e1rio.");
-                  scanner.close();
-                  return;
-              } else {
-                  System.out.println("Resposta inv\u00e1lida. Por favor, responda com 'Sim' ou 'Nao'.");
-              }
-          }
-          scanner.close();
-      }
+                if ("Sim".equalsIgnoreCase(userResponse)) {
+                    break;
+                } else if ("Nao".equalsIgnoreCase(userResponse)) {
+                    System.out.println("Opera\u00e7\u00e3o cancelada pelo usu\u00e1rio.");
+                    scanner.close();
+                    return;
+                } else {
+                    System.out.println("Resposta inv\u00e1lida. Por favor, responda com 'Sim' ou 'Nao'.");
+                }
+            }
+            scanner.close();
+        }
 
-      FileWriter file = new FileWriter(outputFile);
-      PrintWriter print = new PrintWriter(file);
-      print.printf(tree.toString());
-      print.close();
-      file.close();
-      System.out.println(tree);
-  }
+        FileWriter file = new FileWriter(outputFile);
+        PrintWriter print = new PrintWriter(file);
+        print.printf(tree.toString());
+        print.close();
+        file.close();
+        System.out.println(tree);
+    }
 
 // KARLOFF → MAIN FUNC?
   static final public KarloffTree Karloff(String inputFileName) throws ParseException {
@@ -473,7 +88,7 @@ public class Karloff implements KarloffConstants {
 
 // VARDECL → VARDECL "newVar" TIPO TOKEN_id ";" | vazio
   static final public ArrayList<VariableDeclaration> Vardecl() throws ParseException {
- Token t = null; TipoDeVar tipoDeVar = null; ArrayList<VariableDeclaration> ldv = new ArrayList();
+ Token t = null; VariableType variableType = null; ArrayList<VariableDeclaration> ldv = new ArrayList();
     label_1:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -485,33 +100,33 @@ public class Karloff implements KarloffConstants {
         break label_1;
       }
       jj_consume_token(NEWVAR);
-      tipoDeVar = Tipo();
+      variableType = Tipo();
       t = jj_consume_token(ID);
       jj_consume_token(PONTOVIRGULA);
-                                                      ldv.add(new VariableDeclaration(tipoDeVar, new TokenId(t.image)));
+                                                         ldv.add(new VariableDeclaration(variableType, new TokenId(t.image)));
     }
      {if (true) return ldv;}
     throw new Error("Missing return statement in function");
   }
 
 // TIPO → "integer" | "bool"
-  static final public TipoDeVar Tipo() throws ParseException {
- TipoDeVar tipoDeVar = null;
+  static final public VariableType Tipo() throws ParseException {
+ VariableType variableType = null;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case INTEIRO:
       jj_consume_token(INTEIRO);
-                   tipoDeVar = new TipoDeVar("integer");
+                   variableType = new VariableType("integer");
       break;
     case BOOLEANO:
       jj_consume_token(BOOLEANO);
-                      tipoDeVar = new TipoDeVar("bool");
+                      variableType = new VariableType("bool");
       break;
     default:
       jj_la1[2] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
-     {if (true) return tipoDeVar;}
+     {if (true) return variableType;}
     throw new Error("Missing return statement in function");
   }
 
@@ -847,13 +462,13 @@ Expression e = null; Com result = null; Com comL = null;
 //FUNC → FUNC "func" TIPO TOKEN_id "(" LISTAARG? ")" "{" VARDECL SEQCOMANDOS "}"
 //        | "func" TIPO TOKEN_id "(" LISTAARG? ")" "{" VARDECL SEQCOMANDOS "}"
   static final public FunctionList Func() throws ParseException {
- TipoDeVar tipoDeVar = null; ListaArgumentos la = null; ArrayList<FunctionDefinition> funcoes = new ArrayList();
+ VariableType variableType = null; ArgumentsList la = null; ArrayList<FunctionDefinition> funcoes = new ArrayList();
 ArrayList<VariableDeclaration> variableDeclaration = null; CommandSequence commandSequence = null;
 Token t = null; TokenId tokenId = null;
     label_4:
     while (true) {
       jj_consume_token(FUNC);
-      tipoDeVar = Tipo();
+      variableType = Tipo();
       t = jj_consume_token(ID);
       jj_consume_token(APARENTESES);
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -870,7 +485,7 @@ Token t = null; TokenId tokenId = null;
       variableDeclaration = Vardecl();
       commandSequence = SeqComandos();
       jj_consume_token(FCHAVES);
-                                                                                                                                                                  funcoes.add(new FunctionDefinition(new TokenId(t.image), tipoDeVar, la, variableDeclaration, commandSequence));
+                                                                                                                                                                     funcoes.add(new FunctionDefinition(new TokenId(t.image), variableType, la, variableDeclaration, commandSequence));
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case FUNC:
         ;
@@ -885,12 +500,12 @@ Token t = null; TokenId tokenId = null;
   }
 
 //LISTAARG → TIPO TOKEN_id | LISTAARG "," TIPO TOKEN_id
-  static final public ListaArgumentos ListaArg() throws ParseException {
- Token t = null; TipoDeVar tipoDeVar = null; TokenId tokenId = null;
-ListaArgumentos la = null; Argument arg = null; ArrayList<Argument> args = new ArrayList();
-    tipoDeVar = Tipo();
+  static final public ArgumentsList ListaArg() throws ParseException {
+ Token t = null; VariableType variableType = null; TokenId tokenId = null;
+ArgumentsList la = null; Argument arg = null; ArrayList<Argument> args = new ArrayList();
+    variableType = Tipo();
     t = jj_consume_token(ID);
-                             args.add(new Argument(new TokenId(t.image), tipoDeVar));
+                                args.add(new Argument(new TokenId(t.image), variableType));
     label_5:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -902,11 +517,11 @@ ListaArgumentos la = null; Argument arg = null; ArrayList<Argument> args = new A
         break label_5;
       }
       jj_consume_token(VIRGULA);
-      tipoDeVar = Tipo();
+      variableType = Tipo();
       t = jj_consume_token(ID);
-                                                                                                                           args.add(new Argument(new TokenId(t.image), tipoDeVar));
+                                                                                                                                    args.add(new Argument(new TokenId(t.image), variableType));
     }
-     {if (true) return new ListaArgumentos(args);}
+     {if (true) return new ArgumentsList(args);}
     throw new Error("Missing return statement in function");
   }
 
@@ -1108,4 +723,443 @@ ListaArgumentos la = null; Argument arg = null; ArrayList<Argument> args = new A
   static final public void disable_tracing() {
   }
 
+  }
+
+/**
+ * Representa a função principal na linguagem Karloff. Ela consiste em declarações de variáveis
+ * e uma sequência de comandos a serem executados.
+ */
+class KarloffMain{
+    ArrayList<VariableDeclaration> variableDeclaration;
+    CommandSequence commandSequence;
+
+    KarloffMain(ArrayList<VariableDeclaration> variableDeclaration, CommandSequence commandSequence){
+        this.variableDeclaration = variableDeclaration;
+        this.commandSequence = commandSequence;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("public static void main(String[] args) {\u005cn");
+        for (VariableDeclaration decVar : this.variableDeclaration) {
+            stringBuilder.append(decVar).append("\u005cn");
+        }
+        return stringBuilder.append(this.commandSequence).append("}\u005cn").toString();
+    }
+}
+
+/**
+ * Representa a árvore de sintaxe abstrata completa de um programa Karloff. Isso inclui
+ * o método principal e quaisquer outras funções definidas no programa.
+ */
+class KarloffTree{
+    KarloffMain main;
+    FunctionList lf;
+    String inputFileName;
+
+    KarloffTree(KarloffMain main, String inputFileName){
+        this.main = main;
+        this.inputFileName = inputFileName;
+    }
+
+    KarloffTree(KarloffMain main, FunctionList lf, String inputFileName){
+        this.main = main;
+        this.lf = lf;
+        this.inputFileName = inputFileName;
+    }
+
+    @Override
+    public String toString() {
+        String baseName = this.inputFileName.substring(0, this.inputFileName.lastIndexOf('.'));
+        String outputFileName = baseName + "_output_generator";
+        return "import java.util.Scanner;\u005cnpublic class " + outputFileName + "{\u005cn\u005cn"
+        + this.main + (this.lf == null ? "" : "\u005cn" + this.lf) + "\u005cn}\u005cn";
+    }
+}
+
+/**
+ * Representa uma única declaração de variável na linguagem Karloff, incluindo o tipo da variável
+ * e seu identificador.
+ */
+class VariableDeclaration{
+    TokenId tokenId;
+    VariableType variableType;
+
+    VariableDeclaration(VariableType variableType, TokenId tokenId){
+        this.variableType = variableType;
+        this.tokenId = tokenId;
+    }
+
+    @Override
+    public String toString() {
+        if (this.variableType != null && this.tokenId != null)
+            return this.variableType + " " + this.tokenId + ";";
+        else
+            return "";
+    }
+}
+
+
+/**
+ * Representa o tipo de uma variável na linguagem Karloff. Isso pode ser inteiro ou booleano.
+ */
+class VariableType{
+    String tipo;
+
+    VariableType(String tipo){
+        this.tipo = tipo;
+    }
+
+    @Override
+    public String toString() {
+        switch (this.tipo){
+            case "integer":
+                return "int";
+            case "bool":
+                return "boolean";
+            default:
+                return "";
+        }
+    }
+}
+
+/**
+ * Representa uma sequência de comandos na linguagem Karloff. Esta sequência pode fazer parte do
+ * método principal ou de qualquer outra função.
+ */
+class CommandSequence{
+    ArrayList<Com> comandos;
+
+    CommandSequence(ArrayList<Com> comandos){
+        this.comandos = comandos;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Com com : this.comandos) {
+            stringBuilder.append(com).append("\u005cn");
+        }
+        return stringBuilder.toString();
+    }
+}
+
+/**
+ * Classe base para todos os comandos na linguagem Karloff.
+ */
+class Com{}
+class Assignment extends Com{
+    Expression exp;
+    TokenId tokenId;
+
+    Assignment(Expression exp, TokenId tokenId){
+        this.exp = exp;
+        this.tokenId = tokenId;
+    }
+
+    @Override
+    public String toString() {
+        return this.tokenId + " = " + this.exp + ";";
+    }
+}
+// As seguintes classes representam comandos específicos na linguagem Karloff:
+class ChamadaFuncCom extends Com{
+    TokenId tokenId;
+    ExpressionList expList;
+
+    ChamadaFuncCom(TokenId tokenId, ExpressionList expList){
+        this.tokenId = tokenId;
+        this.expList = expList;
+    }
+
+    @Override
+    public String toString() {
+        if (this.expList == null) return this.tokenId + "()" + ";";
+        return this.tokenId + "(" + this.expList + ")" + ";";
+    }
+}
+class ConditionalStatement extends Com{
+    Expression exp;
+    CommandSequence commandSequence;
+
+    ConditionalStatement(Expression exp, CommandSequence commandSequence){
+        this.exp = exp;
+        this.commandSequence = commandSequence;
+    }
+
+    @Override
+    public String toString() {
+        return "if (" + this.exp + ") {\u005cn" + this.commandSequence + "}";
+    }
+}
+class WhileLoop extends Com{
+    Expression exp;
+    CommandSequence commandSequence;
+
+    WhileLoop(Expression exp, CommandSequence commandSequence){
+        this.exp = exp;
+        this.commandSequence = commandSequence;
+    }
+
+    @Override
+    public String toString() {
+        return "while (" + this.exp + ") {\u005cn" + this.commandSequence + "}";
+    }
+}
+class RepeatLoop extends Com{
+    Expression exp;
+    CommandSequence commandSequence;
+
+    RepeatLoop(Expression exp, CommandSequence commandSequence){
+        this.exp = exp;
+        this.commandSequence = commandSequence;
+    }
+
+    @Override
+    public String toString() {
+        return "do {\u005cn" + this.commandSequence + "} while (" + this.exp + ");";
+    }
+}
+class ReturnStatement extends Com{
+    Expression exp;
+
+    ReturnStatement(Expression exp){
+        this.exp = exp;
+    }
+
+    @Override
+    public String toString() {
+        return "return " + this.exp + ";";
+    }
+}
+class Saida extends Com{
+    Expression exp;
+
+    Saida(Expression exp){
+        this.exp = exp;
+    }
+
+    @Override
+    public String toString() {
+        return "System.out.println(" + this.exp + ");";
+    }
+}
+class Scan extends Com{
+    TokenId tokenId;
+    private static int counter = 0;
+
+    Scan(TokenId tokenId){
+        this.tokenId = tokenId;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (counter == 0) stringBuilder.append("Scanner scan = new Scanner(System.in);\u005cn");
+        stringBuilder.append(this.tokenId).append(" = scan.nextInt();\u005cnscan.nextLine();\u005cn");
+        counter++;
+        return stringBuilder.toString();
+    }
+}
+
+/**
+ * Representa uma expressão na linguagem Karloff. Uma expressão pode ser uma
+ * operação matemática, um valor, uma variável ou uma chamada de função.
+ */
+class Expression{}
+// As seguintes classes representam expressões específicas na linguagem Karloff:
+class ExpressionRecursion extends Expression{
+    Expression exp1, exp2;
+    Operation op;
+
+    ExpressionRecursion(Expression exp1, Expression exp2, Operation op){
+        this.exp1 = exp1;
+        this.exp2 = exp2;
+        this.op = op;
+    }
+
+    @Override
+    public String toString() {
+        return "(" + this.exp1 + " " + this.op + " " + this.exp2 + ")";
+    }
+}
+class Fator extends Expression{}
+class TokenId extends Fator {
+    String var;
+
+    TokenId(String var){
+        this.var = var;
+    }
+
+    @Override
+    public String toString() {
+        return this.var;
+    }
+}
+class TokenNum extends Fator {
+    Integer num;
+
+    TokenNum(Integer num){
+        this.num = num;
+    }
+
+    @Override
+    public String toString() {
+        return this.num.toString();
+    }
+}
+class FunctionCallFactor extends Fator{
+    TokenId tokenId;
+    ExpressionList expList;
+
+    FunctionCallFactor(TokenId tokenId, ExpressionList expList){
+        this.tokenId = tokenId;
+        this.expList = expList;
+    }
+
+    @Override
+    public String toString() {
+        if (this.expList == null) return this.tokenId + "()";
+        return this.tokenId + "(" + this.expList + ")";
+    }
+}
+class VF extends Fator{
+    String vf;
+
+    VF(String vf){
+        this.vf = vf;
+    }
+
+    @Override
+    public String toString() {
+        return this.vf;
+    }
+}
+
+/**
+ * Representa um operador na linguagem Karloff.
+ */
+class Operation{
+     String op;
+
+     Operation(String op){
+         this.op = op;
+     }
+
+     @Override
+     public String toString() {
+         return this.op;
+     }
+}
+
+/**
+ * Representa uma lista de expressões na linguagem Karloff. Isso é usado
+ * em chamadas de função para representar os argumentos passados para a função.
+ */
+class ExpressionList{
+    ArrayList<Expression> expressoes;
+
+    ExpressionList(ArrayList<Expression> expressoes){
+        this.expressoes = expressoes;
+    }
+
+    @Override
+     public String toString() {
+        if (this.expressoes.size() == 1) return expressoes.get(0).toString();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Expression exp : this.expressoes) {
+            stringBuilder.append(exp).append(", ");
+        }
+        return stringBuilder.toString();
+    }
+}
+
+/**
+ * Representa uma única definição de função na linguagem Karloff.
+ */
+class FunctionDefinition{
+    TokenId tokenId;
+    VariableType variableType;
+    ArgumentsList listaArgumentos;
+    ArrayList<VariableDeclaration> variableDeclaration;
+    CommandSequence commandSequence;
+
+    FunctionDefinition(TokenId tokenId, VariableType variableType, ArgumentsList listaArgumentos, ArrayList<VariableDeclaration> variableDeclaration, CommandSequence commandSequence){
+            this.tokenId = tokenId;
+            this.variableType = variableType;
+            this.listaArgumentos = listaArgumentos;
+            this.variableDeclaration = variableDeclaration;
+            this.commandSequence = commandSequence;
+    }
+
+    @Override
+     public String toString() {
+        StringBuilder stringBuilder = new StringBuilder("public static " + this.variableType + " " + this.tokenId + "(" + this.listaArgumentos + ") {\u005cn");
+        for (VariableDeclaration decVar : this.variableDeclaration) {
+            stringBuilder.append(decVar).append("\u005cn");
+        }
+        stringBuilder.append(commandSequence).append("}\u005cn");
+        return stringBuilder.toString();
+    }
+}
+
+/**
+ * Representa uma lista de funções na linguagem Karloff.
+ */
+class FunctionList{
+    ArrayList<FunctionDefinition> funcoes;
+
+    FunctionList(ArrayList<FunctionDefinition> funcoes){
+        this.funcoes = funcoes;
+    }
+
+    @Override
+     public String toString() {
+        if (this.funcoes.size() == 1) return this.funcoes.get(0).toString();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (FunctionDefinition func : this.funcoes) {
+            stringBuilder.append(func.toString()).append("\u005cn");
+        }
+        return stringBuilder.toString();
+    }
+}
+
+/**
+ * Representa um único argumento para uma função na linguagem Karloff.
+ */
+class Argument{
+    TokenId tokenId;
+    VariableType variableType;
+
+    Argument(TokenId tokenId, VariableType variableType){
+        this.tokenId = tokenId;
+        this.variableType = variableType;
+    }
+
+    @Override
+     public String toString() {
+        return this.variableType + " " + this.tokenId;
+    }
+}
+
+/**
+ * Representa uma lista de argumentos para uma função na linguagem Karloff.
+ */
+class ArgumentsList{
+    ArrayList<Argument> argumentos;
+
+    ArgumentsList(ArrayList<Argument> argumentos){
+        this.argumentos = argumentos;
+    }
+
+    @Override
+     public String toString() {
+        if (this.argumentos.size() == 1) return this.argumentos.get(0).toString();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Argument arg : this.argumentos) {
+            stringBuilder.append(arg).append(", ");
+        }
+        return stringBuilder.toString();
+    }
 }

@@ -5,6 +5,60 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+/**
+ * Ponto de entrada para o parser. Esta classe gera código Java com base na entrada
+ * analisada da linguagem Karloff.
+ */
+public class Karloff {
+    public static void main(String[] args) throws ParseException, IOException {
+        Karloff parser = new Karloff(new FileInputStream(args[0]));
+        String inputFileName = new File(args[0]).getName();
+        KarloffTree tree = parser.Karloff(inputFileName);
+  
+        // Verifica e cria o diretório se não existir
+        File directory = new File("../GeneratedOutputs/");
+        if (!directory.exists()){
+            directory.mkdirs();
+        }
+        
+        String baseName = inputFileName.substring(0, inputFileName.lastIndexOf('.'));
+        String outputFileName = baseName + "_output_generator.java";
+        File outputFile = new File(directory.getPath() + "/" + outputFileName);
+  
+        // Verificar se o arquivo já existe
+        if (outputFile.exists()) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Já existe um arquivo com esse nome na pasta. Deseja sobrescrevê-lo? (Sim/Nao)");
+  
+            while (true) { // Um loop para continuar perguntando até receber uma resposta válida
+                String userResponse = scanner.nextLine();
+  
+                if ("Sim".equalsIgnoreCase(userResponse)) {
+                    break; 
+                } else if ("Nao".equalsIgnoreCase(userResponse)) {
+                    System.out.println("Operação cancelada pelo usuário.");
+                    scanner.close();
+                    return; 
+                } else {
+                    System.out.println("Resposta inválida. Por favor, responda com 'Sim' ou 'Nao'.");
+                }
+            }
+            scanner.close();
+        }
+  
+        FileWriter file = new FileWriter(outputFile);
+        PrintWriter print = new PrintWriter(file);
+        print.printf(tree.toString());
+        print.close();
+        file.close();
+        System.out.println(tree);
+    }
+  }
+
+/**
+ * Representa a função principal na linguagem Karloff. Ela consiste em declarações de variáveis
+ * e uma sequência de comandos a serem executados.
+ */
 class KarloffMain{
     ArrayList<VariableDeclaration> variableDeclaration;
     CommandSequence commandSequence;
@@ -25,6 +79,10 @@ class KarloffMain{
     }
 }
 
+/**
+ * Representa a árvore de sintaxe abstrata completa de um programa Karloff. Isso inclui
+ * o método principal e quaisquer outras funções definidas no programa.
+ */
 class KarloffTree{
     KarloffMain main;
     FunctionList lf;
@@ -50,28 +108,36 @@ class KarloffTree{
     }
 }
 
+/**
+ * Representa uma única declaração de variável na linguagem Karloff, incluindo o tipo da variável
+ * e seu identificador.
+ */
 class VariableDeclaration{
     TokenId tokenId;
-    TipoDeVar tipoDeVar;
+    VariableType variableType;
 
-    VariableDeclaration(TipoDeVar tipoDeVar, TokenId tokenId){
-        this.tipoDeVar = tipoDeVar;
+    VariableDeclaration(VariableType variableType, TokenId tokenId){
+        this.variableType = variableType;
         this.tokenId = tokenId;
     }
 
     @Override
     public String toString() {
-        if (this.tipoDeVar != null && this.tokenId != null)
-            return this.tipoDeVar + " " + this.tokenId + ";";
+        if (this.variableType != null && this.tokenId != null)
+            return this.variableType + " " + this.tokenId + ";";
         else
             return "";
     }
 }
 
-class TipoDeVar{
+
+/**
+ * Representa o tipo de uma variável na linguagem Karloff. Isso pode ser inteiro ou booleano.
+ */
+class VariableType{
     String tipo;
 
-    TipoDeVar(String tipo){
+    VariableType(String tipo){
         this.tipo = tipo;
     }
 
@@ -88,6 +154,10 @@ class TipoDeVar{
     }
 }
 
+/**
+ * Representa uma sequência de comandos na linguagem Karloff. Esta sequência pode fazer parte do
+ * método principal ou de qualquer outra função.
+ */
 class CommandSequence{
     ArrayList<Com> comandos;
 
@@ -105,6 +175,9 @@ class CommandSequence{
     }
 }
 
+/**
+ * Classe base para todos os comandos na linguagem Karloff.
+ */
 class Com{}
 class Assignment extends Com{
     Expression exp;
@@ -120,6 +193,7 @@ class Assignment extends Com{
         return this.tokenId + " = " + this.exp + ";";
     }
 }
+// As seguintes classes representam comandos específicos na linguagem Karloff:
 class ChamadaFuncCom extends Com{
     TokenId tokenId;
     ExpressionList expList;
@@ -219,7 +293,12 @@ class Scan extends Com{
     }
 }
 
+/**
+ * Representa uma expressão na linguagem Karloff. Uma expressão pode ser uma
+ * operação matemática, um valor, uma variável ou uma chamada de função.
+ */
 class Expression{}
+// As seguintes classes representam expressões específicas na linguagem Karloff:
 class ExpressionRecursion extends Expression{
     Expression exp1, exp2;
     Operation op;
@@ -288,6 +367,9 @@ class VF extends Fator{
     }
 }
 
+/**
+ * Representa um operador na linguagem Karloff.
+ */
 class Operation{
      String op;
 
@@ -301,6 +383,10 @@ class Operation{
      }
 }
 
+/**
+ * Representa uma lista de expressões na linguagem Karloff. Isso é usado
+ * em chamadas de função para representar os argumentos passados para a função.
+ */
 class ExpressionList{
     ArrayList<Expression> expressoes;
 
@@ -319,16 +405,19 @@ class ExpressionList{
     }
 }
 
+/**
+ * Representa uma única definição de função na linguagem Karloff.
+ */
 class FunctionDefinition{
     TokenId tokenId;
-    TipoDeVar tipoDeVar;
-    ListaArgumentos listaArgumentos;
+    VariableType variableType;
+    ArgumentsList listaArgumentos;
     ArrayList<VariableDeclaration> variableDeclaration;
     CommandSequence commandSequence;
 
-    FunctionDefinition(TokenId tokenId, TipoDeVar tipoDeVar, ListaArgumentos listaArgumentos, ArrayList<VariableDeclaration> variableDeclaration, CommandSequence commandSequence){
+    FunctionDefinition(TokenId tokenId, VariableType variableType, ArgumentsList listaArgumentos, ArrayList<VariableDeclaration> variableDeclaration, CommandSequence commandSequence){
             this.tokenId = tokenId;
-            this.tipoDeVar = tipoDeVar;
+            this.variableType = variableType;
             this.listaArgumentos = listaArgumentos;
             this.variableDeclaration = variableDeclaration;
             this.commandSequence = commandSequence;
@@ -336,7 +425,7 @@ class FunctionDefinition{
 
     @Override
      public String toString() {
-        StringBuilder stringBuilder = new StringBuilder("public static " + this.tipoDeVar + " " + this.tokenId + "(" + this.listaArgumentos + ") {\n");
+        StringBuilder stringBuilder = new StringBuilder("public static " + this.variableType + " " + this.tokenId + "(" + this.listaArgumentos + ") {\n");
         for (VariableDeclaration decVar : this.variableDeclaration) {
             stringBuilder.append(decVar).append("\n");
         }
@@ -344,6 +433,10 @@ class FunctionDefinition{
         return stringBuilder.toString();
     }
 }
+
+/**
+ * Representa uma lista de funções na linguagem Karloff.
+ */
 class FunctionList{
     ArrayList<FunctionDefinition> funcoes;
 
@@ -362,24 +455,31 @@ class FunctionList{
     }
 }
 
+/**
+ * Representa um único argumento para uma função na linguagem Karloff.
+ */
 class Argument{
     TokenId tokenId;
-    TipoDeVar tipoDeVar;
+    VariableType variableType;
 
-    Argument(TokenId tokenId, TipoDeVar tipoDeVar){
+    Argument(TokenId tokenId, VariableType variableType){
         this.tokenId = tokenId;
-        this.tipoDeVar = tipoDeVar;
+        this.variableType = variableType;
     }
 
     @Override
      public String toString() {
-        return this.tipoDeVar + " " + this.tokenId;
+        return this.variableType + " " + this.tokenId;
     }
 }
-class ListaArgumentos{
+
+/**
+ * Representa uma lista de argumentos para uma função na linguagem Karloff.
+ */
+class ArgumentsList{
     ArrayList<Argument> argumentos;
 
-    ListaArgumentos(ArrayList<Argument> argumentos){
+    ArgumentsList(ArrayList<Argument> argumentos){
         this.argumentos = argumentos;
     }
 
@@ -392,52 +492,6 @@ class ListaArgumentos{
         }
         return stringBuilder.toString();
     }
-}
-
-public class Karloff {
-  public static void main(String[] args) throws ParseException, IOException {
-      Karloff parser = new Karloff(new FileInputStream(args[0]));
-      String inputFileName = new File(args[0]).getName();
-      KarloffTree tree = parser.Karloff(inputFileName);
-
-      // Verifica e cria o diretório se não existir
-      File directory = new File("../GeneratedOutputs/");
-      if (!directory.exists()){
-          directory.mkdirs();
-      }
-      
-      String baseName = inputFileName.substring(0, inputFileName.lastIndexOf('.'));
-      String outputFileName = baseName + "_output_generator.java";
-      File outputFile = new File(directory.getPath() + "/" + outputFileName);
-
-      // Verificar se o arquivo já existe
-      if (outputFile.exists()) {
-          Scanner scanner = new Scanner(System.in);
-          System.out.println("Já existe um arquivo com esse nome na pasta. Deseja sobrescrevê-lo? (Sim/Nao)");
-
-          while (true) { // Um loop para continuar perguntando até receber uma resposta válida
-              String userResponse = scanner.nextLine();
-
-              if ("Sim".equalsIgnoreCase(userResponse)) {
-                  break; 
-              } else if ("Nao".equalsIgnoreCase(userResponse)) {
-                  System.out.println("Operação cancelada pelo usuário.");
-                  scanner.close();
-                  return; 
-              } else {
-                  System.out.println("Resposta inválida. Por favor, responda com 'Sim' ou 'Nao'.");
-              }
-          }
-          scanner.close();
-      }
-
-      FileWriter file = new FileWriter(outputFile);
-      PrintWriter print = new PrintWriter(file);
-      print.printf(tree.toString());
-      print.close();
-      file.close();
-      System.out.println(tree);
-  }
 }
 
 
@@ -515,21 +569,21 @@ KarloffMain Main () :
 
 // VARDECL → VARDECL "newVar" TIPO TOKEN_id ";" | vazio
 ArrayList<VariableDeclaration> Vardecl () :
-{Token t = null; TipoDeVar tipoDeVar = null; ArrayList<VariableDeclaration> ldv = new ArrayList();}
+{Token t = null; VariableType variableType = null; ArrayList<VariableDeclaration> ldv = new ArrayList();}
 {
-    (<NEWVAR> tipoDeVar=Tipo() t=<ID> <PONTOVIRGULA> {ldv.add(new VariableDeclaration(tipoDeVar, new TokenId(t.image)));})*
+    (<NEWVAR> variableType=Tipo() t=<ID> <PONTOVIRGULA> {ldv.add(new VariableDeclaration(variableType, new TokenId(t.image)));})*
     {return ldv;}
 }
 
 // TIPO → "integer" | "bool"
-TipoDeVar Tipo () :
-{TipoDeVar tipoDeVar = null;}
+VariableType Tipo () :
+{VariableType variableType = null;}
 {
     (
-        <INTEIRO> {tipoDeVar = new TipoDeVar("integer");}
-        | <BOOLEANO> {tipoDeVar = new TipoDeVar("bool");}
+        <INTEIRO> {variableType = new VariableType("integer");}
+        | <BOOLEANO> {variableType = new VariableType("bool");}
     )
-    {return tipoDeVar;}
+    {return variableType;}
 }
 
 // SEQCOMANDOS → SEQCOMANDOS COMANDO | vazio
@@ -647,20 +701,20 @@ ExpressionList ListaExp () :
 //FUNC → FUNC "func" TIPO TOKEN_id "(" LISTAARG? ")" "{" VARDECL SEQCOMANDOS "}"
 //        | "func" TIPO TOKEN_id "(" LISTAARG? ")" "{" VARDECL SEQCOMANDOS "}"
 FunctionList Func () :
-{TipoDeVar tipoDeVar = null; ListaArgumentos la = null; ArrayList<FunctionDefinition> funcoes = new ArrayList();
+{VariableType variableType = null; ArgumentsList la = null; ArrayList<FunctionDefinition> funcoes = new ArrayList();
 ArrayList<VariableDeclaration> variableDeclaration = null; CommandSequence commandSequence = null;
 Token t = null; TokenId tokenId = null;}
 {
-    (<FUNC> tipoDeVar=Tipo() t=<ID> <APARENTESES> (la=ListaArg())? <FPARENTESES> <ACHAVES> variableDeclaration=Vardecl() commandSequence=SeqComandos() <FCHAVES> {funcoes.add(new FunctionDefinition(new TokenId(t.image), tipoDeVar, la, variableDeclaration, commandSequence));})+
+    (<FUNC> variableType=Tipo() t=<ID> <APARENTESES> (la=ListaArg())? <FPARENTESES> <ACHAVES> variableDeclaration=Vardecl() commandSequence=SeqComandos() <FCHAVES> {funcoes.add(new FunctionDefinition(new TokenId(t.image), variableType, la, variableDeclaration, commandSequence));})+
     {return new FunctionList(funcoes);}
 }
 
 
 //LISTAARG → TIPO TOKEN_id | LISTAARG "," TIPO TOKEN_id
-ListaArgumentos ListaArg () :
-{Token t = null; TipoDeVar tipoDeVar = null; TokenId tokenId = null;
-ListaArgumentos la = null; Argument arg = null; ArrayList<Argument> args = new ArrayList();}
+ArgumentsList ListaArg () :
+{Token t = null; VariableType variableType = null; TokenId tokenId = null;
+ArgumentsList la = null; Argument arg = null; ArrayList<Argument> args = new ArrayList();}
 {
-    tipoDeVar=Tipo() t=<ID> {args.add(new Argument(new TokenId(t.image), tipoDeVar));} (<VIRGULA> tipoDeVar=Tipo() t=<ID> {args.add(new Argument(new TokenId(t.image), tipoDeVar));})*
-    {return new ListaArgumentos(args);}
+    variableType=Tipo() t=<ID> {args.add(new Argument(new TokenId(t.image), variableType));} (<VIRGULA> variableType=Tipo() t=<ID> {args.add(new Argument(new TokenId(t.image), variableType));})*
+    {return new ArgumentsList(args);}
 }
