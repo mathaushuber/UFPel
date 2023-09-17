@@ -1,31 +1,29 @@
 void main () {
-    newVar integer termo1;
-    newVar integer termo2;
-    newVar bool isTermo1EqualToTermo2;
+    newVar integer N;
+    newVar integer counter;
+    newVar integer result;
 
-    termo1 = System.readint ();
-    termo2 = System.readint ();
-    isTermo1EqualToTermo2 = (termo1 == termo2);
+    N = System.readint ();
+    counter = N;
+    result = 1;
 
-    printIsEqual(isTermo1EqualToTermo2);
-    if ( (termo2 > termo1) ) then {
-        while ( (termo2 > termo1) ) {
-            termo2 = (termo2 - 1);
-            isTermo1EqualToTermo2 = (termo1 == termo2);
-        };
+    if ( (N == 0) ) then {
+        result = 1;
     };
-    if ( (termo2 < termo1) ) then {
+    
+    if ( (N > 0) ) then {
         repeat {
-            termo2 = (termo2 - 1);
-            isTermo1EqualToTermo2 = (termo1 == termo2);
-        } until ( (termo2 > termo1) );
+            result = (result * counter);
+            counter = (counter - 1);
+        } until ( (counter > 1) );
     };
-    printIsEqual(isTermo1EqualToTermo2);
+
+    printResult(result);
 }
 
-func bool printIsEqual(bool teste) {
-    if ( teste ) then {
-        System.output(teste);
-    };
-    return teste;
+func integer printResult(integer value) {
+    newVar integer resultValue;
+    resultValue = value;
+    System.output(resultValue);
+    return resultValue;
 }

@@ -1,6 +1,5 @@
-package org.karloff.output;
 import java.util.Scanner;
-public class KarloffOutputGenerator {
+public class exemplo1_output_generator{
 
 public static void main(String[] args) {
 int teste;

@@ -1,0 +1,22 @@
+void main () {
+    newVar integer choice;
+    newVar integer base;
+    newVar integer height;
+    newVar integer area;
+
+    choice = System.readint();
+
+    base = System.readint();
+
+    height = System.readint();
+
+    if ( (choice == 1) ) then {
+        area = ((base * height) / 2);
+        System.output(area);
+    };
+    
+    if ( (choice == 2) ) then {
+        area = (base * height);
+        System.output(area);
+    };
+}

@@ -3,23 +3,49 @@ import java.io.*;
 import java.util.ArrayList;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.util.Scanner; 
-class KarloffTree{
-    Principal main;
-    ListaFuncao lf;
+import java.util.Scanner;
 
-    KarloffTree(Principal main){
-        this.main = main;
-    }
+class Principal{
+    ArrayList<DeclaracaoVar> declaracaoVar;
+    SequenciaDeComandos sequenciaDeComandos;
 
-    KarloffTree(Principal main, ListaFuncao lf){
-        this.main = main;
-        this.lf = lf;
+    Principal(ArrayList<DeclaracaoVar> declaracaoVar, SequenciaDeComandos sequenciaDeComandos){
+        this.declaracaoVar = declaracaoVar;
+        this.sequenciaDeComandos = sequenciaDeComandos;
     }
 
     @Override
     public String toString() {
-        return "package org.karloff.output;\nimport java.util.Scanner;\npublic class KarloffOutputGenerator {\n\n"
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("public static void main(String[] args) {\n");
+        for (DeclaracaoVar decVar : this.declaracaoVar) {
+            stringBuilder.append(decVar).append("\n");
+        }
+        return stringBuilder.append(this.sequenciaDeComandos).append("}\n").toString();
+    }
+}
+
+class KarloffTree{
+    Principal main;
+    ListaFuncao lf;
+    String inputFileName;
+
+    KarloffTree(Principal main, String inputFileName){
+        this.main = main;
+        this.inputFileName = inputFileName;
+    }
+    
+    KarloffTree(Principal main, ListaFuncao lf, String inputFileName){
+        this.main = main;
+        this.lf = lf;
+        this.inputFileName = inputFileName;
+    }    
+
+    @Override
+    public String toString() {
+        String baseName = this.inputFileName.substring(0, this.inputFileName.lastIndexOf('.'));
+        String outputFileName = baseName + "_output_generator";
+        return "import java.util.Scanner;\npublic class " + outputFileName + "{\n\n"
         + this.main + (this.lf == null ? "" : "\n" + this.lf) + "\n}\n";
     }
 }
@@ -391,15 +417,15 @@ class ListaArgumentos{
 public class Karloff {
   public static void main(String[] args) throws ParseException, IOException {
       Karloff parser = new Karloff(new FileInputStream(args[0]));
-      KarloffTree tree = parser.Karloff();
-      
+      String inputFileName = new File(args[0]).getName();
+      KarloffTree tree = parser.Karloff(inputFileName);
+
       // Verifica e cria o diretório se não existir
       File directory = new File("../GeneratedOutputs/");
       if (!directory.exists()){
           directory.mkdirs();
       }
       
-      String inputFileName = new File(args[0]).getName();
       String baseName = inputFileName.substring(0, inputFileName.lastIndexOf('.'));
       String outputFileName = baseName + "_output_generator.java";
       File outputFile = new File(directory.getPath() + "/" + outputFileName);
@@ -476,6 +502,8 @@ TOKEN :
 | <OR: "|">
 | <MENOR: "<">
 | <MAIOR: ">">
+| <MENORIGUAL: "<=">
+| <MAIORIGUAL: ">=">
 | <IGUAL: "==">
 | <VIRGULA: ",">
 | <FUNC: "func">
@@ -489,12 +517,12 @@ TOKEN :
 }
 
 // KARLOFF → MAIN FUNC?
-KarloffTree Karloff () :
+KarloffTree Karloff (String inputFileName) :
 {Principal main = null; ListaFuncao lf = null;}
 {
     main=Main() (lf=Func())?
     <EOF>
-    {return lf == null ? new KarloffTree(main) : new KarloffTree(main, lf);}
+    {return lf == null ? new KarloffTree(main, inputFileName) : new KarloffTree(main, lf, inputFileName);}
 }
 
 // MAIN → "void" "main" "(" ")" "{" VARDECL SEQCOMANDOS "}"
@@ -620,6 +648,8 @@ Operacao Op () :
         | <AND> {result = new Operacao("&");}
         | <OR> {result = new Operacao("|");}
         | <MENOR> {result = new Operacao("<");}
+        | <MENORIGUAL> {result = new Operacao("<=");}
+        | <MAIORIGUAL> {result = new Operacao(">=");}
         | <MAIOR> {result = new Operacao(">");}
         | <IGUAL> {result = new Operacao("==");}
     )

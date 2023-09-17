@@ -7,19 +7,24 @@ import java.util.Scanner;
 class KarloffTree{
     Principal main;
     ListaFuncao lf;
+    String inputFileName;
 
-    KarloffTree(Principal main){
+    KarloffTree(Principal main, String inputFileName){
         this.main = main;
+        this.inputFileName = inputFileName;
     }
 
-    KarloffTree(Principal main, ListaFuncao lf){
+    KarloffTree(Principal main, ListaFuncao lf, String inputFileName){
         this.main = main;
         this.lf = lf;
+        this.inputFileName = inputFileName;
     }
 
     @Override
     public String toString() {
-        return "package org.karloff.output;\u005cnimport java.util.Scanner;\u005cnpublic class KarloffOutputGenerator {\u005cn\u005cn"
+        String baseName = this.inputFileName.substring(0, this.inputFileName.lastIndexOf('.'));
+        String outputFileName = baseName + "_output_generator";
+        return "import java.util.Scanner;\u005cnpublic class " + outputFileName + "{\u005cn\u005cn"
         + this.main + (this.lf == null ? "" : "\u005cn" + this.lf) + "\u005cn}\u005cn";
     }
 }
@@ -391,7 +396,8 @@ class ListaArgumentos{
 public class Karloff implements KarloffConstants {
   public static void main(String[] args) throws ParseException, IOException {
       Karloff parser = new Karloff(new FileInputStream(args[0]));
-      KarloffTree tree = parser.Karloff();
+      String inputFileName = new File(args[0]).getName();
+      KarloffTree tree = parser.Karloff(inputFileName);
 
       // Verifica e cria o diretório se não existir
       File directory = new File("../GeneratedOutputs/");
@@ -399,7 +405,6 @@ public class Karloff implements KarloffConstants {
           directory.mkdirs();
       }
 
-      String inputFileName = new File(args[0]).getName();
       String baseName = inputFileName.substring(0, inputFileName.lastIndexOf('.'));
       String outputFileName = baseName + "_output_generator.java";
       File outputFile = new File(directory.getPath() + "/" + outputFileName);
@@ -434,7 +439,7 @@ public class Karloff implements KarloffConstants {
   }
 
 // KARLOFF → MAIN FUNC?
-  static final public KarloffTree Karloff() throws ParseException {
+  static final public KarloffTree Karloff(String inputFileName) throws ParseException {
  Principal main = null; ListaFuncao lf = null;
     main = Main();
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -446,7 +451,7 @@ public class Karloff implements KarloffConstants {
       ;
     }
     jj_consume_token(0);
-     {if (true) return lf == null ? new KarloffTree(main) : new KarloffTree(main, lf);}
+     {if (true) return lf == null ? new KarloffTree(main, inputFileName) : new KarloffTree(main, lf, inputFileName);}
     throw new Error("Missing return statement in function");
   }
 
@@ -790,6 +795,14 @@ Expressao e = null; Com result = null; Com comL = null;
       jj_consume_token(MENOR);
                    result = new Operacao("<");
       break;
+    case MENORIGUAL:
+      jj_consume_token(MENORIGUAL);
+                        result = new Operacao("<=");
+      break;
+    case MAIORIGUAL:
+      jj_consume_token(MAIORIGUAL);
+                        result = new Operacao(">=");
+      break;
     case MAIOR:
       jj_consume_token(MAIOR);
                    result = new Operacao(">");
@@ -917,7 +930,7 @@ ListaArgumentos la = null; Argumento arg = null; ArrayList<Argumento> args = new
       jj_la1_0 = new int[] {0x0,0x800,0x6000,0x6d0000,0x6d0000,0x3000200,0x8200,0x3800200,0x3000200,0x3000000,0x3000200,0x200,0xfc000000,0x0,0x6000,0x0,0x0,};
    }
    private static void jj_la1_init_1() {
-      jj_la1_1 = new int[] {0x10,0x0,0x0,0x40,0x40,0x60,0x0,0x60,0x60,0x60,0x60,0x0,0x7,0x8,0x0,0x10,0x8,};
+      jj_la1_1 = new int[] {0x40,0x0,0x0,0x100,0x100,0x180,0x0,0x180,0x180,0x180,0x180,0x0,0x1f,0x20,0x0,0x40,0x20,};
    }
 
   /** Constructor with InputStream. */
@@ -1055,7 +1068,7 @@ ListaArgumentos la = null; Argumento arg = null; ArrayList<Argumento> args = new
   /** Generate ParseException. */
   static public ParseException generateParseException() {
     jj_expentries.clear();
-    boolean[] la1tokens = new boolean[39];
+    boolean[] la1tokens = new boolean[41];
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
@@ -1072,7 +1085,7 @@ ListaArgumentos la = null; Argumento arg = null; ArrayList<Argumento> args = new
         }
       }
     }
-    for (int i = 0; i < 39; i++) {
+    for (int i = 0; i < 41; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;
