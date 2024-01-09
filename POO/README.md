@@ -11,7 +11,6 @@ Welcome to the Object-Oriented Programming Repository! This repository is dedica
    - [Warcraft-Inspired Game](#warcraft-inspired-game)
 4. [Usage](#usage)
 5. [Contributing](#contributing)
-6. [License](#license)
 
 ## Introduction
 
