@@ -112,6 +112,14 @@ Compiler and interpreter for the Karloff language
   <img align="center" alt="Java" src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white">
 </div>
 
+### Cad Tools (FERCAD)
+
+Concepts, evolution and trends in integrated circuits. Integrated circuit design methodologies. Simulators and estimators. Algorithms for CAD. Electronic project automation. Electronic CAD tools. Implementation of the Quine-McCluskey Algorithm (QMC) and Maze Router (Lee).
+
+<div style="display: inline_block">
+  <img align="center" alt="Python" src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
+</div>
+
 ### Formal Languages (LF)
 Implementation of a Moore state machine. Informal and formal definition of a finite automaton with output, three mathematical examples and exemplification using a hardware description in VHDL.
 
