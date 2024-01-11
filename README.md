@@ -102,6 +102,16 @@ Line intersection algorithm (javascript). Image segmentation using a convex hull
   <img align="center" alt="matlab" src="/.github/matlab-logo.svg">
 </div>
 
+### Compiler design (PCOMP)
+Concepts related to programming languages and formal languages, particularly the construction and transformation of grammars, as well as definitions of syntax, semantics and execution environment.
+
+Projects:
+Compiler and interpreter for the Karloff language
+
+<div style="display: inline_block">
+  <img align="center" alt="Java" src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white">
+</div>
+
 ### Formal Languages (LF)
 Implementation of a Moore state machine. Informal and formal definition of a finite automaton with output, three mathematical examples and exemplification using a hardware description in VHDL.
 
