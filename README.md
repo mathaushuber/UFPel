@@ -112,6 +112,14 @@ Compiler and interpreter for the Karloff language
   <img align="center" alt="Java" src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white">
 </div>
 
+### Computer graphics (CG)
+
+Perception of two principles of 3D digital graphic modeling with different engineering attributes. Implementation of a mesh editor, dinner and animation in WebGL and the game Space-Invaders.
+
+<div style="display: inline_block">
+  <img align="center" alt="Javascript" src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+</div>
+
 ### Cad Tools (FERCAD)
 
 Concepts, evolution and trends in integrated circuits. Integrated circuit design methodologies. Simulators and estimators. Algorithms for CAD. Electronic project automation. Electronic CAD tools. Implementation of the Quine-McCluskey Algorithm (QMC) and Maze Router (Lee).
