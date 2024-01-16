@@ -1,0 +1,8 @@
+# Ignore everything
+*
+
+# Allow .c files
+!*.c
+
+# Allow the .gitignore file
+!.gitignore
