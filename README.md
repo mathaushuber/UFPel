@@ -1,5 +1,5 @@
 # UFPel
-Projects related to my graduation in Computing from the Federal University of Pelotas
+Projects related to my graduation in Computer Science from the Federal University of Pelotas
 
 ## Repository flowchart
 <img align='center' src="/.github/fluxograma.png" width="700">
