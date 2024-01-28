@@ -2,7 +2,7 @@
 Projects related to my graduation in Computing from the Federal University of Pelotas
 
 ## Repository flowchart
-<img align='center' src="/.github/fluxograma(1).png" width="700">
+<img align='center' src="/.github/fluxograma.png" width="700">
 
 ### Programming Language Concepts (CLP)
 Compare the performance of programs using different compiler optimization options (-O2 and -O3), against compilation without using the optimization option. Running the programs, collecting the data, presenting the results in the form of tables and/or graphs. Research project on programming language concepts, addressing the theme: "Analysis of programming languages for solving the Gram-Schmidt process".
