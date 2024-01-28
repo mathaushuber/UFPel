@@ -1,6 +1,41 @@
 # UFPel
 Projects related to my graduation in Computer Science from the Federal University of Pelotas
 
+## Course flowchart
+<img align='center' src="/.github/fluxograma_cc.png" width="700">
+
+## How to Use
+
+1. Clone the repository to your local machine using the following command:
+   ```
+   git clone https://github.com/HuberM1998/UFPel.git
+   ```
+2. Navigate to the desired project folder based on your academic course or area of interest.
+3. Each project folder contains specific instructions on how to run or use the project. Refer to the respective project's README or documentation for detailed information.
+4. Explore the flowcharts in the repository to get an overview of the course structure and project relationships.
+
+## How to Contribute
+
+1. Fork the repository by clicking the "Fork" button on the top right of the repository page. This creates a copy of the repository in your GitHub account.
+2. Create a new branch for your contribution:
+   ```
+   git checkout -b feature/your-feature-name
+   ```
+3. Make your changes, add new features, or fix bugs.
+4. Commit your changes:
+   ```
+   git add .
+   git commit -m "Add your commit message here"
+   ```
+5. Push the changes to your forked repository:
+   ```
+   git push origin feature/your-feature-name
+   ```
+6. Create a pull request by navigating to the original repository and clicking the "New Pull Request" button.
+7. Provide a detailed description of your changes in the pull request, and submit it.
+
+Thank you for contributing! Your efforts help improve and enhance the projects related to the Computer Science graduation at the Federal University of Pelotas.
+
 ## Repository flowchart
 <img align='center' src="/.github/fluxograma.png" width="700">
 
