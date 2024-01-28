@@ -39,8 +39,3 @@ For a more extensive project, check out the [chess-socket](https://github.com/Hu
 
 Feel free to contribute to this repository by adding new exercises, improving existing code, or providing additional resources related to computer networks.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
-Happy coding!
