@@ -25,8 +25,23 @@ Projects: Parallel Full Search (https://github.com/HuberM1998/Parallel-Fullsearc
   <img align="center" alt="C" src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white">
 </div>
 
+### Algorithms and Programming (AEP)
+Solving computational problems. Variable manipulation. Development of algorithms using sequential, conditional and repetition flows. Use of Vectors and Matrices in the treatment of data sets, as well as records. Study of the concepts of subroutines and functions.
+
+<div style="display: inline_block">
+  <img align="center" alt="C" src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white">
+</div>
+
+### Computer Programming (PC)
+Complete study of a sequential programming language: structure of a program, types, structured types and pointers, declarations, commands, subprograms, input and output, algorithms with arrays, use of files. Dynamic allocation and linear data structures. Techniques and tools for program development. Coding style: code documentation, data declaration, statement construction.
+
+<div style="display: inline_block">
+  <img align="center" alt="C" src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white">
+</div>
+
 ### Algorithms and Data Structure I (AED1)
-Insertion Sort, Selection Sort, Merge Sort, Quick Sort, List, Stack, Priority Queues (heaps), Auto-balanced trees (AVL, Red-and-Black), Binary Lookup Trees
+Insertion Sort, Selection Sort, Merge Sort, Quick Sort, List, Stack, Priority Queues (heaps), Auto-balanced trees (AVL, Red-and-Black), Binary Lookup Trees.
+
 <div style="display: inline_block">
   <img align="center" alt="C" src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white">
 </div>
