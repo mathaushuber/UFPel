@@ -16,6 +16,15 @@ Meal delivery with concurrent schedule. Analogous to the producer-consumer probl
   <img align="center" alt="Python" src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
 </div>
 
+### Introduction to parallel and distributed processing (IPPD)
+Classification of architectures for parallel and distributed systems. Concurrent programming models. Shared memory. Exchange of Messages. Case studies. Fibonnaci, Merge Sort, Integral calculation, quick sort using a parallelized approach in CUDA, OpenMP and MPI.
+
+Projects: Parallel Full Search (https://github.com/HuberM1998/Parallel-Fullsearch)
+
+<div style="display: inline_block">
+  <img align="center" alt="C" src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white">
+</div>
+
 ### Algorithms and Data Structure I (AED1)
 Insertion Sort, Selection Sort, Merge Sort, Quick Sort, List, Stack, Priority Queues (heaps), Auto-balanced trees (AVL, Red-and-Black), Binary Lookup Trees
 <div style="display: inline_block">
@@ -123,6 +132,16 @@ Perception of two principles of 3D digital graphic modeling with different engin
 ### Cad Tools (FERCAD)
 
 Concepts, evolution and trends in integrated circuits. Integrated circuit design methodologies. Simulators and estimators. Algorithms for CAD. Electronic project automation. Electronic CAD tools. Implementation of the Quine-McCluskey Algorithm (QMC) and Maze Router (Lee).
+
+<div style="display: inline_block">
+  <img align="center" alt="Python" src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
+</div>
+
+### Computer Network (REDES)
+Application layer. Transport layer. Network layer. Data link layer. Media access sublayer. Physical layer. Protocols case study. Cryptography concepts. Introduction to network security. Introduction to network management. Implementation of client and server architecture and p2p architecture.
+
+Projects:
+Multiplayer chess game (https://github.com/HuberM1998/chess-socket)
 
 <div style="display: inline_block">
   <img align="center" alt="Python" src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
